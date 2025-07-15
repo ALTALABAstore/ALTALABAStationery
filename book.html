@@ -25,7 +25,7 @@
             min-height: 100vh;
         }
         
-        /* شريط التنقل الجديد */
+        /* شريط التنقل */
         .navbar {
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             padding: 15px 0;
@@ -572,7 +572,7 @@
             cursor: pointer;
         }
         
-        /* شريط التخفيضات - تصميم جديد */
+        /* شريط التخفيضات */
         .discount-badge {
             position: absolute;
             top: 15px;
@@ -586,23 +586,6 @@
             font-size: 0.9rem;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             animation: pulse 1.5s infinite;
-        }
-        
-        .discount-badge::before {
-            content: "";
-            position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            border: 2px dashed rgba(255,255,255,0.5);
-            border-radius: 30px;
-            animation: rotate 10s linear infinite;
-        }
-        
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
         
         .original-price {
@@ -690,16 +673,11 @@
                 padding: 6px 12px;
                 font-size: 0.9rem;
             }
-            
-            .discount-badge {
-                font-size: 0.8rem;
-                padding: 5px 10px;
-            }
         }
     </style>
 </head>
 <body>
-    <!-- شريط التنقل الجديد -->
+    <!-- شريط التنقل -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
@@ -709,9 +687,7 @@
             <ul class="nav-links">
                 <li><a href="index.html" class="active">الرئيسية</a></li>
                 <li><a href="product.html">المنتجات</a></li>
-                <li><a href="#">العروض</a></li>
-                <li><a href="#">من نحن</a></li>
-                <li><a href="#">اتصل بنا</a></li>
+       
             </ul>
         </div>
     </nav>
@@ -727,181 +703,15 @@
         </div>
         
         <div class="filter-buttons">
-            <button class="filter-btn active">الكل</button>
-            <button class="filter-btn">المرحلة الابتدائية</button>
-            <button class="filter-btn">المرحلة الإعدادية</button>
-            <button class="filter-btn">المرحلة الثانوية</button>
-            <button class="filter-btn">رياض أطفال</button>
+            <button class="filter-btn active" data-category="all">الكل</button>
+            <button class="filter-btn" data-category="kindergarten">رياض أطفال</button>
+            <button class="filter-btn" data-category="primary">المرحلة الابتدائية</button>
+            <button class="filter-btn" data-category="preparatory">المرحلة الإعدادية</button>
+            <button class="filter-btn" data-category="secondary">المرحلة الثانوية</button>
         </div>
         
-        <div class="books-grid">
-            <!-- كتاب 1 مع خصم -->
-            <div class="book-card hot-deal">
-                <div class="discount-badge">خصم 25%</div>
-                <div class="book-image">
-                    <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="كتاب الرياضيات">
-                </div>
-                <div class="book-info">
-                    <h3 class="book-title">كتاب الرياضيات للصف الأول الثانوي</h3>
-                    <p class="book-author">تأليف: د. محمد عبد الله</p>
-                    <div class="book-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                        <span>(42)</span>
-                    </div>
-                    <p class="book-price">
-                        <span class="discount-price">112.50 ج.م</span>
-                        <span class="original-price">150 ج.م</span>
-                    </p>
-                    <div class="book-actions">
-                        <button class="order-btn" data-book="كتاب الرياضيات للصف الأول الثانوي" data-price="112.5" data-img="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80">➕ طلب الكتاب</button>
-                        <a href="https://wa.me/201097670474?text=أريد طلب كتاب الرياضيات للصف الأول الثانوي" class="whatsapp-btn" target="_blank">
-                            <i class="fab fa-whatsapp"></i> واتساب
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- كتاب 2 -->
-            <div class="book-card">
-                <div class="book-image">
-                    <img src="https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="كتاب اللغة العربية">
-                </div>
-                <div class="book-info">
-                    <h3 class="book-title">كتاب اللغة العربية للصف الثاني الإعدادي</h3>
-                    <p class="book-author">تأليف: أ. سعاد حسن</p>
-                    <div class="book-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <span>(18)</span>
-                    </div>
-                    <p class="book-price">السعر: 95 ج.م</p>
-                    <div class="book-actions">
-                        <button class="order-btn" data-book="كتاب اللغة العربية للصف الثاني الإعدادي" data-price="95" data-img="https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80">➕ طلب الكتاب</button>
-                        <a href="https://wa.me/201097670474?text=أريد طلب كتاب اللغة العربية للصف الثاني الإعدادي" class="whatsapp-btn" target="_blank">
-                            <i class="fab fa-whatsapp"></i> واتساب
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- كتاب 3 مع خصم -->
-            <div class="book-card">
-                <div class="discount-badge">خصم 15%</div>
-                <div class="book-image">
-                    <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="كتاب العلوم">
-                </div>
-                <div class="book-info">
-                    <h3 class="book-title">كتاب العلوم للصف الخامس الابتدائي</h3>
-                    <p class="book-author">تأليف: د. أحمد محمود</p>
-                    <div class="book-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <span>(36)</span>
-                    </div>
-                    <p class="book-price">
-                        <span class="discount-price">76.50 ج.م</span>
-                        <span class="original-price">90 ج.م</span>
-                    </p>
-                    <div class="book-actions">
-                        <button class="order-btn" data-book="كتاب العلوم للصف الخامس الابتدائي" data-price="76.5" data-img="https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80">➕ طلب الكتاب</button>
-                        <a href="https://wa.me/201097670474?text=أريد طلب كتاب العلوم للصف الخامس الابتدائي" class="whatsapp-btn" target="_blank">
-                            <i class="fab fa-whatsapp"></i> واتساب
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- كتاب 4 -->
-            <div class="book-card">
-                <div class="book-image">
-                    <img src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="كتاب اللغة الإنجليزية">
-                </div>
-                <div class="book-info">
-                    <h3 class="book-title">كتاب اللغة الإنجليزية للصف الثالث الإعدادي</h3>
-                    <p class="book-author">تأليف: أ. جون سميث</p>
-                    <div class="book-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <span>(25)</span>
-                    </div>
-                    <p class="book-price">السعر: 85 ج.م</p>
-                    <div class="book-actions">
-                        <button class="order-btn" data-book="كتاب اللغة الإنجليزية للصف الثالث الإعدادي" data-price="85" data-img="https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80">➕ طلب الكتاب</button>
-                        <a href="https://wa.me/201097670474?text=أريد طلب كتاب اللغة الإنجليزية للصف الثالث الإعدادي" class="whatsapp-btn" target="_blank">
-                            <i class="fab fa-whatsapp"></i> واتساب
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- كتاب 5 مع خصم -->
-            <div class="book-card hot-deal">
-                <div class="discount-badge">خصم 30%</div>
-                <div class="book-image">
-                    <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="كتاب التاريخ">
-                </div>
-                <div class="book-info">
-                    <h3 class="book-title">كتاب التاريخ للصف الثاني الثانوي</h3>
-                    <p class="book-author">تأليف: د. علي محمد</p>
-                    <div class="book-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                        <span>(31)</span>
-                    </div>
-                    <p class="book-price">
-                        <span class="discount-price">105 ج.م</span>
-                        <span class="original-price">150 ج.م</span>
-                    </p>
-                    <div class="book-actions">
-                        <button class="order-btn" data-book="كتاب التاريخ للصف الثاني الثانوي" data-price="105" data-img="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80">➕ طلب الكتاب</button>
-                        <a href="https://wa.me/201097670474?text=أريد طلب كتاب التاريخ للصف الثاني الثانوي" class="whatsapp-btn" target="_blank">
-                            <i class="fab fa-whatsapp"></i> واتساب
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- كتاب 6 -->
-            <div class="book-card">
-                <div class="book-image">
-                    <img src="https://images.unsplash.com/photo-1565026119557-db0ddb0e0b3b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="كتاب الجغرافيا">
-                </div>
-                <div class="book-info">
-                    <h3 class="book-title">كتاب الجغرافيا للصف الأول الإعدادي</h3>
-                    <p class="book-author">تأليف: د. هناء السيد</p>
-                    <div class="book-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <span>(14)</span>
-                    </div>
-                    <p class="book-price">السعر: 75 ج.م</p>
-                    <div class="book-actions">
-                        <button class="order-btn" data-book="كتاب الجغرافيا للصف الأول الإعدادي" data-price="75" data-img="https://images.unsplash.com/photo-1565026119557-db0ddb0e0b3b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80">➕ طلب الكتاب</button>
-                        <a href="https://wa.me/201097670474?text=أريد طلب كتاب الجغرافيا للصف الأول الإعدادي" class="whatsapp-btn" target="_blank">
-                            <i class="fab fa-whatsapp"></i> واتساب
-                        </a>
-                    </div>
-                </div>
-            </div>
+        <div class="books-grid" id="books-container">
+            <!-- الكتب سيتم إضافتها هنا بواسطة الجافاسكريبت -->
         </div>
     </div>
     
@@ -942,6 +752,98 @@
     </div>
     
     <script>
+        // بيانات الكتب
+        const books = [
+            {
+                id: 1,
+                name: "كتاب الرياضيات للصف الأول الابتدائي",
+                price: 80,
+                desc: "كتاب الرياضيات للصف الأول الابتدائي - المنهج الجديد",
+                image: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                category: "primary",
+                tags: ["رياضيات", "ابتدائي"],
+                availability: "متوفر",
+                rating: 4
+            },
+            {
+                id: 2,
+                name: "كتاب اللغة العربية للصف الثاني الإعدادي",
+                price: 95,
+                desc: "كتاب اللغة العربية للصف الثاني الإعدادي - المنهج الجديد",
+                image: "https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                category: "preparatory",
+                tags: ["لغة عربية", "إعدادي"],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 3,
+                name: "كتاب العلوم للصف الخامس الابتدائي",
+                price: 90,
+                desc: "كتاب العلوم للصف الخامس الابتدائي - المنهج الجديد",
+                image: "https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                category: "primary",
+                tags: ["علوم", "ابتدائي"],
+                availability: "متوفر",
+                rating: 4
+            },
+            {
+                id: 4,
+                name: "كتاب اللغة الإنجليزية للصف الثالث الإعدادي",
+                price: 85,
+                desc: "كتاب اللغة الإنجليزية للصف الثالث الإعدادي - المنهج الجديد",
+                image: "https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                category: "preparatory",
+                tags: ["لغة إنجليزية", "إعدادي"],
+                availability: "متوفر",
+                rating: 3
+            },
+            {
+                id: 5,
+                name: "كتاب التاريخ للصف الثاني الثانوي",
+                price: 150,
+                desc: "كتاب التاريخ للصف الثاني الثانوي - المنهج الجديد",
+                image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                category: "secondary",
+                tags: ["تاريخ", "ثانوي"],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 6,
+                name: "كتاب الجغرافيا للصف الأول الإعدادي",
+                price: 75,
+                desc: "كتاب الجغرافيا للصف الأول الإعدادي - المنهج الجديد",
+                image: "https://images.unsplash.com/photo-1565026119557-db0ddb0e0b3b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                category: "preparatory",
+                tags: ["جغرافيا", "إعدادي"],
+                availability: "متوفر",
+                rating: 4
+            },
+            {
+                id: 7,
+                name: "كتاب الأنشطة لرياض الأطفال",
+                price: 60,
+                desc: "كتاب الأنشطة لرياض الأطفال - المستوى الأول",
+                image: "https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                category: "kindergarten",
+                tags: ["أنشطة", "رياض أطفال"],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 8,
+                name: "كتاب اللغة الفرنسية للصف الأول الثانوي",
+                price: 120,
+                desc: "كتاب اللغة الفرنسية للصف الأول الثانوي - المنهج الجديد",
+                image: "https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                category: "secondary",
+                tags: ["لغة فرنسية", "ثانوي"],
+                availability: "متوفر",
+                rating: 4
+            }
+        ];
+
         document.addEventListener('DOMContentLoaded', function() {
             const cartBtn = document.querySelector('.cart-btn');
             const cartModal = document.querySelector('.cart-modal');
@@ -952,62 +854,108 @@
             const checkoutBtn = document.querySelector('.checkout-btn');
             const confirmation = document.querySelector('.confirmation');
             const confirmBtn = document.querySelector('.confirmation-btn');
-            const orderBtns = document.querySelectorAll('.order-btn');
             const searchBox = document.querySelector('.search-box');
             const filterBtns = document.querySelectorAll('.filter-btn');
-            const bookCards = document.querySelectorAll('.book-card');
+            const booksContainer = document.getElementById('books-container');
             
             let cart = [];
             let totalPrice = 0;
             
-            // فتح/إغلاق سلة التسوق
-            cartBtn.addEventListener('click', () => {
-                cartModal.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-            });
+            // عرض الكتب في الصفحة
+            function displayBooks(booksToDisplay) {
+                booksContainer.innerHTML = '';
+                
+                booksToDisplay.forEach(book => {
+                    const bookCard = document.createElement('div');
+                    bookCard.className = 'book-card';
+                    
+                    // إضافة علامة خصم إذا كان السعر أقل من 100
+                    const discountBadge = book.price < 100 ? `<div class="discount-badge">خصم ${Math.floor((100 - book.price) / 100 * 15)}%</div>` : '';
+                    
+                    bookCard.innerHTML = `
+                        ${discountBadge}
+                        <div class="book-image">
+                            <img src="${book.image}" alt="${book.name}">
+                        </div>
+                        <div class="book-info">
+                            <h3 class="book-title">${book.name}</h3>
+                            <p class="book-author">${book.desc}</p>
+                            <div class="book-rating">
+                                ${generateRatingStars(book.rating)}
+                                <span>(${book.rating * 10})</span>
+                            </div>
+                            <p class="book-price">السعر: ${book.price} ج.م</p>
+                            <div class="book-actions">
+                                <button class="order-btn" data-book="${book.name}" data-price="${book.price}" data-img="${book.image}">➕ طلب الكتاب</button>
+                                <a href="https://wa.me/201097670474?text=أريد طلب ${encodeURIComponent(book.name)}" class="whatsapp-btn" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> واتساب
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                    
+                    booksContainer.appendChild(bookCard);
+                });
+                
+                // إضافة أحداث النقر لأزرار الطلب الجديدة
+                document.querySelectorAll('.order-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const bookTitle = this.getAttribute('data-book');
+                        const bookPrice = parseFloat(this.getAttribute('data-price'));
+                        const bookImg = this.getAttribute('data-img');
+                        
+                        addToCart(bookTitle, bookPrice, bookImg, this);
+                    });
+                });
+            }
             
-            closeCart.addEventListener('click', () => {
-                cartModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            });
-            
-            // إغلاق السلة عند النقر خارجها
-            cartModal.addEventListener('click', (e) => {
-                if (e.target === cartModal) {
-                    cartModal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
+            // إنشاء نجوم التقييم
+            function generateRatingStars(rating) {
+                let stars = '';
+                const fullStars = Math.floor(rating);
+                const hasHalfStar = rating % 1 >= 0.5;
+                
+                for (let i = 0; i < fullStars; i++) {
+                    stars += '<i class="fas fa-star"></i>';
                 }
-            });
+                
+                if (hasHalfStar) {
+                    stars += '<i class="fas fa-star-half-alt"></i>';
+                }
+                
+                const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+                for (let i = 0; i < emptyStars; i++) {
+                    stars += '<i class="far fa-star"></i>';
+                }
+                
+                return stars;
+            }
             
             // إضافة عنصر للسلة
-            orderBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const bookTitle = btn.getAttribute('data-book');
-                    const bookPrice = parseFloat(btn.getAttribute('data-price'));
-                    const bookImg = btn.getAttribute('data-img');
-                    
-                    // إضافة العنصر للسلة
-                    cart.push({
-                        title: bookTitle,
-                        price: bookPrice,
-                        img: bookImg
-                    });
-                    
-                    // تحديث السعر الإجمالي
-                    totalPrice += bookPrice;
-                    
-                    // تحديث واجهة المستخدم
-                    updateCartUI();
-                    
-                    // تأثير عند الإضافة
-                    btn.textContent = '✔ تم الإضافة';
-                    btn.style.background = 'linear-gradient(to right, #4CAF50, #2E7D32)';
-                    setTimeout(() => {
-                        btn.textContent = '➕ طلب الكتاب';
-                        btn.style.background = 'linear-gradient(to right, var(--primary), var(--secondary))';
-                    }, 2000);
+            function addToCart(bookTitle, bookPrice, bookImg, buttonElement) {
+                // إضافة العنصر للسلة
+                cart.push({
+                    title: bookTitle,
+                    price: bookPrice,
+                    img: bookImg
                 });
-            });
+                
+                // تحديث السعر الإجمالي
+                totalPrice += bookPrice;
+                
+                // تحديث واجهة المستخدم
+                updateCartUI();
+                
+                // تأثير عند الإضافة
+                if (buttonElement) {
+                    buttonElement.textContent = '✔ تم الإضافة';
+                    buttonElement.style.background = 'linear-gradient(to right, #4CAF50, #2E7D32)';
+                    setTimeout(() => {
+                        buttonElement.textContent = '➕ طلب الكتاب';
+                        buttonElement.style.background = 'linear-gradient(to right, var(--primary), var(--secondary))';
+                    }, 2000);
+                }
+            }
             
             // تحديث واجهة سلة التسوق
             function updateCartUI() {
@@ -1045,6 +993,39 @@
                     });
                 });
             }
+            
+            // تصفية الكتب حسب الفئة
+            function filterBooks(category) {
+                if (category === 'all') {
+                    displayBooks(books);
+                    return;
+                }
+                
+                const filteredBooks = books.filter(book => book.category === category);
+                displayBooks(filteredBooks);
+            }
+            
+            // عرض جميع الكتب عند تحميل الصفحة
+            displayBooks(books);
+            
+            // فتح/إغلاق سلة التسوق
+            cartBtn.addEventListener('click', () => {
+                cartModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            });
+            
+            closeCart.addEventListener('click', () => {
+                cartModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+            
+            // إغلاق السلة عند النقر خارجها
+            cartModal.addEventListener('click', (e) => {
+                if (e.target === cartModal) {
+                    cartModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
             
             // إتمام الشراء
             checkoutBtn.addEventListener('click', () => {
@@ -1090,16 +1071,13 @@
             searchBox.addEventListener('input', function() {
                 const searchTerm = this.value.toLowerCase();
                 
-                bookCards.forEach(card => {
-                    const title = card.querySelector('.book-title').textContent.toLowerCase();
-                    const author = card.querySelector('.book-author').textContent.toLowerCase();
-                    
-                    if (title.includes(searchTerm) || author.includes(searchTerm)) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
+                const filteredBooks = books.filter(book => 
+                    book.name.toLowerCase().includes(searchTerm) || 
+                    book.desc.toLowerCase().includes(searchTerm) ||
+                    book.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+                );
+                
+                displayBooks(filteredBooks);
             });
             
             // تصفية الكتب حسب الفئة
@@ -1111,27 +1089,8 @@
                     // تنشيط الزر الحالي
                     this.classList.add('active');
                     
-                    const filter = this.textContent;
-                    
-                    bookCards.forEach(card => {
-                        if (filter === 'الكل') {
-                            card.style.display = 'block';
-                            return;
-                        }
-                        
-                        const title = card.querySelector('.book-title').textContent;
-                        
-                        if (
-                            (filter === 'المرحلة الابتدائية' && title.includes('الابتدائي')) ||
-                            (filter === 'المرحلة الإعدادية' && title.includes('الإعدادي')) ||
-                            (filter === 'المرحلة الثانوية' && title.includes('الثانوي')) ||
-                            (filter === 'رياض أطفال' && title.includes('رياض أطفال'))
-                        ) {
-                            card.style.display = 'block';
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    });
+                    const category = this.getAttribute('data-category');
+                    filterBooks(category);
                 });
             });
         });
