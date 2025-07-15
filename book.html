@@ -25,6 +25,80 @@
             min-height: 100vh;
         }
         
+        /* شريط التنقل الجديد */
+        .navbar {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .nav-logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-logo img {
+            width: 40px;
+            height: 40px;
+            margin-left: 10px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .nav-links li {
+            margin-right: 20px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            right: 15px;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after, .nav-links a.active::after {
+            width: calc(100% - 30px);
+        }
+        
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -190,6 +264,8 @@
             color: var(--primary);
             font-size: 1.2rem;
             margin: 10px 0;
+            display: flex;
+            align-items: center;
         }
         
         .book-rating {
@@ -496,17 +572,37 @@
             cursor: pointer;
         }
         
-        /* شريط التخفيضات */
+        /* شريط التخفيضات - تصميم جديد */
         .discount-badge {
             position: absolute;
-            top: 10px;
-            left: 10px;
-            background: #ff4757;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(45deg, #ff4757, #ff6b81);
             color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
+            padding: 8px 15px;
+            border-radius: 30px;
             font-weight: bold;
             z-index: 1;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            animation: pulse 1.5s infinite;
+        }
+        
+        .discount-badge::before {
+            content: "";
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 2px dashed rgba(255,255,255,0.5);
+            border-radius: 30px;
+            animation: rotate 10s linear infinite;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         
         .original-price {
@@ -514,6 +610,32 @@
             color: #999;
             font-size: 0.9rem;
             margin-left: 5px;
+        }
+        
+        .discount-price {
+            color: #ff4757;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+        
+        /* تصميم خاص للخصم الكبير */
+        .hot-deal {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hot-deal::after {
+            content: "عرض خاص!";
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: var(--accent);
+            color: white;
+            padding: 5px 30px;
+            transform: rotate(45deg);
+            font-weight: bold;
+            font-size: 0.8rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
         
         /* تصميم متجاوب */
@@ -538,6 +660,21 @@
                 width: 120px;
                 height: 120px;
             }
+            
+            .nav-container {
+                flex-direction: column;
+                padding: 10px;
+            }
+            
+            .nav-links {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-links li {
+                margin: 5px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -553,10 +690,32 @@
                 padding: 6px 12px;
                 font-size: 0.9rem;
             }
+            
+            .discount-badge {
+                font-size: 0.8rem;
+                padding: 5px 10px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- شريط التنقل الجديد -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="https://i.postimg.cc/x1Xncp9W/logo.png" alt="شعار مكتبة الطلبة">
+                مكتبة الطلبة
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">الرئيسية</a></li>
+                <li><a href="product.html">المنتجات</a></li>
+                <li><a href="#">العروض</a></li>
+                <li><a href="#">من نحن</a></li>
+                <li><a href="#">اتصل بنا</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <div class="container">
         <div class="header">
             <img src="https://i.postimg.cc/x1Xncp9W/logo.png" alt="شعار مكتبة الطلبة" class="logo">
@@ -572,10 +731,39 @@
             <button class="filter-btn">المرحلة الابتدائية</button>
             <button class="filter-btn">المرحلة الإعدادية</button>
             <button class="filter-btn">المرحلة الثانوية</button>
-            <button class="filter-btn">رياض أطفال </button>
+            <button class="filter-btn">رياض أطفال</button>
         </div>
         
         <div class="books-grid">
+            <!-- كتاب 1 مع خصم -->
+            <div class="book-card hot-deal">
+                <div class="discount-badge">خصم 25%</div>
+                <div class="book-image">
+                    <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="كتاب الرياضيات">
+                </div>
+                <div class="book-info">
+                    <h3 class="book-title">كتاب الرياضيات للصف الأول الثانوي</h3>
+                    <p class="book-author">تأليف: د. محمد عبد الله</p>
+                    <div class="book-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>(42)</span>
+                    </div>
+                    <p class="book-price">
+                        <span class="discount-price">112.50 ج.م</span>
+                        <span class="original-price">150 ج.م</span>
+                    </p>
+                    <div class="book-actions">
+                        <button class="order-btn" data-book="كتاب الرياضيات للصف الأول الثانوي" data-price="112.5" data-img="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80">➕ طلب الكتاب</button>
+                        <a href="https://wa.me/201097670474?text=أريد طلب كتاب الرياضيات للصف الأول الثانوي" class="whatsapp-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> واتساب
+                        </a>
+                    </div>
+                </div>
+            </div>
 
             <!-- كتاب 2 -->
             <div class="book-card">
@@ -602,8 +790,120 @@
                     </div>
                 </div>
             </div>
-  
 
+            <!-- كتاب 3 مع خصم -->
+            <div class="book-card">
+                <div class="discount-badge">خصم 15%</div>
+                <div class="book-image">
+                    <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="كتاب العلوم">
+                </div>
+                <div class="book-info">
+                    <h3 class="book-title">كتاب العلوم للصف الخامس الابتدائي</h3>
+                    <p class="book-author">تأليف: د. أحمد محمود</p>
+                    <div class="book-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(36)</span>
+                    </div>
+                    <p class="book-price">
+                        <span class="discount-price">76.50 ج.م</span>
+                        <span class="original-price">90 ج.م</span>
+                    </p>
+                    <div class="book-actions">
+                        <button class="order-btn" data-book="كتاب العلوم للصف الخامس الابتدائي" data-price="76.5" data-img="https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80">➕ طلب الكتاب</button>
+                        <a href="https://wa.me/201097670474?text=أريد طلب كتاب العلوم للصف الخامس الابتدائي" class="whatsapp-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> واتساب
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- كتاب 4 -->
+            <div class="book-card">
+                <div class="book-image">
+                    <img src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="كتاب اللغة الإنجليزية">
+                </div>
+                <div class="book-info">
+                    <h3 class="book-title">كتاب اللغة الإنجليزية للصف الثالث الإعدادي</h3>
+                    <p class="book-author">تأليف: أ. جون سميث</p>
+                    <div class="book-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <span>(25)</span>
+                    </div>
+                    <p class="book-price">السعر: 85 ج.م</p>
+                    <div class="book-actions">
+                        <button class="order-btn" data-book="كتاب اللغة الإنجليزية للصف الثالث الإعدادي" data-price="85" data-img="https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80">➕ طلب الكتاب</button>
+                        <a href="https://wa.me/201097670474?text=أريد طلب كتاب اللغة الإنجليزية للصف الثالث الإعدادي" class="whatsapp-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> واتساب
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- كتاب 5 مع خصم -->
+            <div class="book-card hot-deal">
+                <div class="discount-badge">خصم 30%</div>
+                <div class="book-image">
+                    <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="كتاب التاريخ">
+                </div>
+                <div class="book-info">
+                    <h3 class="book-title">كتاب التاريخ للصف الثاني الثانوي</h3>
+                    <p class="book-author">تأليف: د. علي محمد</p>
+                    <div class="book-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>(31)</span>
+                    </div>
+                    <p class="book-price">
+                        <span class="discount-price">105 ج.م</span>
+                        <span class="original-price">150 ج.م</span>
+                    </p>
+                    <div class="book-actions">
+                        <button class="order-btn" data-book="كتاب التاريخ للصف الثاني الثانوي" data-price="105" data-img="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80">➕ طلب الكتاب</button>
+                        <a href="https://wa.me/201097670474?text=أريد طلب كتاب التاريخ للصف الثاني الثانوي" class="whatsapp-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> واتساب
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- كتاب 6 -->
+            <div class="book-card">
+                <div class="book-image">
+                    <img src="https://images.unsplash.com/photo-1565026119557-db0ddb0e0b3b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="كتاب الجغرافيا">
+                </div>
+                <div class="book-info">
+                    <h3 class="book-title">كتاب الجغرافيا للصف الأول الإعدادي</h3>
+                    <p class="book-author">تأليف: د. هناء السيد</p>
+                    <div class="book-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <span>(14)</span>
+                    </div>
+                    <p class="book-price">السعر: 75 ج.م</p>
+                    <div class="book-actions">
+                        <button class="order-btn" data-book="كتاب الجغرافيا للصف الأول الإعدادي" data-price="75" data-img="https://images.unsplash.com/photo-1565026119557-db0ddb0e0b3b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80">➕ طلب الكتاب</button>
+                        <a href="https://wa.me/201097670474?text=أريد طلب كتاب الجغرافيا للصف الأول الإعدادي" class="whatsapp-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> واتساب
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     
     <!-- سلة التسوق -->
     <div class="cart-container">
@@ -683,7 +983,7 @@
             orderBtns.forEach(btn => {
                 btn.addEventListener('click', () => {
                     const bookTitle = btn.getAttribute('data-book');
-                    const bookPrice = parseInt(btn.getAttribute('data-price'));
+                    const bookPrice = parseFloat(btn.getAttribute('data-price'));
                     const bookImg = btn.getAttribute('data-img');
                     
                     // إضافة العنصر للسلة
@@ -733,7 +1033,7 @@
                 
                 // تحديث العدد والسعر الإجمالي
                 cartCount.textContent = cart.length;
-                totalPriceElement.textContent = `${totalPrice} ج.م`;
+                totalPriceElement.textContent = `${totalPrice.toFixed(2)} ج.م`;
                 
                 // إضافة أحداث لحذف العناصر
                 document.querySelectorAll('.remove-item').forEach(btn => {
@@ -760,7 +1060,7 @@
                     whatsappMessage += `- ${item.title} (${item.price} ج.م)\n`;
                 });
                 
-                whatsappMessage += `\nالمجموع: ${totalPrice} ج.م\n\nشكراً!`;
+                whatsappMessage += `\nالمجموع: ${totalPrice.toFixed(2)} ج.م\n\nشكراً!`;
                 
                 // ترميز الرسالة للرابط
                 const encodedMessage = encodeURIComponent(whatsappMessage);
@@ -825,8 +1125,7 @@
                             (filter === 'المرحلة الابتدائية' && title.includes('الابتدائي')) ||
                             (filter === 'المرحلة الإعدادية' && title.includes('الإعدادي')) ||
                             (filter === 'المرحلة الثانوية' && title.includes('الثانوي')) ||
-                            (filter === 'أفضل المبيعات' && card.querySelector('رياض أطفال') && 
-                             card.querySelector('.discount-badge').textContent.includes('الأكثر مبيعاً'))
+                            (filter === 'رياض أطفال' && title.includes('رياض أطفال'))
                         ) {
                             card.style.display = 'block';
                         } else {
