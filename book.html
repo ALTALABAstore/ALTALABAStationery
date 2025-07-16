@@ -230,6 +230,7 @@
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s ease;
+            cursor: pointer;
         }
         
         .book-card:hover .book-image img {
@@ -621,6 +622,85 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
         
+        /* مودال عرض صورة الكتاب كاملة */
+        .book-modal {
+            display: none;
+            position: fixed;
+            z-index: 3000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow: auto;
+            text-align: center;
+        }
+        
+        .book-modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            margin-top: 5vh;
+            animation: zoom 0.3s;
+        }
+        
+        @keyframes zoom {
+            from {transform: scale(0.1)}
+            to {transform: scale(1)}
+        }
+        
+        .close-book-modal {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        
+        .close-book-modal:hover {
+            color: var(--accent);
+        }
+        
+        /* أنماط الترقيم */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .page-btn {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Tajawal';
+        }
+        
+        .page-btn:hover:not(.active) {
+            background: var(--secondary);
+            color: white;
+            border-color: var(--secondary);
+        }
+        
+        .page-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .page-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
         /* تصميم متجاوب */
         @media (max-width: 768px) {
             .books-grid {
@@ -687,7 +767,6 @@
             <ul class="nav-links">
                 <li><a href="index.html" class="active">الرئيسية</a></li>
                 <li><a href="product.html">المنتجات</a></li>
-       
             </ul>
         </div>
     </nav>
@@ -712,6 +791,11 @@
         
         <div class="books-grid" id="books-container">
             <!-- الكتب سيتم إضافتها هنا بواسطة الجافاسكريبت -->
+        </div>
+        
+        <!-- عنصر الترقيم -->
+        <div class="pagination" id="pagination">
+            <!-- أزرار الترقيم ستضاف هنا بالجافاسكريبت -->
         </div>
     </div>
     
@@ -751,97 +835,214 @@
         <button class="confirmation-btn">حسناً</button>
     </div>
     
+    <!-- مودال لعرض صورة الكتاب كاملة -->
+    <div class="book-modal">
+        <span class="close-book-modal">&times;</span>
+        <img class="book-modal-content" id="expanded-book-img">
+    </div>
+    
     <script>
         // بيانات الكتب
         const books = [
-            {
+          {
                 id: 1,
-                name: "كتاب الرياضيات للصف الأول الابتدائي",
-                price: 80,
-                desc: "كتاب الرياضيات للصف الأول الابتدائي - المنهج الجديد",
-                image: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                name: "كتاب المعاصر ديسكفور ",
+                price: 199,
+                desc: " للصف الثانى الإبتدائى ",
+                image: "https://i.postimg.cc/CKmQ1WV6/Whats-App-Image-2025-07-14-at-3-03-07-PM.jpg",
                 category: "primary",
-                tags: ["رياضيات", "ابتدائي"],
-                availability: "متوفر",
-                rating: 4
-            },
-            {
-                id: 2,
-                name: "كتاب اللغة العربية للصف الثاني الإعدادي",
-                price: 95,
-                desc: "كتاب اللغة العربية للصف الثاني الإعدادي - المنهج الجديد",
-                image: "https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-                category: "preparatory",
-                tags: ["لغة عربية", "إعدادي"],
+                tags: ["ديسكفور", "ابتدائي"],
                 availability: "متوفر",
                 rating: 5
             },
-            {
-                id: 3,
-                name: "كتاب العلوم للصف الخامس الابتدائي",
-                price: 90,
-                desc: "كتاب العلوم للصف الخامس الابتدائي - المنهج الجديد",
-                image: "https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+              {
+                id: 2,
+                name: "كتاب المعاصر ديسكفور ",
+                price: 199,
+                desc: " للصف الأول الإبتدائى ",
+                image: "https://i.postimg.cc/nhtFYQQf/Whats-App-Image-2025-07-14-at-3-03-04-PM.jpg",
                 category: "primary",
-                tags: ["علوم", "ابتدائي"],
+                tags: ["ديسكفور", "ابتدائي"],
                 availability: "متوفر",
-                rating: 4
+                rating: 5
+            },
+                    {
+                id: 3,
+                name: "كتاب المعاصر ديسكفور ",
+                price: 225,
+                desc: " للصف الثالث الإبتدائى ",
+                image: "https://i.postimg.cc/3R67yyH6/Whats-App-Image-2025-07-14-at-3-03-01-PM.jpg",
+                category: "primary",
+                tags: ["ديسكفور", "ابتدائي"],
+                availability: "متوفر",
+                rating: 5
             },
             {
                 id: 4,
-                name: "كتاب اللغة الإنجليزية للصف الثالث الإعدادي",
-                price: 85,
-                desc: "كتاب اللغة الإنجليزية للصف الثالث الإعدادي - المنهج الجديد",
-                image: "https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-                category: "preparatory",
-                tags: ["لغة إنجليزية", "إعدادي"],
-                availability: "متوفر",
-                rating: 3
-            },
-            {
-                id: 5,
-                name: "كتاب التاريخ للصف الثاني الثانوي",
-                price: 150,
-                desc: "كتاب التاريخ للصف الثاني الثانوي - المنهج الجديد",
-                image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-                category: "secondary",
-                tags: ["تاريخ", "ثانوي"],
-                availability: "متوفر",
-                rating: 5
-            },
-            {
-                id: 6,
-                name: "كتاب الجغرافيا للصف الأول الإعدادي",
-                price: 75,
-                desc: "كتاب الجغرافيا للصف الأول الإعدادي - المنهج الجديد",
-                image: "https://images.unsplash.com/photo-1565026119557-db0ddb0e0b3b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-                category: "preparatory",
-                tags: ["جغرافيا", "إعدادي"],
-                availability: "متوفر",
-                rating: 4
-            },
-            {
-                id: 7,
-                name: "كتاب الأنشطة لرياض الأطفال",
-                price: 60,
-                desc: "كتاب الأنشطة لرياض الأطفال - المستوى الأول",
-                image: "https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                name: "  كتاب المعاصر ماث   ",
+                price: 195,
+                desc: "كجى 2 - المستوى الثانى",
+                image: "https://i.postimg.cc/hjnZ2c1j/Whats-App-Image-2025-07-14-at-3-03-12-PM.jpg",
                 category: "kindergarten",
-                tags: ["أنشطة", "رياض أطفال"],
+                tags: ["ماث", "رياض أطفال"],
                 availability: "متوفر",
                 rating: 5
             },
-            {
-                id: 8,
-                name: "كتاب اللغة الفرنسية للصف الأول الثانوي",
-                price: 120,
-                desc: "كتاب اللغة الفرنسية للصف الأول الثانوي - المنهج الجديد",
-                image: "https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                 {
+                id: 5,
+                name: "كتاب الأمتحان فى التاريح (شرح)  ",
+                price: 240,
+                desc: " للصف الثالث الثانوى ",
+                image: "https://i.postimg.cc/3wNgjw67/1.png",
                 category: "secondary",
-                tags: ["لغة فرنسية", "ثانوي"],
+                tags: [" تاريخ", "ثانوي"],
                 availability: "متوفر",
-                rating: 4
-            }
+                rating: 5
+            },
+                     {
+                id: 6,
+                name: "كتاب الأمتحان فى الأحياء (شرح)  ",
+                price: 195,
+                desc: " للصف الثالث الثانوى ",
+                image: "https://i.postimg.cc/vm37RVJp/3.png",
+                category: "secondary",
+                tags: [" أحياء", "ثانوي"],
+                availability: "متوفر",
+                rating: 5
+            },
+                    {
+                id: 7,
+                name: "كتاب الأمتحان فى الفيزياء (شرح)  ",
+                price: 210,
+                desc: " للصف الثالث الثانوى ",
+                image: "https://i.postimg.cc/9MXsYy20/Whats-App-Image-2025-07-14-at-3-03-16-PM.jpg",
+                category: "secondary",
+                tags: [" فيزياء", "ثانوي"],
+                availability: "متوفر",
+                rating: 5
+            },
+                 {
+                id: 8,
+                name: "كتاب الأمتحان فى الكيمياء (شرح)  ",
+                price: 265,
+                desc: " للصف الثالث الثانوى ",
+                image: "https://i.postimg.cc/y8F5qLYW/6.png",
+                category: "secondary",
+                tags: [" كيمياء", "ثانوي"],
+                availability: "متوفر",
+                rating: 5
+            },
+          
+            {
+                id: 9,
+                name: "كتاب المعاصر فى الرياضيات ",
+                price: 155,
+                desc: " للصف الثالث الإعدادى ",
+                image: "https://i.postimg.cc/MHMP9DF6/Whats-App-Image-2025-07-14-at-3-02-42-PM.jpg",
+                category: "preparatory",
+                tags: ["الرياضيات ", "إعدادي"],
+                availability: "متوفر",
+                rating: 5
+            },
+                 {
+                id: 10,
+                name: "كتاب المعاصر ماث ",
+                price: 255,
+                desc: " للصف الثالث الإبتدائى ",
+                image: "https://i.postimg.cc/2Sh5sNZv/11.png",
+                category: "primary",
+                tags: ["ماث", "ابتدائي"],
+                availability: "متوفر",
+                rating: 5
+            },
+               {
+                id: 11,
+                name: "كتاب المعاصر ماث ",
+                price: 240,
+                desc: " للصف الثانى الإبتدائى ",
+                image: "https://i.postimg.cc/8cwttY1r/Whats-App-Image-2025-07-16-at-9-31-00-AM.jpg",
+                category: "primary",
+                tags: ["ماث", "ابتدائي"],
+                availability: "متوفر",
+                rating: 5
+            },
+                  {
+                id: 12,
+                name: "  كتاب التأسيس السليم حساب    ",
+                price: 165,
+                desc: "كجى 1 - المستوى الأول",
+                image: "https://i.postimg.cc/VNR1BYxf/8.png",
+                category: "kindergarten",
+                tags: ["حساب", "رياض أطفال"],
+                availability: "متوفر",
+                rating: 5
+            },
+                    {
+                id: 13,
+                name: "  كتاب التأسيس السليم حساب    ",
+                price: 165,
+                desc: "كجى 2 - المستوى الثانى",
+                image: "https://i.postimg.cc/Pq8VTKMB/Whats-App-Image-2025-07-16-at-9-31-00-AM-1.jpg",
+                category: "kindergarten",
+                tags: ["حساب", "رياض أطفال"],
+                availability: "متوفر",
+                rating: 5
+            },
+                          {
+                id: 14,
+                name: "  كتاب التأسيس السليم لغة عربية    ",
+                price: 165,
+                desc: "كجى2 - المستوى الثانى",
+                image: "https://i.postimg.cc/d1gqDWMr/9.png",
+                category: "kindergarten",
+                tags: ["لغة عربية", "رياض أطفال"],
+                availability: "متوفر",
+                rating: 5
+            },
+                     {
+                id: 15,
+                name: "  كتاب التأسيس السليم لغة عربية    ",
+                price: 165,
+                desc: "كجى 1 - المستوى الأول",
+                image: "https://i.postimg.cc/85fG8hF5/10.png",
+                category: "kindergarten",
+                tags: ["لغة عربية", "رياض أطفال"],
+                availability: "متوفر",
+                rating: 5
+            },
+                    {
+                id: 16,
+                name: "كتاب الأمتحان فى الفيزياء (أسئلة)  ",
+                price: 289,
+                desc: " للصف الثالث الثانوى ",
+                image: "https://i.postimg.cc/52fFxtS1/4.png",
+                category: "secondary",
+                tags: [" الفيزياء", "ثانوي"],
+                availability: "متوفر",
+                rating: 5
+            },
+                       {
+                id: 17,
+                name: "كتاب الأمتحان فى الأحياء (أسئلة)  ",
+                price: 275,
+                desc: " للصف الثالث الثانوى ",
+                image: "https://i.postimg.cc/9QxzCYft/2.png",
+                category: "secondary",
+                tags: [" الأحياء", "ثانوي"],
+                availability: "متوفر",
+                rating: 5 
+            },
+               {
+                id:18,
+                name: "  كتاب المعاصر ماث   ",
+                price: 185,
+                desc: "كجى 1 - المستوى الأول",
+                image: "https://i.postimg.cc/yYHTZsyp/13.png",
+                category: "kindergarten",
+                tags: ["ماث", "رياض أطفال"],
+                availability: "متوفر",
+                rating: 5
+            },
         ];
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -857,20 +1058,33 @@
             const searchBox = document.querySelector('.search-box');
             const filterBtns = document.querySelectorAll('.filter-btn');
             const booksContainer = document.getElementById('books-container');
+            const paginationContainer = document.getElementById('pagination');
             
             let cart = [];
             let totalPrice = 0;
+            let currentPage = 1;
+            const booksPerPage = 15;
             
-            // عرض الكتب في الصفحة
-            function displayBooks(booksToDisplay) {
+            // عرض الكتب في الصفحة مع الترقيم
+            function displayBooks(booksToDisplay, page = 1) {
                 booksContainer.innerHTML = '';
                 
-                booksToDisplay.forEach(book => {
+                // حساب مؤشرات البداية والنهاية للكتب في الصفحة الحالية
+                const startIndex = (page - 1) * booksPerPage;
+                const endIndex = startIndex + booksPerPage;
+                const paginatedBooks = booksToDisplay.slice(startIndex, endIndex);
+                
+                if (paginatedBooks.length === 0) {
+                    booksContainer.innerHTML = '<p style="grid-column:1/-1;text-align:center;">لا توجد كتب متاحة</p>';
+                    return;
+                }
+                
+                paginatedBooks.forEach(book => {
                     const bookCard = document.createElement('div');
                     bookCard.className = 'book-card';
                     
-                    // إضافة علامة خصم إذا كان السعر أقل من 100
-                    const discountBadge = book.price < 100 ? `<div class="discount-badge">خصم ${Math.floor((100 - book.price) / 100 * 15)}%</div>` : '';
+                    // إضافة علامة خصم على جميع الكتب بدون تحديد النسبة
+                    const discountBadge = `<div class="discount-badge">خصم</div>`;
                     
                     bookCard.innerHTML = `
                         ${discountBadge}
@@ -897,6 +1111,9 @@
                     booksContainer.appendChild(bookCard);
                 });
                 
+                // تحديث أزرار الترقيم
+                updatePagination(booksToDisplay.length, page);
+                
                 // إضافة أحداث النقر لأزرار الطلب الجديدة
                 document.querySelectorAll('.order-btn').forEach(btn => {
                     btn.addEventListener('click', function() {
@@ -905,6 +1122,16 @@
                         const bookImg = this.getAttribute('data-img');
                         
                         addToCart(bookTitle, bookPrice, bookImg, this);
+                    });
+                });
+                
+                // إضافة أحداث النقر لعرض صورة الكتاب كاملة
+                document.querySelectorAll('.book-image img').forEach(img => {
+                    img.addEventListener('click', function() {
+                        const modal = document.querySelector('.book-modal');
+                        const modalImg = document.getElementById('expanded-book-img');
+                        modal.style.display = 'block';
+                        modalImg.src = this.src;
                     });
                 });
             }
@@ -994,19 +1221,209 @@
                 });
             }
             
+            // دالة لتحديث أزرار الترقيم
+            function updatePagination(totalBooks, currentPage) {
+                paginationContainer.innerHTML = '';
+                
+                const totalPages = Math.ceil(totalBooks / booksPerPage);
+                
+                if (totalPages <= 1) return;
+                
+                // زر الصفحة السابقة
+                const prevBtn = document.createElement('button');
+                prevBtn.className = `page-btn ${currentPage === 1 ? 'disabled' : ''}`;
+                prevBtn.innerHTML = '<i class="fas fa-arrow-right"></i>';
+                prevBtn.addEventListener('click', () => {
+                    if (currentPage > 1) {
+                        changePage(currentPage - 1);
+                    }
+                });
+                paginationContainer.appendChild(prevBtn);
+                
+                // أزرار الصفحات
+                const maxVisiblePages = 5; // عدد الصفحات المرئية في الترقيم
+                let startPage, endPage;
+                
+                if (totalPages <= maxVisiblePages) {
+                    startPage = 1;
+                    endPage = totalPages;
+                } else {
+                    const maxPagesBeforeCurrent = Math.floor(maxVisiblePages / 2);
+                    const maxPagesAfterCurrent = Math.ceil(maxVisiblePages / 2) - 1;
+                    
+                    if (currentPage <= maxPagesBeforeCurrent) {
+                        startPage = 1;
+                        endPage = maxVisiblePages;
+                    } else if (currentPage + maxPagesAfterCurrent >= totalPages) {
+                        startPage = totalPages - maxVisiblePages + 1;
+                        endPage = totalPages;
+                    } else {
+                        startPage = currentPage - maxPagesBeforeCurrent;
+                        endPage = currentPage + maxPagesAfterCurrent;
+                    }
+                }
+                
+                // إضافة زر الصفحة الأولى إذا لزم الأمر
+                if (startPage > 1) {
+                    const firstBtn = document.createElement('button');
+                    firstBtn.className = 'page-btn';
+                    firstBtn.textContent = '1';
+                    firstBtn.addEventListener('click', () => changePage(1));
+                    paginationContainer.appendChild(firstBtn);
+                    
+                    if (startPage > 2) {
+                        const dots = document.createElement('span');
+                        dots.textContent = '...';
+                        paginationContainer.appendChild(dots);
+                    }
+                }
+                
+                // إضافة أزرار الصفحات
+                for (let i = startPage; i <= endPage; i++) {
+                    const pageBtn = document.createElement('button');
+                    pageBtn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
+                    pageBtn.textContent = i;
+                    pageBtn.addEventListener('click', () => changePage(i));
+                    paginationContainer.appendChild(pageBtn);
+                }
+                
+                // إضافة زر الصفحة الأخيرة إذا لزم الأمر
+                if (endPage < totalPages) {
+                    if (endPage < totalPages - 1) {
+                        const dots = document.createElement('span');
+                        dots.textContent = '...';
+                        paginationContainer.appendChild(dots);
+                    }
+                    
+                    const lastBtn = document.createElement('button');
+                    lastBtn.className = 'page-btn';
+                    lastBtn.textContent = totalPages;
+                    lastBtn.addEventListener('click', () => changePage(totalPages));
+                    paginationContainer.appendChild(lastBtn);
+                }
+                
+                // زر الصفحة التالية
+                const nextBtn = document.createElement('button');
+                nextBtn.className = `page-btn ${currentPage === totalPages ? 'disabled' : ''}`;
+                nextBtn.innerHTML = '<i class="fas fa-arrow-left"></i>';
+                nextBtn.addEventListener('click', () => {
+                    if (currentPage < totalPages) {
+                        changePage(currentPage + 1);
+                    }
+                });
+                paginationContainer.appendChild(nextBtn);
+            }
+            
+            // دالة لتغيير الصفحة
+            function changePage(page) {
+                currentPage = page;
+                const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-category');
+                const searchTerm = document.querySelector('.search-box').value.toLowerCase();
+                
+                let filteredBooks = books;
+                
+                // تطبيق الفلتر إذا لم يكن "الكل"
+                if (activeFilter !== 'all') {
+                    filteredBooks = books.filter(book => book.category === activeFilter);
+                }
+                
+                // تطبيق البحث إذا كان هناك نص بحث
+                if (searchTerm) {
+                    filteredBooks = filteredBooks.filter(book => 
+                        book.name.toLowerCase().includes(searchTerm) || 
+                        book.desc.toLowerCase().includes(searchTerm) ||
+                        book.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+                    );
+                }
+                
+                displayBooks(filteredBooks, currentPage);
+                
+                // التمرير لأعلى الصفحة
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+            
             // تصفية الكتب حسب الفئة
             function filterBooks(category) {
+                currentPage = 1; // العودة للصفحة الأولى عند تغيير الفلتر
+                const searchTerm = document.querySelector('.search-box').value.toLowerCase();
+                
                 if (category === 'all') {
-                    displayBooks(books);
+                    if (searchTerm) {
+                        const filteredBooks = books.filter(book => 
+                            book.name.toLowerCase().includes(searchTerm) || 
+                            book.desc.toLowerCase().includes(searchTerm) ||
+                            book.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+                        );
+                        displayBooks(filteredBooks);
+                    } else {
+                        displayBooks(books);
+                    }
                     return;
                 }
                 
                 const filteredBooks = books.filter(book => book.category === category);
-                displayBooks(filteredBooks);
+                
+                if (searchTerm) {
+                    const searchedBooks = filteredBooks.filter(book => 
+                        book.name.toLowerCase().includes(searchTerm) || 
+                        book.desc.toLowerCase().includes(searchTerm) ||
+                        book.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+                    );
+                    displayBooks(searchedBooks);
+                } else {
+                    displayBooks(filteredBooks);
+                }
             }
             
-            // عرض جميع الكتب عند تحميل الصفحة
-            displayBooks(books);
+            // البحث عن الكتب
+            searchBox.addEventListener('input', function() {
+                currentPage = 1; // العودة للصفحة الأولى عند البحث
+                const searchTerm = this.value.toLowerCase();
+                const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-category');
+                
+                let filteredBooks = books;
+                
+                if (activeFilter !== 'all') {
+                    filteredBooks = books.filter(book => book.category === activeFilter);
+                }
+                
+                const searchedBooks = filteredBooks.filter(book => 
+                    book.name.toLowerCase().includes(searchTerm) || 
+                    book.desc.toLowerCase().includes(searchTerm) ||
+                    book.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+                );
+                
+                displayBooks(searchedBooks);
+            });
+            
+            // تصفية الكتب حسب الفئة
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // إزالة التنشيط من جميع الأزرار
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    
+                    // تنشيط الزر الحالي
+                    this.classList.add('active');
+                    
+                    const category = this.getAttribute('data-category');
+                    filterBooks(category);
+                });
+            });
+            
+            // إغلاق مودال صورة الكتاب
+            document.querySelector('.close-book-modal').addEventListener('click', function() {
+                document.querySelector('.book-modal').style.display = 'none';
+            });
+            
+            // إغلاق المودال عند النقر خارج الصورة
+            document.querySelector('.book-modal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.style.display = 'none';
+                }
+            });
             
             // فتح/إغلاق سلة التسوق
             cartBtn.addEventListener('click', () => {
@@ -1067,32 +1484,8 @@
                 document.body.style.overflow = 'auto';
             });
             
-            // البحث عن الكتب
-            searchBox.addEventListener('input', function() {
-                const searchTerm = this.value.toLowerCase();
-                
-                const filteredBooks = books.filter(book => 
-                    book.name.toLowerCase().includes(searchTerm) || 
-                    book.desc.toLowerCase().includes(searchTerm) ||
-                    book.tags.some(tag => tag.toLowerCase().includes(searchTerm))
-                );
-                
-                displayBooks(filteredBooks);
-            });
-            
-            // تصفية الكتب حسب الفئة
-            filterBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    // إزالة التنشيط من جميع الأزرار
-                    filterBtns.forEach(b => b.classList.remove('active'));
-                    
-                    // تنشيط الزر الحالي
-                    this.classList.add('active');
-                    
-                    const category = this.getAttribute('data-category');
-                    filterBooks(category);
-                });
-            });
+            // عند تحميل الصفحة، عرض الكتب مع الترقيم
+            displayBooks(books);
         });
     </script>
 </body>
