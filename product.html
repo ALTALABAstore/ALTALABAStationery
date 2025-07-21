@@ -804,12 +804,14 @@
             z-index: 1;
         }
         
-        /* Pagination styles */
+        /* تحسينات الترقيم */
         .pagination {
             display: flex;
             justify-content: center;
             margin-top: 2rem;
             gap: 0.5rem;
+            flex-wrap: wrap;
+            align-items: center;
         }
         
         .page-btn {
@@ -819,21 +821,36 @@
             border-radius: 5px;
             cursor: pointer;
             transition: all 0.3s;
+            min-width: 40px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
         }
         
         .page-btn:hover {
             background-color: var(--light-color);
+            transform: translateY(-2px);
         }
         
         .page-btn.active {
             background-color: var(--secondary-color);
             color: white;
             border-color: var(--secondary-color);
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
         }
         
         .page-btn.disabled {
             opacity: 0.5;
             cursor: not-allowed;
+            transform: none !important;
+        }
+        
+        .page-dots {
+            padding: 0.5rem;
+            color: #666;
         }
         
         /* Animations */
@@ -980,6 +997,11 @@
             .pagination {
                 flex-wrap: wrap;
             }
+            
+            .page-btn {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.9rem;
+            }
         }
         
         @media (max-width: 480px) {
@@ -989,8 +1011,9 @@
             }
             
             .page-btn {
-                padding: 0.4rem 0.8rem;
-                font-size: 0.9rem;
+                padding: 0.4rem 0.6rem;
+                font-size: 0.8rem;
+                min-width: 30px;
             }
         }
     </style>
@@ -1084,7 +1107,149 @@
     <script>
         // بيانات المنتجات
         const products = [
+           {
+            id: 203,
+            name: "   عليقة زجاج  ",
+            price: 12.5,
+            desc: "    جودة عالية  ",
+            image: "https://i.postimg.cc/CLyK6vhJ/Whats-App-Image-2025-07-21-at-9-08-00-AM.jpg",
+            badge: "جديد",
+            category: "office",
+            tags: ["  مكتب", "أدوات"],
+            availability: "متوفر",
+            rating: 5
+        },
+                        {
+            id: 202,
+            name: " ألة حاسبة مكتب أندلسية  ",
+            price: 12.5,
+            desc: "    كبيرة  ",
+            image: "https://i.postimg.cc/k44CBSn2/Whats-App-Image-2025-07-21-at-9-08-04-AM.jpg",
+            badge: "جديد",
+            category: "office",
+            tags: ["ألة حاسبة مكتب", "أدوات"],
+            availability: "متوفر",
+            rating: 5
+        },
+                 {
+            id: 201,
+            name: " ألة حاسبة مكتب أندلسية  ",
+            price: 12.5,
+            desc: "    صغيرة  ",
+            image: "https://i.postimg.cc/pTXWz7BX/Whats-App-Image-2025-07-21-at-9-07-37-AM.jpg",
+            badge: "جديد",
+            category: "office",
+            tags: ["ألة حاسبة مكتب", "أدوات"],
+            availability: "متوفر",
+            rating: 5
+        },
+                  {
+            id: 200,
+            name: " لعبة بازل تركيب أشكال  ",
+            price:40 ,
+            desc: "  متعدةة الأشكال ",
+            image: "https://i.postimg.cc/SKc2Dw86/Whats-App-Image-2025-07-21-at-9-06-49-AM.jpg",
+            category: "games",
+            tags: ["ألعاب", "بازل"],
+            availability: "متوفر",
+            rating: 5
+        },
+                 {
+            id: 199,
+            name: "  قلم بوس بشكل جديد   ",
+            price: 12.5,
+            desc: "   سعر خاص للكمية ",
+            image: "https://i.postimg.cc/rFqJWNBZ/Whats-App-Image-2025-07-21-at-9-08-35-AM.jpg",
+            badge: "جديد",
+            category: "student",
+            tags: ["قلم حبر", "طلابية"],
+            availability: "متوفر",
+            rating: 5
+        }, 
+                {
+            id: 198,
+            name: "  هايلايتر   ",
+            price: 12.5,
+            desc: "   جودة عالية  ",
+            image: "https://i.postimg.cc/zvZx9mPq/Whats-App-Image-2025-07-21-at-9-08-13-AM.jpg",
+            badge: "جديد",
+            category: "student",
+            tags: ["هايلايتر", "طلابية"],
+            availability: "متوفر",
+            rating: 5
+        }, 
+                  {
+            id: 197,
+            name: "   أستيكر A4 كرتون أطفال  ",
+            price: 12.5,
+            desc: "   جودة عالية  ",
+            image: "https://i.postimg.cc/gj8TJc6w/Whats-App-Image-2025-07-21-at-9-08-33-AM.jpg",
+            badge: "جديد",
+            category: "student",
+            tags: ["أستيكر", "طلابية"],
+            availability: "متوفر",
+            rating: 5
+        }, 
+            {
+            id: 196,
+            name: "   ألوان فلومستر 12 لون ",
+            price: 12.5,
+            desc: "   جودة عالية  ",
+            image: "https://i.postimg.cc/NM0J172w/Whats-App-Image-2025-07-21-at-9-08-37-AM.jpg",
+            badge: "جديد",
+            category: "student",
+            tags: ["ألوان فلومستر ", "طلابية"],
+            availability: "متوفر",
+            rating: 5
+        }, 
+                                      {
+            id: 195,
+            name: "    صمغ سائل ",
+            price: 12.5,
+            desc: "   جودة عالية  ",
+            image: "https://i.postimg.cc/pdrzC0Ck/Whats-App-Image-2025-07-21-at-9-07-20-AM.jpg",
+            badge: "جديد",
+            category: "student",
+            tags: ["صمغ ", "طلابية"],
+            availability: "متوفر",
+            rating: 5
+        }, 
+                                    {
+            id: 194,
+            name: "   أقلام رصاص باور   ",
+            price: 12.5,
+            desc: "   جودة عالية  ",
+            image: "https://i.postimg.cc/vmZLj8Yr/Whats-App-Image-2025-07-21-at-9-07-43-AM.jpg",
+            badge: "جديد",
+            category: "student",
+            tags: ["قلم رصاص", "طلابية"],
+            availability: "متوفر",
+            rating: 5
+        }, 
+                          {
+            id: 193,
+            name: "   نوتة سلك صغيرة  ",
+            price: 12.5,
+            desc: "   متعددة الأشكال  ",
+            image: "https://i.postimg.cc/X7sTBmyv/Whats-App-Image-2025-07-21-at-9-07-56-AM.jpg",
+            badge: "جديد",
+            category: "student",
+            tags: ["نوتة", "طلابية"],
+            availability: "متوفر",
+            rating: 5
+        }, 
              {
+            id: 192,
+            name: "  ألوان مياه حجارة ",
+            price:40 ,
+            desc: "  جودة عالية  ",
+            image: "https://i.postimg.cc/NG6tFd4y/Whats-App-Image-2025-07-21-at-9-08-03-AM.jpg",
+            category: "art",
+            tags: ["الوان مياه", "رسم"],
+            availability: "متوفر",
+            rating: 5
+        },
+                              {
             id: 191,
             name: " كرة أطفال خفيفة  ",
             price:40 ,
@@ -1191,18 +1356,6 @@
             availability: "متوفر",
             rating: 5
         }, 
-                             {
-            id: 182,
-            name: " مسدس شمع صغير ",
-            price: 12.5,
-            desc: "   متعددة الألوان  ",
-            image: "https://i.postimg.cc/sDqxY0F3/Whats-App-Image-2025-07-20-at-9-42-10-AM.jpg",
-            badge: "جديد",
-            category: "office",
-            tags: ["مسدس شمع", "أدوات"],
-            availability: "متوفر",
-            rating: 5
-        },
                                 {
             id: 181,
             name: " مسدس شمع صغير ",
@@ -3243,7 +3396,6 @@
             availability: "متوفر",
             rating: 5
         },
-   
         ];
         
         // عناصر DOM
@@ -3313,10 +3465,16 @@
                     ribbon = '<div class="ribbon">عرض خاص</div>';
                 }
                 
+                let badge = '';
+                if (product.badge) {
+                    badge = `<span class="product-badge">${product.badge}</span>`;
+                }
+                
                 productCard.innerHTML = `
                     ${ribbon}
                     <div class="product-image">
                         <img src="${product.image}" alt="${product.name}" data-src="${product.image}">
+                        ${badge}
                         ${product.availability === 'متوفر' ? '<span class="product-badge">متوفر</span>' : ''}
                     </div>
                     <div class="product-info">
@@ -3341,7 +3499,7 @@
                 productsContainer.appendChild(productCard);
             });
             
-            // إنشاء أزرار الصفحات
+            // إنشاء أزرار الصفحات بشكل احترافي
             if (totalPages > 1) {
                 const paginationDiv = document.createElement('div');
                 paginationDiv.className = 'pagination';
@@ -3349,7 +3507,7 @@
                 // زر الصفحة السابقة
                 const prevButton = document.createElement('button');
                 prevButton.className = `page-btn ${page === 1 ? 'disabled' : ''}`;
-                prevButton.innerHTML = '<i class="fas fa-chevron-right"></i>';
+                prevButton.innerHTML = '<i class="fas fa-chevron-right"></i> السابق';
                 prevButton.addEventListener('click', () => {
                     if (page > 1) {
                         displayProducts(category, searchQuery, page - 1);
@@ -3359,8 +3517,48 @@
                 });
                 paginationDiv.appendChild(prevButton);
                 
-                // أزرار الصفحات
-                for (let i = 1; i <= totalPages; i++) {
+                // أزرار الصفحات مع منطق عرض 5 صفحات كحد أقصى
+                const maxVisiblePages = 5;
+                let startPage, endPage;
+                
+                if (totalPages <= maxVisiblePages) {
+                    startPage = 1;
+                    endPage = totalPages;
+                } else {
+                    if (page <= Math.ceil(maxVisiblePages / 2)) {
+                        startPage = 1;
+                        endPage = maxVisiblePages;
+                    } else if (page + Math.floor(maxVisiblePages / 2) >= totalPages) {
+                        startPage = totalPages - maxVisiblePages + 1;
+                        endPage = totalPages;
+                    } else {
+                        startPage = page - Math.floor(maxVisiblePages / 2);
+                        endPage = page + Math.floor(maxVisiblePages / 2);
+                    }
+                }
+                
+                // إضافة زر الصفحة الأولى إذا لزم الأمر
+                if (startPage > 1) {
+                    const firstPageButton = document.createElement('button');
+                    firstPageButton.className = 'page-btn';
+                    firstPageButton.textContent = '1';
+                    firstPageButton.addEventListener('click', () => {
+                        displayProducts(category, searchQuery, 1);
+                        currentPage = 1;
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    });
+                    paginationDiv.appendChild(firstPageButton);
+                    
+                    if (startPage > 2) {
+                        const dots = document.createElement('span');
+                        dots.className = 'page-dots';
+                        dots.textContent = '...';
+                        paginationDiv.appendChild(dots);
+                    }
+                }
+                
+                // أزرار الصفحات الرئيسية
+                for (let i = startPage; i <= endPage; i++) {
                     const pageButton = document.createElement('button');
                     pageButton.className = `page-btn ${i === page ? 'active' : ''}`;
                     pageButton.textContent = i;
@@ -3372,10 +3570,30 @@
                     paginationDiv.appendChild(pageButton);
                 }
                 
+                // إضافة زر الصفحة الأخيرة إذا لزم الأمر
+                if (endPage < totalPages) {
+                    if (endPage < totalPages - 1) {
+                        const dots = document.createElement('span');
+                        dots.className = 'page-dots';
+                        dots.textContent = '...';
+                        paginationDiv.appendChild(dots);
+                    }
+                    
+                    const lastPageButton = document.createElement('button');
+                    lastPageButton.className = 'page-btn';
+                    lastPageButton.textContent = totalPages;
+                    lastPageButton.addEventListener('click', () => {
+                        displayProducts(category, searchQuery, totalPages);
+                        currentPage = totalPages;
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    });
+                    paginationDiv.appendChild(lastPageButton);
+                }
+                
                 // زر الصفحة التالية
                 const nextButton = document.createElement('button');
                 nextButton.className = `page-btn ${page === totalPages ? 'disabled' : ''}`;
-                nextButton.innerHTML = '<i class="fas fa-chevron-left"></i>';
+                nextButton.innerHTML = 'التالي <i class="fas fa-chevron-left"></i>';
                 nextButton.addEventListener('click', () => {
                     if (page < totalPages) {
                         displayProducts(category, searchQuery, page + 1);
@@ -3708,4 +3926,3 @@
     </script>
 </body>
 </html>
-
