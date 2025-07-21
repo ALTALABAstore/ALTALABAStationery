@@ -804,12 +804,14 @@
             z-index: 1;
         }
         
-        /* Pagination styles */
+        /* تحسينات الترقيم */
         .pagination {
             display: flex;
             justify-content: center;
             margin-top: 2rem;
             gap: 0.5rem;
+            flex-wrap: wrap;
+            align-items: center;
         }
         
         .page-btn {
@@ -819,21 +821,36 @@
             border-radius: 5px;
             cursor: pointer;
             transition: all 0.3s;
+            min-width: 40px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
         }
         
         .page-btn:hover {
             background-color: var(--light-color);
+            transform: translateY(-2px);
         }
         
         .page-btn.active {
             background-color: var(--secondary-color);
             color: white;
             border-color: var(--secondary-color);
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
         }
         
         .page-btn.disabled {
             opacity: 0.5;
             cursor: not-allowed;
+            transform: none !important;
+        }
+        
+        .page-dots {
+            padding: 0.5rem;
+            color: #666;
         }
         
         /* Animations */
@@ -980,6 +997,11 @@
             .pagination {
                 flex-wrap: wrap;
             }
+            
+            .page-btn {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.9rem;
+            }
         }
         
         @media (max-width: 480px) {
@@ -989,8 +1011,9 @@
             }
             
             .page-btn {
-                padding: 0.4rem 0.8rem;
-                font-size: 0.9rem;
+                padding: 0.4rem 0.6rem;
+                font-size: 0.8rem;
+                min-width: 30px;
             }
         }
     </style>
@@ -1084,7 +1107,7 @@
     <script>
         // بيانات المنتجات
         const products = [
-             {
+                              {
             id: 191,
             name: " كرة أطفال خفيفة  ",
             price:40 ,
@@ -3243,7 +3266,6 @@
             availability: "متوفر",
             rating: 5
         },
-   
         ];
         
         // عناصر DOM
@@ -3313,10 +3335,16 @@
                     ribbon = '<div class="ribbon">عرض خاص</div>';
                 }
                 
+                let badge = '';
+                if (product.badge) {
+                    badge = `<span class="product-badge">${product.badge}</span>`;
+                }
+                
                 productCard.innerHTML = `
                     ${ribbon}
                     <div class="product-image">
                         <img src="${product.image}" alt="${product.name}" data-src="${product.image}">
+                        ${badge}
                         ${product.availability === 'متوفر' ? '<span class="product-badge">متوفر</span>' : ''}
                     </div>
                     <div class="product-info">
@@ -3331,7 +3359,7 @@
                         <div class="product-tags">
                             ${product.tags.map(tag => `<span class="product-tag">${tag}</span>`).join('')}
                         </div>
-                        <div class="product-price">السعر عند الطلب</div>
+                        <div class="product-price">${product.price.toFixed(2)} ج.م</div>
                         <button class="add-to-cart" data-id="${product.id}">
                             <i class="fas fa-cart-plus"></i>
                             أضف للسلة
@@ -3341,7 +3369,7 @@
                 productsContainer.appendChild(productCard);
             });
             
-            // إنشاء أزرار الصفحات
+            // إنشاء أزرار الصفحات بشكل احترافي
             if (totalPages > 1) {
                 const paginationDiv = document.createElement('div');
                 paginationDiv.className = 'pagination';
@@ -3349,7 +3377,7 @@
                 // زر الصفحة السابقة
                 const prevButton = document.createElement('button');
                 prevButton.className = `page-btn ${page === 1 ? 'disabled' : ''}`;
-                prevButton.innerHTML = '<i class="fas fa-chevron-right"></i>';
+                prevButton.innerHTML = '<i class="fas fa-chevron-right"></i> السابق';
                 prevButton.addEventListener('click', () => {
                     if (page > 1) {
                         displayProducts(category, searchQuery, page - 1);
@@ -3359,8 +3387,48 @@
                 });
                 paginationDiv.appendChild(prevButton);
                 
-                // أزرار الصفحات
-                for (let i = 1; i <= totalPages; i++) {
+                // أزرار الصفحات مع منطق عرض 5 صفحات كحد أقصى
+                const maxVisiblePages = 5;
+                let startPage, endPage;
+                
+                if (totalPages <= maxVisiblePages) {
+                    startPage = 1;
+                    endPage = totalPages;
+                } else {
+                    if (page <= Math.ceil(maxVisiblePages / 2)) {
+                        startPage = 1;
+                        endPage = maxVisiblePages;
+                    } else if (page + Math.floor(maxVisiblePages / 2) >= totalPages) {
+                        startPage = totalPages - maxVisiblePages + 1;
+                        endPage = totalPages;
+                    } else {
+                        startPage = page - Math.floor(maxVisiblePages / 2);
+                        endPage = page + Math.floor(maxVisiblePages / 2);
+                    }
+                }
+                
+                // إضافة زر الصفحة الأولى إذا لزم الأمر
+                if (startPage > 1) {
+                    const firstPageButton = document.createElement('button');
+                    firstPageButton.className = 'page-btn';
+                    firstPageButton.textContent = '1';
+                    firstPageButton.addEventListener('click', () => {
+                        displayProducts(category, searchQuery, 1);
+                        currentPage = 1;
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    });
+                    paginationDiv.appendChild(firstPageButton);
+                    
+                    if (startPage > 2) {
+                        const dots = document.createElement('span');
+                        dots.className = 'page-dots';
+                        dots.textContent = '...';
+                        paginationDiv.appendChild(dots);
+                    }
+                }
+                
+                // أزرار الصفحات الرئيسية
+                for (let i = startPage; i <= endPage; i++) {
                     const pageButton = document.createElement('button');
                     pageButton.className = `page-btn ${i === page ? 'active' : ''}`;
                     pageButton.textContent = i;
@@ -3372,10 +3440,30 @@
                     paginationDiv.appendChild(pageButton);
                 }
                 
+                // إضافة زر الصفحة الأخيرة إذا لزم الأمر
+                if (endPage < totalPages) {
+                    if (endPage < totalPages - 1) {
+                        const dots = document.createElement('span');
+                        dots.className = 'page-dots';
+                        dots.textContent = '...';
+                        paginationDiv.appendChild(dots);
+                    }
+                    
+                    const lastPageButton = document.createElement('button');
+                    lastPageButton.className = 'page-btn';
+                    lastPageButton.textContent = totalPages;
+                    lastPageButton.addEventListener('click', () => {
+                        displayProducts(category, searchQuery, totalPages);
+                        currentPage = totalPages;
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    });
+                    paginationDiv.appendChild(lastPageButton);
+                }
+                
                 // زر الصفحة التالية
                 const nextButton = document.createElement('button');
                 nextButton.className = `page-btn ${page === totalPages ? 'disabled' : ''}`;
-                nextButton.innerHTML = '<i class="fas fa-chevron-left"></i>';
+                nextButton.innerHTML = 'التالي <i class="fas fa-chevron-left"></i>';
                 nextButton.addEventListener('click', () => {
                     if (page < totalPages) {
                         displayProducts(category, searchQuery, page + 1);
@@ -3466,6 +3554,7 @@
                     </div>
                     <div class="cart-item-details">
                         <h4 class="cart-item-name">${item.name}</h4>
+                        <div class="cart-item-price">${(item.price * item.quantity).toFixed(2)} ج.م</div>
                         <div class="cart-item-quantity">
                             <button class="quantity-btn decrease" data-id="${item.id}">-</button>
                             <span>${item.quantity}</span>
@@ -3574,10 +3663,14 @@
             cart.forEach((item, index) => {
                 message += `${index + 1}. *${item.name}*\n`;
                 message += `   - الكمية: ${item.quantity}\n`;
+                message += `   - السعر: ${item.price.toFixed(2)} ج.م\n`;
+                message += `   - الإجمالي: ${(item.price * item.quantity).toFixed(2)} ج.م\n`;
                 message += `   - رابط الصورة: ${item.image}\n`;
                 message += '────────────────\n';
             });
             
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            message += `💰 *المجموع الكلي:* ${totalPrice.toFixed(2)} ج.م\n\n`;
             message += `شكراً لثقتكم بنا ❤️\n`;
             message += `سيتم التواصل معكم قريباً لتأكيد الطلب\n`;
             message += `📚 *مكتبة الطلبة* 📚\n`;
