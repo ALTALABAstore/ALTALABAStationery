@@ -844,7 +844,7 @@
     <script>
         // بيانات الكتب
         const books = [
-             {
+                     {
                 id: 72,
                 name: "كتاب المعاصر فى الفيزياء ( لغات )  ",
                 price:610,
@@ -1660,6 +1660,7 @@
                 availability: "متوفر",
                 rating: 5
             },
+     
         ];
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -1718,7 +1719,7 @@
                             <p class="book-price">السعر: ${book.price} ج.م</p>
                             <div class="book-actions">
                                 <button class="order-btn" data-book="${book.name}" data-price="${book.price}" data-img="${book.image}">➕ طلب الكتاب</button>
-                                <a href="https://wa.me/201097670474?text=أريد طلب ${encodeURIComponent(book.name)}" class="whatsapp-btn" target="_blank">
+                                <a href="#" class="whatsapp-btn" data-book="${book.name}" data-price="${book.price}" data-img="${book.image}" data-desc="${book.desc}">
                                     <i class="fab fa-whatsapp"></i> واتساب
                                 </a>
                             </div>
@@ -1739,6 +1740,32 @@
                         const bookImg = this.getAttribute('data-img');
                         
                         addToCart(bookTitle, bookPrice, bookImg, this);
+                    });
+                });
+                
+                // إضافة أحداث النقر لأزرار واتساب
+                document.querySelectorAll('.whatsapp-btn').forEach(btn => {
+                    btn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const bookTitle = this.getAttribute('data-book');
+                        const bookPrice = this.getAttribute('data-price');
+                        const bookImg = this.getAttribute('data-img');
+                        const bookDesc = this.getAttribute('data-desc');
+                        
+                        // إنشاء رسالة واتساب مع كل بيانات الكتاب
+                        let whatsappMessage = `مرحباً، أريد طلب الكتاب التالي:\n\n`;
+                        whatsappMessage += `📖 *${bookTitle}*\n`;
+                        whatsappMessage += `📝 ${bookDesc}\n`;
+                        whatsappMessage += `💰 السعر: ${bookPrice} ج.م\n\n`;
+                        whatsappMessage += `رابط صورة الكتاب: ${bookImg}\n\n`;
+                        whatsappMessage += `شكراً!`;
+                        
+                        // ترميز الرسالة للرابط
+                        const encodedMessage = encodeURIComponent(whatsappMessage);
+                        const whatsappUrl = `https://wa.me/201097670474?text=${encodedMessage}`;
+                        
+                        // فتح واتساب
+                        window.open(whatsappUrl, '_blank');
                     });
                 });
                 
@@ -2072,10 +2099,12 @@
                 let whatsappMessage = 'مرحباً، أريد طلب الكتب التالية:\n\n';
                 
                 cart.forEach(item => {
-                    whatsappMessage += `- ${item.title} (${item.price} ج.م)\n`;
+                    whatsappMessage += `📖 *${item.title}*\n`;
+                    whatsappMessage += `💰 السعر: ${item.price} ج.م\n`;
+                    whatsappMessage += `رابط صورة الكتاب: ${item.img}\n\n`;
                 });
                 
-                whatsappMessage += `\nالمجموع: ${totalPrice.toFixed(2)} ج.م\n\nشكراً!`;
+                whatsappMessage += `المجموع: ${totalPrice.toFixed(2)} ج.م\n\nشكراً!`;
                 
                 // ترميز الرسالة للرابط
                 const encodedMessage = encodeURIComponent(whatsappMessage);
