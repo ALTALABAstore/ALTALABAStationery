@@ -2,211 +2,357 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مكتبة الطلبة - الكتب الخارجية</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>مكتبة الطلبة - الكتب التعليمية</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #6a5acd;
-            --secondary: #9370db;
-            --accent: #ff69b4;
-            --dark: #2c3e50;
-            --light: #f8f9fa;
+            --primary: #4f46e5;
+            --primary-dark: #4338ca;
+            --secondary: #7c3aed;
+            --accent: #ec4899;
+            --dark: #1e293b;
+            --dark-gray: #334155;
+            --medium-gray: #64748b;
+            --light-gray: #e2e8f0;
+            --light: #f8fafc;
+            --white: #ffffff;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --border-radius: 8px;
+            --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
         }
         
         body {
-            font-family: 'Tajawal', Arial, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f9fafb;
             color: var(--dark);
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
+            line-height: 1.5;
             min-height: 100vh;
+            font-size: 14px;
         }
         
         /* شريط التنقل */
         .navbar {
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            padding: 15px 0;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 0.75rem 0;
+            box-shadow: var(--shadow-lg);
             position: sticky;
             top: 0;
             z-index: 1000;
         }
         
         .nav-container {
-            max-width: 1200px;
+            max-width: 100%;
             margin: 0 auto;
+            padding: 0 1rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 20px;
         }
         
         .nav-logo {
             color: white;
-            font-size: 1.5rem;
-            font-weight: bold;
+            font-size: 1.1rem;
+            font-weight: 700;
             text-decoration: none;
             display: flex;
             align-items: center;
+            gap: 0.5rem;
         }
         
         .nav-logo img {
-            width: 40px;
-            height: 40px;
-            margin-left: 10px;
+            width: 2rem;
+            height: 2rem;
+            object-fit: contain;
         }
         
         .nav-links {
-            display: flex;
+            display: none;
             list-style: none;
-            margin: 0;
-            padding: 0;
+            gap: 0.75rem;
         }
         
-        .nav-links li {
-            margin-right: 20px;
-        }
-        
-        .nav-links a {
+        .mobile-menu-btn {
             color: white;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            z-index: 1100;
+            transition: right 0.3s ease;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+        
+        .mobile-menu.active {
+            right: 0;
+        }
+        
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .close-mobile-menu {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+        }
+        
+        .mobile-menu-links {
+            list-style: none;
+        }
+        
+        .mobile-menu-links li {
+            margin-bottom: 1rem;
+        }
+        
+        .mobile-menu-links a {
+            color: var(--dark);
             text-decoration: none;
             font-weight: 500;
-            padding: 8px 15px;
-            border-radius: 20px;
+            font-size: 1.1rem;
+            display: block;
+            padding: 0.5rem;
+            border-radius: var(--border-radius);
             transition: all 0.3s ease;
-            position: relative;
         }
         
-        .nav-links a:hover, .nav-links a.active {
-            background: rgba(255,255,255,0.2);
-        }
-        
-        .nav-links a::after {
-            content: "";
-            position: absolute;
-            bottom: -5px;
-            right: 15px;
-            width: 0;
-            height: 2px;
-            background: white;
-            transition: width 0.3s ease;
-        }
-        
-        .nav-links a:hover::after, .nav-links a.active::after {
-            width: calc(100% - 30px);
+        .mobile-menu-links a:hover,
+        .mobile-menu-links a.active {
+            background: var(--light);
+            color: var(--primary);
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 100%;
             margin: 0 auto;
-            padding: 20px;
+            padding: 1rem;
         }
         
         .header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            margin-bottom: 30px;
+            text-align: center;
+            margin-bottom: 1.5rem;
         }
         
         .logo {
-            width: 150px;
-            height: 150px;
-            margin-bottom: 20px;
+            width: 5rem;
+            height: 5rem;
+            margin: 0 auto 1rem;
+            object-fit: contain;
         }
         
-        h1 {
+        .page-title {
             color: var(--primary);
-            text-align: center;
-            margin: 0 0 20px;
-            font-size: 2.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-            position: relative;
-            display: inline-block;
-            width: 100%;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
         }
         
-        h1::after {
-            content: "";
-            display: block;
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(to right, var(--primary), var(--accent));
-            margin: 10px auto;
-            border-radius: 2px;
+        .page-subtitle {
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+            max-width: 100%;
+            margin: 0 auto;
+            line-height: 1.6;
         }
         
         .search-container {
-            margin: 20px 0;
-            display: flex;
-            justify-content: center;
+            margin: 1rem auto;
+            width: 100%;
         }
         
         .search-box {
             width: 100%;
-            max-width: 500px;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 30px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--light-gray);
+            border-radius: var(--border-radius);
             font-family: 'Tajawal';
-            font-size: 1rem;
+            font-size: 0.9rem;
             outline: none;
             transition: all 0.3s ease;
+            box-shadow: var(--shadow);
         }
         
         .search-box:focus {
-            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
         }
         
-        .filter-buttons {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin: 20px 0;
-        }
-        
-        .filter-btn {
+        /* نظام التبويبات */
+        .tabs-container {
             background: white;
-            border: 1px solid #ddd;
-            padding: 8px 15px;
-            border-radius: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            margin: 1.5rem 0;
+        }
+        
+        .main-tabs {
+            display: flex;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            overflow-x: auto;
+            scrollbar-width: none;
+            padding: 0.5rem 0;
+        }
+        
+        .main-tabs::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .main-tab {
+            padding: 0.75rem 1rem;
+            color: white;
+            font-weight: 500;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-family: 'Tajawal';
+            white-space: nowrap;
+            position: relative;
+            font-size: 0.85rem;
+            flex-shrink: 0;
         }
         
-        .filter-btn:hover, .filter-btn.active {
+        .main-tab:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .main-tab.active {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .main-tab.active::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent);
+        }
+        
+        .sub-tabs-container {
+            padding: 0.75rem;
+            background: var(--light);
+            display: none;
+        }
+        
+        .sub-tabs-container.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .sub-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .sub-tab {
+            background: white;
+            border: 1px solid var(--light-gray);
+            padding: 0.4rem 0.8rem;
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+            box-shadow: var(--shadow);
+            flex-shrink: 0;
+        }
+        
+        .sub-tab:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+        
+        .sub-tab.active {
             background: var(--primary);
             color: white;
             border-color: var(--primary);
         }
         
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* عنوان القسم */
+        .section-title {
+            color: var(--primary);
+            font-size: 1.25rem;
+            margin: 1.5rem 0 1rem;
+            position: relative;
+            padding-right: 0.75rem;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            bottom: -0.3rem;
+            width: 2rem;
+            height: 2px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        /* شبكة الكتب */
         .books-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
         }
         
         .book-card {
             background: white;
-            border-radius: 15px;
+            border-radius: var(--border-radius);
             overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            transition: all 0.4s ease;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
             position: relative;
-            border: 1px solid rgba(0,0,0,0.05);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: cardAppear 0.5s ease forwards;
+        }
+        
+        @keyframes cardAppear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         .book-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
         }
         
         .book-card::before {
@@ -215,12 +361,12 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 5px;
+            height: 3px;
             background: linear-gradient(to right, var(--primary), var(--accent));
         }
         
         .book-image {
-            height: 320px;
+            height: 180px;
             overflow: hidden;
             position: relative;
         }
@@ -230,458 +376,201 @@
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s ease;
-            cursor: pointer;
         }
         
         .book-card:hover .book-image img {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
         
         .book-info {
-            padding: 20px;
+            padding: 0.75rem;
             position: relative;
         }
         
         .book-title {
-            font-size: 1.3rem;
-            font-weight: bold;
-            margin-bottom: 10px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
             color: var(--dark);
-            transition: color 0.3s ease;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            min-height: 2.8rem;
+            line-height: 1.4;
         }
         
-        .book-card:hover .book-title {
-            color: var(--primary);
-        }
-        
-        .book-author {
-            color: #666;
-            margin-bottom: 15px;
-            font-size: 0.95rem;
-        }
-        
-        .book-price {
-            font-weight: bold;
-            color: var(--primary);
-            font-size: 1.2rem;
-            margin: 10px 0;
-            display: flex;
-            align-items: center;
+        .book-desc {
+            color: var(--medium-gray);
+            margin-bottom: 0.5rem;
+            font-size: 0.75rem;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            min-height: 2.2rem;
+            line-height: 1.4;
         }
         
         .book-rating {
             color: #FFD700;
-            margin-bottom: 10px;
-        }
-        
-        .book-actions {
+            margin-bottom: 0.5rem;
+            font-size: 0.7rem;
             display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-            gap: 10px;
+            align-items: center;
+            gap: 0.1rem;
         }
         
-        .order-btn {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 30px;
+        .book-rating span {
+            color: var(--dark-gray);
+            margin-right: 0.2rem;
+            font-size: 0.7rem;
+        }
+        
+        .book-tags {
+            display: none;
+        }
+        
+        .book-price-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .book-price {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.3rem;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: var(--medium-gray);
+            font-size: 0.7rem;
+        }
+        
+        .discount-price {
+            color: var(--danger);
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 0.7rem;
+            border-radius: var(--border-radius);
+            font-family: 'Tajawal';
+            font-weight: 500;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
-            font-size: 1rem;
-            flex: 1;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: none;
+            outline: none;
             position: relative;
             overflow: hidden;
-        }
-        
-        .order-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-        }
-        
-        .order-btn:active {
-            transform: translateY(0);
-        }
-        
-        .order-btn::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to right, rgba(255,255,255,0.2), rgba(255,255,255,0));
-            transform: translateX(-100%);
-            transition: transform 0.3s ease;
-        }
-        
-        .order-btn:hover::after {
-            transform: translateX(100%);
-        }
-        
-        .whatsapp-btn {
-            background: linear-gradient(to right, #25D366, #128C7E);
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        
-        .whatsapp-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-        }
-        
-        .whatsapp-btn:active {
-            transform: translateY(0);
-        }
-        
-        /* سلة التسوق */
-        .cart-container {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            z-index: 1000;
-        }
-        
-        .cart-btn {
-            background: linear-gradient(to right, var(--accent), #ff8c66);
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .cart-btn:hover {
-            transform: scale(1.1) rotate(10deg);
-        }
-        
-        .cart-count {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background: var(--primary);
-            color: white;
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             font-size: 0.8rem;
-            font-weight: bold;
-        }
-        
-        /* نافذة السلة */
-        .cart-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
             width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
         }
         
-        .cart-content {
-            background: white;
-            width: 90%;
-            max-width: 500px;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            max-height: 80vh;
-            overflow-y: auto;
-            animation: slideUp 0.4s ease;
-        }
-        
-        @keyframes slideUp {
-            from {
-                transform: translateY(50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-        
-        .cart-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .cart-title {
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin: 0;
-        }
-        
-        .close-cart {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #666;
-        }
-        
-        .cart-items {
-            margin-bottom: 20px;
-        }
-        
-        .cart-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #f0f0f0;
-        }
-        
-        .cart-item-img {
-            width: 60px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 5px;
-            margin-left: 10px;
-        }
-        
-        .cart-item-details {
-            flex: 1;
-        }
-        
-        .cart-item-title {
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        
-        .remove-item {
-            color: #ff6b6b;
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1.2rem;
-        }
-        
-        .cart-footer {
-            border-top: 1px solid #eee;
-            padding-top: 20px;
-        }
-        
-        .cart-total {
-            display: flex;
-            justify-content: space-between;
-            font-weight: bold;
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-        }
-        
-        .checkout-btn {
+        .btn-primary {
             background: linear-gradient(to right, var(--primary), var(--secondary));
             color: white;
-            border: none;
-            padding: 12px;
-            width: 100%;
-            border-radius: 30px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow);
         }
         
-        .checkout-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-lg);
+            background: linear-gradient(to right, var(--primary-dark), var(--secondary));
         }
         
-        /* تأثيرات إضافية */
+        .btn-whatsapp {
+            background: linear-gradient(to right, #25D366, #128C7E);
+            color: white;
+            box-shadow: var(--shadow);
+            padding: 0.5rem;
+            width: 2.5rem;
+        }
+        
+        .btn-whatsapp:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-lg);
+            background: linear-gradient(to right, #20bd5d, #0e7a6a);
+        }
+        
+        /* شريط التخفيضات */
+        .discount-badge {
+            position: absolute;
+            top: 0.5rem;
+            left: 0.5rem;
+            background: linear-gradient(45deg, var(--danger), #ff6b81);
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            z-index: 1;
+            font-size: 0.7rem;
+            box-shadow: var(--shadow);
+            animation: pulse 1.5s infinite;
+        }
+        
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.05); }
             100% { transform: scale(1); }
         }
         
-        .pulse {
-            animation: pulse 1.5s infinite;
-        }
-        
-        /* رسالة تأكيد */
-        .confirmation {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+        /* رسالة عدم وجود نتائج */
+        .no-results {
+            grid-column: 1 / -1;
             text-align: center;
-            z-index: 3000;
-            display: none;
-            max-width: 400px;
-            width: 90%;
+            padding: 2rem 1rem;
+            color: var(--medium-gray);
         }
         
-        .confirmation i {
-            font-size: 3rem;
-            color: #25D366;
-            margin-bottom: 20px;
+        .no-results i {
+            font-size: 2rem;
+            color: var(--light-gray);
+            margin-bottom: 1rem;
         }
         
-        .confirmation h3 {
-            margin-top: 0;
-            color: var(--primary);
+        .no-results h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
         }
         
-        .confirmation p {
-            margin-bottom: 20px;
-        }
-        
-        .confirmation-btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        
-        /* شريط التخفيضات */
-        .discount-badge {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background: linear-gradient(45deg, #ff4757, #ff6b81);
-            color: white;
-            padding: 8px 15px;
-            border-radius: 30px;
-            font-weight: bold;
-            z-index: 1;
+        .no-results p {
             font-size: 0.9rem;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            animation: pulse 1.5s infinite;
+            max-width: 100%;
+            margin: 0 auto;
         }
         
-        .original-price {
-            text-decoration: line-through;
-            color: #999;
-            font-size: 0.9rem;
-            margin-left: 5px;
-        }
-        
-        .discount-price {
-            color: #ff4757;
-            font-weight: bold;
-            font-size: 1.3rem;
-        }
-        
-        /* تصميم خاص للخصم الكبير */
-        .hot-deal {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hot-deal::after {
-            content: "عرض خاص!";
-            position: absolute;
-            top: 20px;
-            right: -30px;
-            background: var(--accent);
-            color: white;
-            padding: 5px 30px;
-            transform: rotate(45deg);
-            font-weight: bold;
-            font-size: 0.8rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-        
-        /* مودال عرض صورة الكتاب كاملة */
-        .book-modal {
-            display: none;
-            position: fixed;
-            z-index: 3000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            overflow: auto;
-            text-align: center;
-        }
-        
-        .book-modal-content {
-            margin: auto;
-            display: block;
-            max-width: 90%;
-            max-height: 90%;
-            margin-top: 5vh;
-            animation: zoom 0.3s;
-        }
-        
-        @keyframes zoom {
-            from {transform: scale(0.1)}
-            to {transform: scale(1)}
-        }
-        
-        .close-book-modal {
-            position: absolute;
-            top: 15px;
-            right: 35px;
-            color: white;
-            font-size: 40px;
-            font-weight: bold;
-            transition: 0.3s;
-            cursor: pointer;
-        }
-        
-        .close-book-modal:hover {
-            color: var(--accent);
-        }
-        
-        /* أنماط الترقيم */
+        /* الترقيم */
         .pagination {
             display: flex;
             justify-content: center;
-            margin-top: 40px;
+            margin-top: 2rem;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 0.5rem;
         }
         
         .page-btn {
             background: white;
-            border: 1px solid #ddd;
-            padding: 8px 15px;
-            border-radius: 5px;
+            border: 1px solid var(--light-gray);
+            padding: 0.4rem 0.8rem;
+            border-radius: var(--border-radius);
             cursor: pointer;
             transition: all 0.3s ease;
             font-family: 'Tajawal';
+            min-width: 2.2rem;
+            text-align: center;
+            font-size: 0.8rem;
         }
         
         .page-btn:hover:not(.active) {
@@ -701,57 +590,364 @@
             cursor: not-allowed;
         }
         
-        /* تصميم متجاوب */
-        @media (max-width: 768px) {
+        /* سلة التسوق */
+        .cart-container {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            z-index: 1000;
+        }
+        
+        .cart-btn {
+            background: linear-gradient(to right, var(--accent), #ff8c66);
+            color: white;
+            width: 3.25rem;
+            height: 3.25rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            box-shadow: var(--shadow-lg);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .cart-btn:hover {
+            transform: scale(1.05) rotate(5deg);
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -0.2rem;
+            right: -0.2rem;
+            background: var(--primary);
+            color: white;
+            width: 1.3rem;
+            height: 1.3rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+        
+        /* مودال السلة */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+        
+        .modal-content {
+            background: white;
+            width: 95%;
+            max-width: 100%;
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            box-shadow: var(--shadow-lg);
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideUp 0.4s ease;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .modal-title {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin: 0;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--medium-gray);
+        }
+        
+        .cart-items {
+            margin-bottom: 1rem;
+        }
+        
+        .cart-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .cart-item-img {
+            width: 3rem;
+            height: 4rem;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            margin-left: 0.75rem;
+        }
+        
+        .cart-item-details {
+            flex: 1;
+        }
+        
+        .cart-item-title {
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+            font-size: 0.85rem;
+        }
+        
+        .cart-item-price {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+        
+        .remove-item {
+            color: var(--danger);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 0.3rem;
+        }
+        
+        .cart-footer {
+            border-top: 1px solid var(--light-gray);
+            padding-top: 1rem;
+        }
+        
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .checkout-btn {
+            width: 100%;
+            padding: 0.75rem;
+            font-size: 0.9rem;
+        }
+        
+        /* مودال تفاصيل الكتاب */
+        .book-details-modal .modal-content {
+            max-width: 95%;
+            padding: 0;
+        }
+        
+        .book-details-header {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .book-details-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .book-details-body {
+            padding: 1rem;
+        }
+        
+        .book-details-title {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+            font-weight: 700;
+        }
+        
+        .book-details-author {
+            color: var(--medium-gray);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+        
+        .book-details-rating {
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+        }
+        
+        .book-details-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin: 0.8rem 0;
+        }
+        
+        .book-details-tags .book-tag {
+            background: var(--light);
+            color: var(--dark-gray);
+            padding: 0.2rem 0.6rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+        }
+        
+        .book-details-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1rem 0;
+        }
+        
+        .book-details-description {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+        }
+        
+        /* زر العودة في تفاصيل الكتاب */
+        .btn-close-details {
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            background: var(--primary);
+            color: white;
+            z-index: 2;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+        
+        .btn-close-details:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        /* رسالة تأكيد */
+        .confirmation {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+            z-index: 3000;
+            display: none;
+            max-width: 90%;
+            width: 90%;
+        }
+        
+        .confirmation i {
+            font-size: 2.5rem;
+            color: #25D366;
+            margin-bottom: 1rem;
+        }
+        
+        .confirmation h3 {
+            margin-bottom: 0.75rem;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+        
+        .confirmation p {
+            margin-bottom: 1rem;
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+        }
+        
+        .confirmation-btn {
+            padding: 0.75rem;
+            width: 100%;
+        }
+        
+        /* تحسينات للشاشات الصغيرة جداً */
+        @media (max-width: 350px) {
+            .books-grid {
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            }
+            
+            .book-image {
+                height: 150px;
+            }
+            
+            .book-title {
+                font-size: 0.8rem;
+            }
+            
+            .book-desc {
+                font-size: 0.7rem;
+            }
+            
+            .btn {
+                padding: 0.4rem 0.6rem;
+                font-size: 0.75rem;
+            }
+        }
+        
+        /* تحسينات للشاشات المتوسطة */
+        @media (min-width: 768px) {
+            .container {
+                padding: 1.5rem;
+            }
+            
+            .books-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 1.25rem;
+            }
+            
+            .book-image {
+                height: 220px;
+            }
+            
+            .book-title {
+                font-size: 1rem;
+            }
+            
+            .book-desc {
+                font-size: 0.8rem;
+            }
+            
+            .btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.85rem;
+            }
+        }
+        
+        /* تحسينات للشاشات الكبيرة */
+        @media (min-width: 992px) {
+            .nav-links {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: none;
+            }
+            
+            .container {
+                max-width: 1200px;
+                padding: 2rem 1.5rem;
+            }
+            
             .books-grid {
                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             }
             
-            .book-actions {
-                flex-direction: column;
-            }
-            
-            .order-btn, .whatsapp-btn {
-                width: 100%;
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .logo {
-                width: 120px;
-                height: 120px;
-            }
-            
-            .nav-container {
-                flex-direction: column;
-                padding: 10px;
-            }
-            
-            .nav-links {
-                margin-top: 15px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .nav-links li {
-                margin: 5px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 1.8rem;
-            }
-            
-            .filter-buttons {
-                gap: 5px;
-            }
-            
-            .filter-btn {
-                padding: 6px 12px;
-                font-size: 0.9rem;
+            .book-image {
+                height: 280px;
             }
         }
     </style>
@@ -764,36 +960,95 @@
                 <img src="https://i.postimg.cc/x1Xncp9W/logo.png" alt="شعار مكتبة الطلبة">
                 مكتبة الطلبة
             </a>
+            
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
             <ul class="nav-links">
-                <li><a href="index.html" class="active">الرئيسية</a></li>
-                <li><a href="product.html">المنتجات</a></li>
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="product.html" class="active">المنتجات</a></li>
+               
             </ul>
         </div>
     </nav>
+    
+    <!-- القائمة الجانبية للهاتف -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-header">
+            <h3>مكتبة الطلبة</h3>
+            <button class="close-mobile-menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <ul class="mobile-menu-links">
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="product.html" class="active">المنتجات</a></li>
+            
+        </ul>
+    </div>
 
     <div class="container">
         <div class="header">
             <img src="https://i.postimg.cc/x1Xncp9W/logo.png" alt="شعار مكتبة الطلبة" class="logo">
-            <h1>📚 الكتب الخارجية - مكتبة الطلبة 🎓</h1>
+            <h1 class="page-title">الكتب التعليمية لمختلف المراحل</h1>
+            <p class="page-subtitle"> بأسعار تنافسية وجودة عالية </p>
         </div>
         
         <div class="search-container">
-            <input type="text" class="search-box" placeholder="ابحث عن كتاب أو مؤلف...">
+            <input type="text" class="search-box" placeholder="ابحث عن كتاب، مؤلف أو صف دراسي...">
         </div>
         
-        <div class="filter-buttons">
-            <button class="filter-btn active" data-category="all">الكل</button>
-            <button class="filter-btn" data-category="kindergarten">رياض أطفال</button>
-            <button class="filter-btn" data-category="primary">المرحلة الابتدائية</button>
-            <button class="filter-btn" data-category="preparatory">المرحلة الإعدادية</button>
-            <button class="filter-btn" data-category="secondary">المرحلة الثانوية</button>
+        <!-- نظام التبويبات -->
+        <div class="tabs-container">
+            <div class="main-tabs">
+                <div class="main-tab active" data-category="all">الكل</div>
+                <div class="main-tab" data-category="kindergarten">رياض أطفال</div>
+                <div class="main-tab" data-category="primary">المرحلة الابتدائية</div>
+                <div class="main-tab" data-category="preparatory">المرحلة الإعدادية</div>
+                <div class="main-tab" data-category="secondary">المرحلة الثانوية</div>
+            </div>
+            
+            <!-- تبويبات المرحلة الابتدائية -->
+            <div class="sub-tabs-container" data-for-category="primary">
+                <div class="sub-tabs">
+                    <div class="sub-tab active" data-grade="all">الكل</div>
+                    <div class="sub-tab" data-grade="grade1">الصف الأول</div>
+                    <div class="sub-tab" data-grade="grade2">الصف الثاني</div>
+                    <div class="sub-tab" data-grade="grade3">الصف الثالث</div>
+                    <div class="sub-tab" data-grade="grade4">الصف الرابع</div>
+                    <div class="sub-tab" data-grade="grade5">الصف الخامس</div>
+                    <div class="sub-tab" data-grade="grade6">الصف السادس</div>
+                </div>
+            </div>
+            
+            <!-- تبويبات المرحلة الإعدادية -->
+            <div class="sub-tabs-container" data-for-category="preparatory">
+                <div class="sub-tabs">
+                    <div class="sub-tab active" data-grade="all">الكل</div>
+                    <div class="sub-tab" data-grade="grade1">الصف الأول</div>
+                    <div class="sub-tab" data-grade="grade2">الصف الثاني</div>
+                    <div class="sub-tab" data-grade="grade3">الصف الثالث</div>
+                </div>
+            </div>
+            
+            <!-- تبويبات المرحلة الثانوية -->
+            <div class="sub-tabs-container" data-for-category="secondary">
+                <div class="sub-tabs">
+                    <div class="sub-tab active" data-grade="all">الكل</div>
+                    <div class="sub-tab" data-grade="grade1">الصف الأول</div>
+                    <div class="sub-tab" data-grade="grade2">الصف الثاني</div>
+                    <div class="sub-tab" data-grade="grade3">الصف الثالث</div>
+                </div>
+            </div>
         </div>
+        
+        <h2 class="section-title" id="current-category-title">جميع الكتب</h2>
         
         <div class="books-grid" id="books-container">
             <!-- الكتب سيتم إضافتها هنا بواسطة الجافاسكريبت -->
         </div>
         
-        <!-- عنصر الترقيم -->
         <div class="pagination" id="pagination">
             <!-- أزرار الترقيم ستضاف هنا بالجافاسكريبت -->
         </div>
@@ -808,13 +1063,13 @@
     </div>
     
     <!-- نافذة السلة -->
-    <div class="cart-modal">
-        <div class="cart-content">
-            <div class="cart-header">
-                <h3 class="cart-title">سلة التسوق 🛒</h3>
-                <button class="close-cart">&times;</button>
+    <div class="modal" id="cart-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">سلة التسوق <i class="fas fa-shopping-cart"></i></h3>
+                <button class="close-modal">&times;</button>
             </div>
-            <div class="cart-items">
+            <div class="cart-items" id="cart-items">
                 <!-- العناصر تضاف هنا بالجافاسكريبت -->
             </div>
             <div class="cart-footer">
@@ -822,35 +1077,56 @@
                     <span>المجموع:</span>
                     <span class="total-price">0 ج.م</span>
                 </div>
-                <button class="checkout-btn">إتمام الشراء عبر واتساب</button>
+                <button class="btn btn-primary checkout-btn">إتمام الشراء عبر واتساب</button>
             </div>
         </div>
     </div>
     
     <!-- رسالة تأكيد -->
-    <div class="confirmation">
+    <div class="confirmation" id="confirmation">
         <i class="fab fa-whatsapp"></i>
         <h3>تم إرسال طلبك بنجاح!</h3>
         <p>سيتم التواصل معك عبر واتساب لتأكيد الطلب وتفاصيل التسليم.</p>
-        <button class="confirmation-btn">حسناً</button>
+        <button class="btn btn-primary confirmation-btn">حسناً</button>
     </div>
     
-    <!-- مودال لعرض صورة الكتاب كاملة -->
-    <div class="book-modal">
-        <span class="close-book-modal">&times;</span>
-        <img class="book-modal-content" id="expanded-book-img">
+    <!-- مودال تفاصيل الكتاب -->
+    <div class="modal book-details-modal" id="book-details-modal">
+        <div class="modal-content">
+            <div class="book-details-header">
+                <img id="details-book-image" src="" alt="صورة الكتاب">
+                <button class="close-modal close-details">&times;</button>
+                <button class="btn btn-close-details" id="btn-close-details">
+                    <i class="fas fa-arrow-right"></i> العودة للكتب
+                </button>
+            </div>
+            <div class="book-details-body">
+                <h2 class="book-details-title" id="details-book-title"></h2>
+                <p class="book-details-author" id="details-book-author"></p>
+                
+                <div class="book-rating book-details-rating" id="details-book-rating"></div>
+                
+                <div class="book-details-tags" id="details-book-tags"></div>
+                
+                <div class="book-details-price" id="details-book-price"></div>
+                
+                <p class="book-details-description" id="details-book-description"></p>
+            </div>
+        </div>
     </div>
     
     <script>
         // بيانات الكتب
         const books = [
-               {
+              {
                 id: 75,
                 name: "كتاب الأضواء فى اللغة العربية  ",
                 price:189,
                 desc: " للصف الخامس الإبتدائى ",
                 image: "https://i.postimg.cc/Jh7g45HG/1.jpg",
                 category: "primary",
+                grade: "grade5",
+                author: "مكتبة الطلــبة",
                 tags: ["  اللغة العربية  ", "ابتدائي "],
                 availability: "متوفر",
                 rating: 5
@@ -862,6 +1138,8 @@
                 desc: " للصف الرابع الإبتدائى ",
                 image: "https://i.postimg.cc/B6qzbc8j/3.jpg",
                 category: "primary",
+                grade: "grade4",
+                author: "مكتبة الطلــبة",
                 tags: ["  الرياضيات  ", "ابتدائي "],
                 availability: "متوفر",
                 rating: 5
@@ -873,6 +1151,8 @@
                 desc: " للصف الرابع الإبتدائى ",
                 image: "https://i.postimg.cc/LXtHKVch/2.jpg",
                 category: "primary",
+                grade: "grade4",
+                author: "مكتبة الطلــبة",
                 tags: ["  الدراسات الإجتماعية ", "ابتدائي "],
                 availability: "متوفر",
                 rating: 5
@@ -881,9 +1161,11 @@
                 id: 72,
                 name: "كتاب المعاصر فى الفيزياء ( لغات )  ",
                 price:610,
-                desc: " للصف الرابع الإبتدائى ",
+                desc: " للصف الثالث الثانوى ",
                 image: "https://i.postimg.cc/JzsrCtFw/Whats-App-Image-2025-07-30-at-11-18-16-AM-2.jpg",
                 category: "secondary",
+                 grade: "grade3",
+                author: "مكتبة الطلــبة",
                 tags: ["  الفيزياء ", "الثانوى "],
                 availability: "متوفر",
                 rating: 5
@@ -895,6 +1177,8 @@
                 desc: " للصف الرابع الإبتدائى ",
                 image: "https://i.postimg.cc/D0RsvmpH/Cam-Scanner-30-07-2025-07-59-8.jpg",
                 category: "primary",
+                 grade: "grade4",
+                author: "مكتبة الطلــبة",
                 tags: [" التربية الإسلامية ", "ابتدائي "],
                 availability: "متوفر",
                 rating: 5
@@ -906,6 +1190,8 @@
                 desc: " للصف الثالث الإبتدائى ",
                 image: "https://i.postimg.cc/tT2NjqjG/Cam-Scanner-30-07-2025-07-59-9.jpg",
                 category: "primary",
+                 grade: "grade3",
+                author: "مكتبة الطلــبة",
                 tags: [" التربية الإسلامية ", "ابتدائي "],
                 availability: "متوفر",
                 rating: 5
@@ -917,6 +1203,8 @@
                 desc: " للصف الثانى الإبتدائى ",
                 image: "https://i.postimg.cc/GmgRHYx4/Cam-Scanner-30-07-2025-07-59-11.jpg",
                 category: "primary",
+                 grade: "grade2",
+                author: "مكتبة الطلــبة",
                 tags: [" التربية الإسلامية ", "ابتدائي "],
                 availability: "متوفر",
                 rating: 5
@@ -928,6 +1216,8 @@
                 desc: " للصف الأول الإبتدائى ",
                 image: "https://i.postimg.cc/VvqZnQy7/Cam-Scanner-30-07-2025-07-59-10.jpg",
                 category: "primary",
+                 grade: "grade1",
+                author: "مكتبة الطلــبة",
                 tags: [" التربية الإسلامية ", "ابتدائي "],
                 availability: "متوفر",
                 rating: 5
@@ -939,6 +1229,8 @@
                 desc: " للصف الثالث الإبتدائى ",
                 image: "https://i.postimg.cc/QdPmFn2R/Cam-Scanner-30-07-2025-07-59-13.jpg",
                 category: "primary",
+                 grade: "grade3",
+                author: "مكتبة الطلــبة",
                 tags: [" أكتشف ", "ابتدائي "],
                 availability: "متوفر",
                 rating: 5
@@ -950,6 +1242,8 @@
                 desc: " للصف الثانى الإبتدائى ",
                 image: "https://i.postimg.cc/VNphcNs0/Cam-Scanner-30-07-2025-07-59-12.jpg",
                 category: "primary",
+                 grade: "grade2",
+                author: "مكتبة الطلــبة",
                 tags: [" أكتشف ", "ابتدائي "],
                 availability: "متوفر",
                 rating: 5
@@ -961,6 +1255,8 @@
                 desc: " للصف الأول الإبتدائى ",
                 image: "https://i.postimg.cc/gJLfwZtK/Cam-Scanner-30-07-2025-07-59-2.jpg",
                 category: "primary",
+                 grade: "grade1",
+                author: "مكتبة الطلــبة",
                 tags: [" أكتشف ", "ابتدائي "],
                 availability: "متوفر",
                 rating: 5
@@ -972,6 +1268,8 @@
                 desc: " للصف الرابع الإبتدائى ",
                 image: "https://i.postimg.cc/yN8KNWzf/Cam-Scanner-30-07-2025-07-59-1.jpg",
                 category: "primary",
+                 grade: "grade4",
+                author: "مكتبة الطلــبة",
                 tags: [" اللغة الإنجليزية ", "ابتدائي "],
                 availability: "متوفر",
                 rating: 5
@@ -983,6 +1281,8 @@
                 desc: " للصف السادس الإبتدائى ",
                 image: "https://i.postimg.cc/3Jk3Xkyz/Cam-Scanner-30-07-2025-07-59-3.jpg",
                 category: "primary",
+                 grade: "grade6",
+                author: "مكتبة الطلــبة",
                 tags: [" الرياضيات ", "ابتدائي "],
                 availability: "متوفر",
                 rating: 5
@@ -994,6 +1294,8 @@
                 desc: " للصف الخامس الإبتدائى ",
                 image: "https://i.postimg.cc/JhfXLffz/Cam-Scanner-30-07-2025-07-59-4.jpg",
                 category: "primary",
+                 grade: "grade5",
+                author: "مكتبة الطلــبة",
                 tags: [" الرياضيات ", "ابتدائي "],
                 availability: "متوفر",
                 rating: 5
@@ -1005,17 +1307,21 @@
                 desc: " للصف الرابع الإبتدائى ",
                 image: "https://i.postimg.cc/0jpdFkrv/Cam-Scanner-30-07-2025-07-59-5.jpg",
                 category: "primary",
+                 grade: "grade4",
+                author: "مكتبة الطلــبة",
                 tags: [" الرياضيات ", "ابتدائي "],
                 availability: "متوفر",
                 rating: 5
             },
-                                      {
+                 {
                 id: 60,
                 name: "كتاب سلاح التلميذ فى الرياضيات ",
                 price:148,
                 desc: " للصف الثالث الإبتدائى ",
                 image: "https://i.postimg.cc/Gmbq0yk5/Cam-Scanner-30-07-2025-07-59-6.jpg",
                 category: "primary",
+                 grade: "grade3",
+                author: "مكتبة الطلــبة",
                 tags: [" الرياضيات ", "ابتدائي "],
                 availability: "متوفر",
                 rating: 5
@@ -1027,6 +1333,8 @@
                 desc: " للصف الثانى الإبتدائى ",
                 image: "https://i.postimg.cc/W1cwGJW4/Cam-Scanner-30-07-2025-07-59-7.jpg",
                 category: "primary",
+                 grade: "grade2",
+                author: "مكتبة الطلــبة",
                 tags: [" الرياضيات ", "ابتدائي "],
                 availability: "متوفر",
                 rating: 5
@@ -1038,6 +1346,8 @@
                 desc: " للصف الأول الإعدادى  ",
                 image: "https://i.postimg.cc/XNF21cSb/3.jpg",
                 category: "preparatory",
+                 grade: "grade1",
+                author: "مكتبة الطلــبة",
                 tags: ["  اللغة العربية ", "اعدادى"],
                 availability: "متوفر",
                 rating: 5
@@ -1049,6 +1359,8 @@
                 desc: " للصف الأول الإبتدائى ",
                 image: "https://i.postimg.cc/XNh2QHDx/1.jpg",
                 category: "primary",
+                 grade: "grade1",
+                author: "مكتبة الطلــبة",
                 tags: [" اللغة العربية ", "ابتدائي "],
                 availability: "متوفر",
                 rating: 5
@@ -1060,6 +1372,8 @@
                 desc: " للصف الثانى الإبتدائى ",
                 image: "https://i.postimg.cc/65Jr8DPs/image.png",
                 category: "primary",
+                 grade: "grade2",
+                author: "مكتبة الطلــبة",
                 tags: [" اللغة العربية ", "ابتدائي "],
                 availability: "متوفر",
                 rating: 5
@@ -1071,6 +1385,8 @@
                 desc: " للصف الرابع الإبتدائى ",
                 image: "https://i.postimg.cc/tgR2vLdZ/4.jpg",
                 category: "primary",
+                 grade: "grade4",
+                author: "مكتبة الطلــبة",
                 tags: [" اللغة العربية ", "ابتدائي "],
                 availability: "متوفر",
                 rating: 5
@@ -1082,6 +1398,8 @@
                 desc: " للصف الخامس الإبتدائى ",
                 image: "https://i.postimg.cc/wxcgb1J7/Whats-App-Image-2025-07-26-at-7-09-56-PM-1.jpg",
                 category: "primary",
+                 grade: "grade5",
+                author: "مكتبة الطلــبة",
                 tags: [" الساينس ", "ابتدائي "],
                 availability: "متوفر",
                 rating: 5
@@ -1093,6 +1411,8 @@
                 desc: " للصف الخامس الإبتدائى ",
                 image: "https://i.postimg.cc/Gp8bMzJC/Whats-App-Image-2025-07-26-at-7-09-54-PM.jpg",
                 category: "primary",
+                 grade: "grade5",
+                author: "مكتبة الطلــبة",
                 tags: [" الماث ", "ابتدائي "],
                 availability: "متوفر",
                 rating: 5
@@ -1104,6 +1424,8 @@
                 desc: " للصف الأول الإعدادى  ",
                 image: "https://i.postimg.cc/rm4FpgKJ/Whats-App-Image-2025-07-26-at-7-09-44-PM.jpg",
                 category: "preparatory",
+                 grade: "grade1",
+                author: "مكتبة الطلــبة",
                 tags: ["  العلوم ", "اعدادى"],
                 availability: "متوفر",
                 rating: 5
@@ -1115,6 +1437,8 @@
                 desc: " للصف الأول الثانوى ",
                 image: "https://i.postimg.cc/tRVV1tL8/Whats-App-Image-2025-07-26-at-7-09-54-PM-1.jpg",
                 category: "secondary",
+                 grade: "grade1",
+                author: "مكتبة الطلــبة",
                 tags: [" الرياضيات ", "ثانوي"],
                 availability: "متوفر",
                 rating: 5
@@ -1127,6 +1451,8 @@
                 desc: " للصف الأول الثانوى ",
                 image: "https://i.postimg.cc/QM4W76NZ/Whats-App-Image-2025-07-26-at-7-09-56-PM-2.jpg",
                 category: "secondary",
+                 grade: "grade1",
+                author: "مكتبة الطلــبة",
                 tags: [" اللغة العربية", "ثانوي"],
                 availability: "متوفر",
                 rating: 5
@@ -1138,6 +1464,8 @@
                 desc: " للصف الثانى الثانوى ",
                 image: "https://i.postimg.cc/8PMWYB4L/Whats-App-Image-2025-07-26-at-7-09-56-PM.jpg",
                 category: "secondary",
+                 grade: "grade2",
+                author: "مكتبة الطلــبة",
                 tags: [" اللغة العربية", "ثانوي"],
                 availability: "متوفر",
                 rating: 5
@@ -1149,6 +1477,8 @@
                 desc: " للصف الأول الثانوى ",
                 image: "https://i.postimg.cc/tR1F3HVS/Whats-App-Image-2025-07-26-at-7-09-44-PM-1.jpg",
                 category: "secondary",
+                 grade: "grade1",
+                author: "مكتبة الطلــبة",
                 tags: [" تاريخ", "ثانوي"],
                 availability: "متوفر",
                 rating: 5
@@ -1160,6 +1490,8 @@
                 desc: " للصف الثالث الإعدادى  ",
                 image: "https://i.postimg.cc/9fcQGwxd/Cam-Scanner-07-23-2025-18-52-2.jpg",
                 category: "preparatory",
+                 grade: "grade3",
+                author: "مكتبة الطلــبة",
                 tags: ["  التربية الإسلامية ", "اعدادى"],
                 availability: "متوفر",
                 rating: 5
@@ -1171,6 +1503,8 @@
                 desc: " للصف الأول الإعدادى  ",
                 image: "https://i.postimg.cc/T3LrZFG7/Cam-Scanner-07-23-2025-18-52-3.jpg",
                 category: "preparatory",
+                 grade: "grade1",
+                author: "مكتبة الطلــبة",
                 tags: ["  العلوم ", "اعدادى"],
                 availability: "متوفر",
                 rating: 5
@@ -1182,6 +1516,8 @@
                 desc: " للصف السادس الإبتدائى ",
                 image: "https://i.postimg.cc/d3w6FBn7/Cam-Scanner-07-23-2025-18-52-7.jpg",
                 category: "primary",
+                 grade: "grade6",
+                author: "مكتبة الطلــبة",
                 tags: [" الرياضيات ", "ابتدائي "],
                 availability: "متوفر",
                 rating: 5
@@ -1193,6 +1529,8 @@
                 desc: " للصف الخامس الإبتدائى ",
                 image: "https://i.postimg.cc/KcPpWKQk/Cam-Scanner-07-23-2025-18-52-6.jpg",
                 category: "primary",
+                 grade: "grade5",
+                author: "مكتبة الطلــبة",
                 tags: [" الرياضيات ", "ابتدائي "],
                 availability: "متوفر",
                 rating: 5
@@ -1204,6 +1542,8 @@
                 desc: " للصف الخامس الإبتدائى ",
                 image: "https://i.postimg.cc/MpKLVW7c/Cam-Scanner-07-23-2025-18-52-5.jpg",
                 category: "primary",
+                 grade: "grade5",
+                author: "مكتبة الطلــبة",
                 tags: [" العلوم ", "ابتدائي "],
                 availability: "متوفر",
                 rating: 5
@@ -1215,6 +1555,8 @@
                 desc: " للصف السادس الإبتدائى ",
                 image: "https://i.postimg.cc/pTd3vPTb/Cam-Scanner-07-23-2025-18-52-4.jpg",
                 category: "primary",
+                 grade: "grade6",
+                author: "مكتبة الطلــبة",
                 tags: [" العلوم ", "ابتدائي "],
                 availability: "متوفر",
                 rating: 5
@@ -1226,6 +1568,8 @@
                 desc: " للصف الخامس الإبتدائى ",
                 image: "https://i.postimg.cc/sfHsvNd4/Cam-Scanner-07-23-2025-18-52-12.jpg",
                 category: "primary",
+                 grade: "grade5",
+                author: "مكتبة الطلــبة",
                 tags: [" العلوم ", "ابتدائي "],
                 availability: "متوفر",
                 rating: 5
@@ -1237,6 +1581,8 @@
                 desc: " للصف الرابع الإبتدائى ",
                 image: "https://i.postimg.cc/k5Pn7R3r/Cam-Scanner-07-23-2025-18-52-1.jpg",
                 category: "primary",
+                 grade: "grade4",
+                author: "مكتبة الطلــبة",
                 tags: [" العلوم ", "ابتدائي "],
                 availability: "متوفر",
                 rating: 5
@@ -1248,6 +1594,8 @@
                 desc: " للصف الخامس الإبتدائى ",
                 image: "https://i.postimg.cc/YSKPv1C3/Cam-Scanner-07-23-2025-18-52-8.jpg",
                 category: "primary",
+                 grade: "grade5",
+                author: "مكتبة الطلــبة",
                 tags: ["دراسات إجتماعية ", "ابتدائي"],
                 availability: "متوفر",
                 rating: 5
@@ -1259,6 +1607,8 @@
                 desc: " للصف الرابع الإبتدائى ",
                 image: "https://i.postimg.cc/C1tkK4FM/Cam-Scanner-07-23-2025-18-52-14.jpg",
                 category: "primary",
+                 grade: "grade4",
+                author: "مكتبة الطلــبة",
                 tags: ["دراسات إجتماعية ", "ابتدائي"],
                 availability: "متوفر",
                 rating: 5
@@ -1270,6 +1620,8 @@
                 desc: " للصف السادس الإبتدائى ",
                 image: "https://i.postimg.cc/V6HBbkJs/Cam-Scanner-07-23-2025-18-52-13.jpg",
                 category: "primary",
+                 grade: "grade6",
+                author: "مكتبة الطلــبة",
                 tags: ["لغة عربية", "ابتدائي"],
                 availability: "متوفر",
                 rating: 5
@@ -1281,6 +1633,8 @@
                 desc: " للصف الخامس الإبتدائى ",
                 image: "https://i.postimg.cc/8CNb238G/Cam-Scanner-07-23-2025-18-52-11.jpg",
                 category: "primary",
+                 grade: "grade5",
+                author: "مكتبة الطلــبة",
                 tags: ["لغة عربية", "ابتدائي"],
                 availability: "متوفر",
                 rating: 5
@@ -1292,6 +1646,8 @@
                 desc: " للصف الرابع الإبتدائى ",
                 image: "https://i.postimg.cc/HnR2Fkmv/Cam-Scanner-07-23-2025-18-52-16.jpg",
                 category: "primary",
+                 grade: "grade4",
+                author: "مكتبة الطلــبة",
                 tags: ["لغة عربية", "ابتدائي"],
                 availability: "متوفر",
                 rating: 5
@@ -1303,6 +1659,8 @@
                 desc: " للصف الثالث الإبتدائى ",
                 image: "https://i.postimg.cc/6QfMTKVT/Cam-Scanner-07-23-2025-18-52-10.jpg",
                 category: "primary",
+                 grade: "grade3",
+                author: "مكتبة الطلــبة",
                 tags: ["لغة عربية", "ابتدائي"],
                 availability: "متوفر",
                 rating: 5
@@ -1314,6 +1672,8 @@
                 desc: " للصف الثانى الإبتدائى ",
                 image: "https://i.postimg.cc/43g8Jy9r/Cam-Scanner-07-23-2025-18-52-9.jpg",
                 category: "primary",
+                 grade: "grade2",
+                author: "مكتبة الطلــبة",
                 tags: ["لغة عربية", "ابتدائي"],
                 availability: "متوفر",
                 rating: 5
@@ -1325,6 +1685,8 @@
                 desc: " للصف الأول الإبتدائى ",
                 image: "https://i.postimg.cc/Y9FTdZQH/Cam-Scanner-07-23-2025-18-52-15.jpg",
                 category: "primary",
+                 grade: "grade1",
+                author: "مكتبة الطلــبة",
                 tags: ["لغة عربية", "ابتدائي"],
                 availability: "متوفر",
                 rating: 5
@@ -1336,6 +1698,8 @@
                 desc: " للصف الرابع الإبتدائى ",
                 image: "https://i.postimg.cc/2jKNCHPN/7.png",
                 category: "primary",
+                 grade: "grade4",
+                author: "مكتبة الطلــبة",
                 tags: ["ماث", "ابتدائي"],
                 availability: "متوفر",
                 rating: 5
@@ -1347,6 +1711,8 @@
                 desc: " للصف الرابع الإبتدائى ",
                 image: "https://i.postimg.cc/jSW5sw8Z/8.png",
                 category: "primary",
+                 grade: "grade4",
+                author: "مكتبة الطلــبة",
                 tags: ["ساينس", "ابتدائي"],
                 availability: "متوفر",
                 rating: 5
@@ -1358,6 +1724,8 @@
                 desc: " للصف الثالث الإعدادى  ",
                 image: "https://i.postimg.cc/0yr6bHNG/4.png",
                 category: "preparatory",
+                 grade: "grade3",
+                author: "مكتبة الطلــبة",
                 tags: ["  لغة عربية ", "اعدادى"],
                 availability: "متوفر",
                 rating: 5
@@ -1369,6 +1737,8 @@
                 desc: " للصف الثالث الإعدادى  ",
                 image: "https://i.postimg.cc/s29T1XxZ/2.png",
                 category: "preparatory",
+                 grade: "grade3",
+                author: "مكتبة الطلــبة",
                 tags: ["  دراسات ", "اعدادى"],
                 availability: "متوفر",
                 rating: 5
@@ -1380,6 +1750,8 @@
                 desc: " للصف الثالث الإعدادى  ",
                 image: "https://i.postimg.cc/m2tpVBX0/6.png",
                 category: "preparatory",
+                 grade: "grade3",
+                author: "مكتبة الطلــبة",
                 tags: ["  علوم ", "اعدادى"],
                 availability: "متوفر",
                 rating: 5
@@ -1391,6 +1763,8 @@
                 desc: " للصف الأول الإعدادى  ",
                 image: "https://i.postimg.cc/mkrXvsb1/5.png",
                 category: "preparatory",
+                 grade: "grade1",
+                author: "مكتبة الطلــبة",
                 tags: ["  رياضيات ", "اعدادى"],
                 availability: "متوفر",
                 rating: 5
@@ -1402,6 +1776,8 @@
                 desc: " للصف الأول الإعدادى  ",
                 image: "https://i.postimg.cc/3JRV6gRf/3.png",
                 category: "preparatory",
+                 grade: "grade1",
+                author: "مكتبة الطلــبة",
                 tags: [" لغة عربية ", "اعدادى"],
                 availability: "متوفر",
                 rating: 5
@@ -1413,6 +1789,8 @@
                 desc: " للصف الأول الإعدادى  ",
                 image: "https://i.postimg.cc/sXjZmfcS/1.png",
                 category: "preparatory",
+                 grade: "grade1",
+                author: "مكتبة الطلــبة",
                 tags: ["دراسات إجتماعية ", "اعدادى"],
                 availability: "متوفر",
                 rating: 5
@@ -1424,6 +1802,8 @@
                 desc: " للصف الأول الإعدادى  ",
                 image: "https://i.postimg.cc/BZH06xHw/Whats-App-Image-2025-07-19-at-1-18-42-PM-1.jpg",
                 category: "preparatory",
+                 grade: "grade1",
+                author: "مكتبة الطلــبة",
                 tags: ["دراسات إجتماعية ", "اعدادى"],
                 availability: "متوفر",
                 rating: 5
@@ -1435,6 +1815,8 @@
                 desc: " للصف الثالث الإعدادى  ",
                 image: "https://i.postimg.cc/bwGSDCgj/Whats-App-Image-2025-07-19-at-1-18-42-PM.jpg",
                 category: "preparatory",
+                 grade: "grade3",
+                author: "مكتبة الطلــبة",
                 tags: ["دراسات إجتماعية ", "اعدادى"],
                 availability: "متوفر",
                 rating: 5
@@ -1446,6 +1828,8 @@
                 desc: " للصف الثالث الإعدادى  ",
                 image: "https://i.postimg.cc/PrjSMDcc/Whats-App-Image-2025-07-19-at-1-18-42-PM-2.jpg",
                 category: "preparatory",
+                 grade: "grade3",
+                author: "مكتبة الطلــبة",
                 tags: ["لغة عربية", "اعدادى"],
                 availability: "متوفر",
                 rating: 5
@@ -1457,6 +1841,8 @@
                 desc: " للصف الثالث الإعدادى  ",
                 image: "https://i.postimg.cc/kXn9V2nN/Whats-App-Image-2025-07-19-at-1-18-41-PM.jpg",
                 category: "preparatory",
+                 grade: "grade3",
+                author: "مكتبة الطلــبة",
                 tags: ["علوم", "اعدادى"],
                 availability: "متوفر",
                 rating: 5
@@ -1468,6 +1854,8 @@
                 desc: " للصف الرابع الإبتدائى ",
                 image: "https://i.postimg.cc/5yJJS08V/Whats-App-Image-2025-07-19-at-1-23-42-PM-1.jpg",
                 category: "primary",
+                 grade: "grade4",
+                author: "مكتبة الطلــبة",
                 tags: ["علوم", "ابتدائي"],
                 availability: "متوفر",
                 rating: 5
@@ -1479,6 +1867,8 @@
                 desc: " للصف الثانى الإبتدائى ",
                 image: "https://i.postimg.cc/6pb9xBxr/Whats-App-Image-2025-07-19-at-1-23-41-PM.jpg",
                 category: "primary",
+                 grade: "grade2",
+                author: "مكتبة الطلــبة",
                 tags: ["رياضيات", "ابتدائي"],
                 availability: "متوفر",
                 rating: 5
@@ -1490,6 +1880,8 @@
                 desc: " للصف الثالث الإبتدائى ",
                 image: "https://i.postimg.cc/MTQZYN4y/Whats-App-Image-2025-07-19-at-1-23-41-PM-1.jpg",
                 category: "primary",
+                 grade: "grade3",
+                author: "مكتبة الطلــبة",
                 tags: ["رياضيات", "ابتدائي"],
                 availability: "متوفر",
                 rating: 5
@@ -1501,6 +1893,8 @@
                 desc: " للصف الثانى الإبتدائى ",
                 image: "https://i.postimg.cc/CKmQ1WV6/Whats-App-Image-2025-07-14-at-3-03-07-PM.jpg",
                 category: "primary",
+                 grade: "grade2",
+                author: "مكتبة الطلــبة",
                 tags: ["ديسكفور", "ابتدائي"],
                 availability: "متوفر",
                 rating: 5
@@ -1512,6 +1906,8 @@
                 desc: " للصف الأول الإبتدائى ",
                 image: "https://i.postimg.cc/nhtFYQQf/Whats-App-Image-2025-07-14-at-3-03-04-PM.jpg",
                 category: "primary",
+                 grade: "grade1",
+                author: "مكتبة الطلــبة",
                 tags: ["ديسكفور", "ابتدائي"],
                 availability: "متوفر",
                 rating: 5
@@ -1523,6 +1919,8 @@
                 desc: " للصف الثالث الإبتدائى ",
                 image: "https://i.postimg.cc/3R67yyH6/Whats-App-Image-2025-07-14-at-3-03-01-PM.jpg",
                 category: "primary",
+                 grade: "grade3",
+                author: "مكتبة الطلــبة",
                 tags: ["ديسكفور", "ابتدائي"],
                 availability: "متوفر",
                 rating: 5
@@ -1545,6 +1943,8 @@
                 desc: " للصف الثالث الثانوى ",
                 image: "https://i.postimg.cc/3wNgjw67/1.png",
                 category: "secondary",
+                 grade: "grade3",
+                author: "مكتبة الطلــبة",
                 tags: [" تاريخ", "ثانوي"],
                 availability: "متوفر",
                 rating: 5
@@ -1556,6 +1956,8 @@
                 desc: " للصف الثالث الثانوى ",
                 image: "https://i.postimg.cc/vm37RVJp/3.png",
                 category: "secondary",
+                 grade: "grade3",
+                author: "مكتبة الطلــبة",
                 tags: [" أحياء", "ثانوي"],
                 availability: "متوفر",
                 rating: 5
@@ -1567,6 +1969,8 @@
                 desc: " للصف الثالث الثانوى ",
                 image: "https://i.postimg.cc/9MXsYy20/Whats-App-Image-2025-07-14-at-3-03-16-PM.jpg",
                 category: "secondary",
+                 grade: "grade3",
+                author: "مكتبة الطلــبة",
                 tags: [" فيزياء", "ثانوي"],
                 availability: "متوفر",
                 rating: 5
@@ -1578,6 +1982,8 @@
                 desc: " للصف الثالث الثانوى ",
                 image: "https://i.postimg.cc/y8F5qLYW/6.png",
                 category: "secondary",
+                 grade: "grade3",
+                author: "مكتبة الطلــبة",
                 tags: [" كيمياء", "ثانوي"],
                 availability: "متوفر",
                 rating: 5
@@ -1590,6 +1996,8 @@
                 desc: " للصف الثالث الإعدادى ",
                 image: "https://i.postimg.cc/MHMP9DF6/Whats-App-Image-2025-07-14-at-3-02-42-PM.jpg",
                 category: "preparatory",
+                 grade: "grade3",
+                author: "مكتبة الطلــبة",
                 tags: ["الرياضيات ", "إعدادي"],
                 availability: "متوفر",
                 rating: 5
@@ -1601,6 +2009,8 @@
                 desc: " للصف الثالث الإبتدائى ",
                 image: "https://i.postimg.cc/2Sh5sNZv/11.png",
                 category: "primary",
+                 grade: "grade3",
+                author: "مكتبة الطلــبة",
                 tags: ["ماث", "ابتدائي"],
                 availability: "متوفر",
                 rating: 5
@@ -1612,6 +2022,8 @@
                 desc: " للصف الثانى الإبتدائى ",
                 image: "https://i.postimg.cc/8cwttY1r/Whats-App-Image-2025-07-16-at-9-31-00-AM.jpg",
                 category: "primary",
+                 grade: "grade2",
+                author: "مكتبة الطلــبة",
                 tags: ["ماث", "ابتدائي"],
                 availability: "متوفر",
                 rating: 5
@@ -1667,6 +2079,8 @@
                 desc: " للصف الثالث الثانوى ",
                 image: "https://i.postimg.cc/52fFxtS1/4.png",
                 category: "secondary",
+                 grade: "grade3",
+                author: "مكتبة الطلــبة",
                 tags: [" الفيزياء", "ثانوي"],
                 availability: "متوفر",
                 rating: 5
@@ -1678,6 +2092,8 @@
                 desc: " للصف الثالث الثانوى ",
                 image: "https://i.postimg.cc/9QxzCYft/2.png",
                 category: "secondary",
+                 grade: "grade3",
+                author: "مكتبة الطلــبة",
                 tags: [" الأحياء", "ثانوي"],
                 availability: "متوفر",
                 rating: 5 
@@ -1693,124 +2109,116 @@
                 availability: "متوفر",
                 rating: 5
             },
-     
         ];
 
         document.addEventListener('DOMContentLoaded', function() {
+            // عناصر DOM
             const cartBtn = document.querySelector('.cart-btn');
-            const cartModal = document.querySelector('.cart-modal');
-            const closeCart = document.querySelector('.close-cart');
-            const cartItemsContainer = document.querySelector('.cart-items');
+            const cartModal = document.getElementById('cart-modal');
+            const closeModal = document.querySelector('.close-modal');
+            const cartItemsContainer = document.getElementById('cart-items');
             const cartCount = document.querySelector('.cart-count');
             const totalPriceElement = document.querySelector('.total-price');
             const checkoutBtn = document.querySelector('.checkout-btn');
-            const confirmation = document.querySelector('.confirmation');
+            const confirmation = document.getElementById('confirmation');
             const confirmBtn = document.querySelector('.confirmation-btn');
             const searchBox = document.querySelector('.search-box');
-            const filterBtns = document.querySelectorAll('.filter-btn');
+            const mainTabs = document.querySelectorAll('.main-tab');
+            const subTabs = document.querySelectorAll('.sub-tab');
+            const subTabsContainers = document.querySelectorAll('.sub-tabs-container');
             const booksContainer = document.getElementById('books-container');
             const paginationContainer = document.getElementById('pagination');
+            const categoryTitle = document.getElementById('current-category-title');
+            const bookDetailsModal = document.getElementById('book-details-modal');
+            const closeDetails = document.querySelector('.close-details');
+            const closeDetailsBtn = document.getElementById('btn-close-details');
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const closeMobileMenu = document.querySelector('.close-mobile-menu');
             
+            // متغيرات التطبيق
             let cart = [];
             let totalPrice = 0;
             let currentPage = 1;
-            const booksPerPage = 15;
+            const booksPerPage = 12;
+            let currentCategory = 'all';
+            let currentGrade = 'all';
+            let currentBooks = [...books];
             
-            // عرض الكتب في الصفحة مع الترقيم
+            // عرض الكتب مع الترقيم
             function displayBooks(booksToDisplay, page = 1) {
                 booksContainer.innerHTML = '';
                 
-                // حساب مؤشرات البداية والنهاية للكتب في الصفحة الحالية
                 const startIndex = (page - 1) * booksPerPage;
                 const endIndex = startIndex + booksPerPage;
                 const paginatedBooks = booksToDisplay.slice(startIndex, endIndex);
                 
                 if (paginatedBooks.length === 0) {
-                    booksContainer.innerHTML = '<p style="grid-column:1/-1;text-align:center;">لا توجد كتب متاحة</p>';
+                    booksContainer.innerHTML = `
+                        <div class="no-results">
+                            <i class="fas fa-book-open"></i>
+                            <h3>لا توجد كتب متاحة</h3>
+                            <p>لم نتمكن من العثور على أي كتب تطابق معايير البحث الخاصة بك.</p>
+                        </div>
+                    `;
+                    paginationContainer.innerHTML = '';
                     return;
                 }
                 
-                paginatedBooks.forEach(book => {
+                paginatedBooks.forEach((book, index) => {
                     const bookCard = document.createElement('div');
-                    bookCard.className = 'book-card';
+                    bookCard.className = `book-card ${book.originalPrice ? 'hot-deal' : ''}`;
+                    bookCard.style.animationDelay = `${index * 0.1}s`;
                     
-                    // إضافة علامة خصم على جميع الكتب بدون تحديد النسبة
-                    const discountBadge = `<div class="discount-badge">خصم</div>`;
+                    // علامة الخصم إذا كان هناك سعر أصلي
+                    const discountBadge = book.originalPrice ? 
+                        `<div class="discount-badge">خصم ${Math.round((1 - book.price/book.originalPrice) * 100)}%</div>` : '';
+                    
+                    // عرض السعر مع الخصم
+                    const priceDisplay = book.originalPrice ? 
+                        `<span class="discount-price">${book.price} ج.م</span>
+                         <span class="original-price">${book.originalPrice} ج.م</span>` :
+                        `<span>${book.price} ج.م</span>`;
                     
                     bookCard.innerHTML = `
                         ${discountBadge}
                         <div class="book-image">
-                            <img src="${book.image}" alt="${book.name}">
+                            <img src="${book.image}" alt="${book.name}" loading="lazy">
                         </div>
                         <div class="book-info">
                             <h3 class="book-title">${book.name}</h3>
-                            <p class="book-author">${book.desc}</p>
+                            <p class="book-desc">${book.desc}</p>
                             <div class="book-rating">
                                 ${generateRatingStars(book.rating)}
-                                <span>(${book.rating * 10})</span>
+                                <span>${book.rating.toFixed(1)}</span>
                             </div>
-                            <p class="book-price">السعر: ${book.price} ج.م</p>
-                            <div class="book-actions">
-                                <button class="order-btn" data-book="${book.name}" data-price="${book.price}" data-img="${book.image}">➕ طلب الكتاب</button>
-                                <a href="#" class="whatsapp-btn" data-book="${book.name}" data-price="${book.price}" data-img="${book.image}" data-desc="${book.desc}">
-                                    <i class="fab fa-whatsapp"></i> واتساب
-                                </a>
+                            <div class="book-price-container">
+                                <div class="book-price">
+                                    السعر: ${priceDisplay}
+                                </div>
+                                <button class="btn btn-primary add-to-cart-btn" data-id="${book.id}">
+                                    <i class="fas fa-cart-plus"></i> أضف للسلة
+                                </button>
                             </div>
                         </div>
                     `;
                     
                     booksContainer.appendChild(bookCard);
+                    
+                    // إضافة حدث النقر على زر أضف للسلة
+                    const addToCartBtn = bookCard.querySelector('.add-to-cart-btn');
+                    addToCartBtn.addEventListener('click', function(e) {
+                        e.stopPropagation(); // منع فتح تفاصيل الكتاب عند النقر على الزر
+                        addToCart(book, this);
+                    });
+                    
+                    // عرض تفاصيل الكتاب عند النقر
+                    bookCard.addEventListener('click', function() {
+                        showBookDetails(book);
+                    });
                 });
                 
-                // تحديث أزرار الترقيم
                 updatePagination(booksToDisplay.length, page);
-                
-                // إضافة أحداث النقر لأزرار الطلب الجديدة
-                document.querySelectorAll('.order-btn').forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        const bookTitle = this.getAttribute('data-book');
-                        const bookPrice = parseFloat(this.getAttribute('data-price'));
-                        const bookImg = this.getAttribute('data-img');
-                        
-                        addToCart(bookTitle, bookPrice, bookImg, this);
-                    });
-                });
-                
-                // إضافة أحداث النقر لأزرار واتساب
-                document.querySelectorAll('.whatsapp-btn').forEach(btn => {
-                    btn.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        const bookTitle = this.getAttribute('data-book');
-                        const bookPrice = this.getAttribute('data-price');
-                        const bookImg = this.getAttribute('data-img');
-                        const bookDesc = this.getAttribute('data-desc');
-                        
-                        // إنشاء رسالة واتساب مع كل بيانات الكتاب
-                        let whatsappMessage = `مرحباً، أريد طلب الكتاب التالي:\n\n`;
-                        whatsappMessage += `📖 *${bookTitle}*\n`;
-                        whatsappMessage += `📝 ${bookDesc}\n`;
-                        whatsappMessage += `💰 السعر: ${bookPrice} ج.م\n\n`;
-                        whatsappMessage += `رابط صورة الكتاب: ${bookImg}\n\n`;
-                        whatsappMessage += `شكراً!`;
-                        
-                        // ترميز الرسالة للرابط
-                        const encodedMessage = encodeURIComponent(whatsappMessage);
-                        const whatsappUrl = `https://wa.me/201097670474?text=${encodedMessage}`;
-                        
-                        // فتح واتساب
-                        window.open(whatsappUrl, '_blank');
-                    });
-                });
-                
-                // إضافة أحداث النقر لعرض صورة الكتاب كاملة
-                document.querySelectorAll('.book-image img').forEach(img => {
-                    img.addEventListener('click', function() {
-                        const modal = document.querySelector('.book-modal');
-                        const modalImg = document.getElementById('expanded-book-img');
-                        modal.style.display = 'block';
-                        modalImg.src = this.src;
-                    });
-                });
             }
             
             // إنشاء نجوم التقييم
@@ -1835,46 +2243,41 @@
                 return stars;
             }
             
-            // إضافة عنصر للسلة
-            function addToCart(bookTitle, bookPrice, bookImg, buttonElement) {
-                // إضافة العنصر للسلة
+            // إضافة كتاب للسلة
+            function addToCart(book, buttonElement) {
                 cart.push({
-                    title: bookTitle,
-                    price: bookPrice,
-                    img: bookImg
+                    id: book.id,
+                    title: book.name,
+                    price: book.price,
+                    img: book.image,
+                    desc: book.desc
                 });
                 
-                // تحديث السعر الإجمالي
-                totalPrice += bookPrice;
-                
-                // تحديث واجهة المستخدم
+                totalPrice += book.price;
                 updateCartUI();
                 
-                // تأثير عند الإضافة
                 if (buttonElement) {
-                    buttonElement.textContent = '✔ تم الإضافة';
-                    buttonElement.style.background = 'linear-gradient(to right, #4CAF50, #2E7D32)';
+                    buttonElement.innerHTML = '<i class="fas fa-check"></i> تمت الإضافة';
+                    buttonElement.style.background = 'linear-gradient(to right, var(--success), #34d399)';
                     setTimeout(() => {
-                        buttonElement.textContent = '➕ طلب الكتاب';
+                        buttonElement.innerHTML = '<i class="fas fa-cart-plus"></i> أضف للسلة';
                         buttonElement.style.background = 'linear-gradient(to right, var(--primary), var(--secondary))';
                     }, 2000);
                 }
             }
             
-            // تحديث واجهة سلة التسوق
+            // تحديث واجهة السلة
             function updateCartUI() {
-                // تفريغ السلة أولاً
                 cartItemsContainer.innerHTML = '';
                 
-                // إضافة العناصر الجديدة
                 cart.forEach((item, index) => {
                     const cartItemElement = document.createElement('div');
                     cartItemElement.className = 'cart-item';
                     cartItemElement.innerHTML = `
-                        <img src="${item.img}" alt="${item.title}" class="cart-item-img">
+                        <img src="${item.img}" alt="${item.title}" class="cart-item-img" loading="lazy">
                         <div class="cart-item-details">
                             <div class="cart-item-title">${item.title}</div>
-                            <div>${item.price} ج.م</div>
+                            <div class="cart-item-price">${item.price} ج.م</div>
                         </div>
                         <button class="remove-item" data-index="${index}">
                             <i class="fas fa-trash"></i>
@@ -1883,11 +2286,9 @@
                     cartItemsContainer.appendChild(cartItemElement);
                 });
                 
-                // تحديث العدد والسعر الإجمالي
                 cartCount.textContent = cart.length;
                 totalPriceElement.textContent = `${totalPrice.toFixed(2)} ج.م`;
                 
-                // إضافة أحداث لحذف العناصر
                 document.querySelectorAll('.remove-item').forEach(btn => {
                     btn.addEventListener('click', function() {
                         const index = parseInt(this.getAttribute('data-index'));
@@ -1898,27 +2299,24 @@
                 });
             }
             
-            // دالة لتحديث أزرار الترقيم
+            // تحديث الترقيم
             function updatePagination(totalBooks, currentPage) {
                 paginationContainer.innerHTML = '';
                 
                 const totalPages = Math.ceil(totalBooks / booksPerPage);
-                
                 if (totalPages <= 1) return;
                 
                 // زر الصفحة السابقة
                 const prevBtn = document.createElement('button');
                 prevBtn.className = `page-btn ${currentPage === 1 ? 'disabled' : ''}`;
-                prevBtn.innerHTML = '<i class="fas fa-arrow-right"></i>';
+                prevBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
                 prevBtn.addEventListener('click', () => {
-                    if (currentPage > 1) {
-                        changePage(currentPage - 1);
-                    }
+                    if (currentPage > 1) changePage(currentPage - 1);
                 });
                 paginationContainer.appendChild(prevBtn);
                 
                 // أزرار الصفحات
-                const maxVisiblePages = 5; // عدد الصفحات المرئية في الترقيم
+                const maxVisiblePages = 5;
                 let startPage, endPage;
                 
                 if (totalPages <= maxVisiblePages) {
@@ -1940,7 +2338,7 @@
                     }
                 }
                 
-                // إضافة زر الصفحة الأولى إذا لزم الأمر
+                // زر الصفحة الأولى
                 if (startPage > 1) {
                     const firstBtn = document.createElement('button');
                     firstBtn.className = 'page-btn';
@@ -1955,7 +2353,7 @@
                     }
                 }
                 
-                // إضافة أزرار الصفحات
+                // أزرار الصفحات
                 for (let i = startPage; i <= endPage; i++) {
                     const pageBtn = document.createElement('button');
                     pageBtn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
@@ -1964,7 +2362,7 @@
                     paginationContainer.appendChild(pageBtn);
                 }
                 
-                // إضافة زر الصفحة الأخيرة إذا لزم الأمر
+                // زر الصفحة الأخيرة
                 if (endPage < totalPages) {
                     if (endPage < totalPages - 1) {
                         const dots = document.createElement('span');
@@ -1982,138 +2380,193 @@
                 // زر الصفحة التالية
                 const nextBtn = document.createElement('button');
                 nextBtn.className = `page-btn ${currentPage === totalPages ? 'disabled' : ''}`;
-                nextBtn.innerHTML = '<i class="fas fa-arrow-left"></i>';
+                nextBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
                 nextBtn.addEventListener('click', () => {
-                    if (currentPage < totalPages) {
-                        changePage(currentPage + 1);
-                    }
+                    if (currentPage < totalPages) changePage(currentPage + 1);
                 });
                 paginationContainer.appendChild(nextBtn);
             }
             
-            // دالة لتغيير الصفحة
+            // تغيير الصفحة
             function changePage(page) {
                 currentPage = page;
-                const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-category');
-                const searchTerm = document.querySelector('.search-box').value.toLowerCase();
+                filterAndDisplayBooks();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            
+            // تصفية وعرض الكتب
+            function filterAndDisplayBooks() {
+                let filteredBooks = [...books];
+                const searchTerm = searchBox.value.toLowerCase();
                 
-                let filteredBooks = books;
-                
-                // تطبيق الفلتر إذا لم يكن "الكل"
-                if (activeFilter !== 'all') {
-                    filteredBooks = books.filter(book => book.category === activeFilter);
+                // تصفية حسب الفئة
+                if (currentCategory !== 'all') {
+                    filteredBooks = filteredBooks.filter(book => book.category === currentCategory);
+                    
+                    // تصفية حسب الصف
+                    if (currentGrade !== 'all') {
+                        filteredBooks = filteredBooks.filter(book => book.grade === currentGrade);
+                    }
                 }
                 
-                // تطبيق البحث إذا كان هناك نص بحث
+                // تصفية حسب البحث
                 if (searchTerm) {
                     filteredBooks = filteredBooks.filter(book => 
                         book.name.toLowerCase().includes(searchTerm) || 
                         book.desc.toLowerCase().includes(searchTerm) ||
-                        book.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+                        book.tags.some(tag => tag.toLowerCase().includes(searchTerm)) ||
+                        (book.author && book.author.toLowerCase().includes(searchTerm))
                     );
                 }
                 
+                currentBooks = filteredBooks;
                 displayBooks(filteredBooks, currentPage);
-                
-                // التمرير لأعلى الصفحة
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
+                updateCategoryTitle();
             }
             
-            // تصفية الكتب حسب الفئة
-            function filterBooks(category) {
-                currentPage = 1; // العودة للصفحة الأولى عند تغيير الفلتر
-                const searchTerm = document.querySelector('.search-box').value.toLowerCase();
-                
-                if (category === 'all') {
-                    if (searchTerm) {
-                        const filteredBooks = books.filter(book => 
-                            book.name.toLowerCase().includes(searchTerm) || 
-                            book.desc.toLowerCase().includes(searchTerm) ||
-                            book.tags.some(tag => tag.toLowerCase().includes(searchTerm))
-                        );
-                        displayBooks(filteredBooks);
-                    } else {
-                        displayBooks(books);
-                    }
+            // تحديث عنوان الفئة
+            function updateCategoryTitle() {
+                if (currentCategory === 'all') {
+                    categoryTitle.textContent = 'جميع الكتب';
                     return;
                 }
                 
-                const filteredBooks = books.filter(book => book.category === category);
+                let title = '';
+                const gradeNames = {
+                    'grade1': 'الأول',
+                    'grade2': 'الثاني',
+                    'grade3': 'الثالث',
+                    'grade4': 'الرابع',
+                    'grade5': 'الخامس',
+                    'grade6': 'السادس',
+                    'kg1': 'رياض أطفال'
+                };
                 
-                if (searchTerm) {
-                    const searchedBooks = filteredBooks.filter(book => 
-                        book.name.toLowerCase().includes(searchTerm) || 
-                        book.desc.toLowerCase().includes(searchTerm) ||
-                        book.tags.some(tag => tag.toLowerCase().includes(searchTerm))
-                    );
-                    displayBooks(searchedBooks);
-                } else {
-                    displayBooks(filteredBooks);
+                switch(currentCategory) {
+                    case 'kindergarten':
+                        title = 'كتب رياض الأطفال';
+                        break;
+                    case 'primary':
+                        title = 'كتب المرحلة الابتدائية';
+                        if (currentGrade !== 'all') {
+                            title += ` - الصف ${gradeNames[currentGrade]} الابتدائي`;
+                        }
+                        break;
+                    case 'preparatory':
+                        title = 'كتب المرحلة الإعدادية';
+                        if (currentGrade !== 'all') {
+                            title += ` - الصف ${gradeNames[currentGrade]} الإعدادي`;
+                        }
+                        break;
+                    case 'secondary':
+                        title = 'كتب المرحلة الثانوية';
+                        if (currentGrade !== 'all') {
+                            title += ` - الصف ${gradeNames[currentGrade]} الثانوي`;
+                        }
+                        break;
                 }
+                
+                categoryTitle.textContent = title;
             }
             
-            // البحث عن الكتب
+            // عرض تفاصيل الكتاب
+            function showBookDetails(book) {
+                const detailsImage = document.getElementById('details-book-image');
+                const detailsTitle = document.getElementById('details-book-title');
+                const detailsAuthor = document.getElementById('details-book-author');
+                const detailsRating = document.getElementById('details-book-rating');
+                const detailsTags = document.getElementById('details-book-tags');
+                const detailsPrice = document.getElementById('details-book-price');
+                const detailsDescription = document.getElementById('details-book-description');
+                
+                // عرض السعر مع الخصم
+                const priceDisplay = book.originalPrice ? 
+                    `<span class="discount-price">${book.price} ج.م</span>
+                     <span class="original-price">${book.originalPrice} ج.م</span>` :
+                    `<span>${book.price} ج.م</span>`;
+                
+                // تعبئة البيانات
+                detailsImage.src = book.image;
+                detailsTitle.textContent = book.name;
+                detailsAuthor.textContent = `${book.desc} - ${book.author}`;
+                detailsRating.innerHTML = `${generateRatingStars(book.rating)} <span>${book.rating.toFixed(1)}</span>`;
+                detailsTags.innerHTML = book.tags.map(tag => `<span class="book-tag">${tag}</span>`).join('');
+                detailsPrice.innerHTML = `السعر: ${priceDisplay}`;
+                detailsDescription.textContent = book.details;
+                
+                // عرض المودال
+                bookDetailsModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+            
+            // أحداث البحث
             searchBox.addEventListener('input', function() {
-                currentPage = 1; // العودة للصفحة الأولى عند البحث
-                const searchTerm = this.value.toLowerCase();
-                const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-category');
-                
-                let filteredBooks = books;
-                
-                if (activeFilter !== 'all') {
-                    filteredBooks = books.filter(book => book.category === activeFilter);
-                }
-                
-                const searchedBooks = filteredBooks.filter(book => 
-                    book.name.toLowerCase().includes(searchTerm) || 
-                    book.desc.toLowerCase().includes(searchTerm) ||
-                    book.tags.some(tag => tag.toLowerCase().includes(searchTerm))
-                );
-                
-                displayBooks(searchedBooks);
+                currentPage = 1;
+                filterAndDisplayBooks();
             });
             
-            // تصفية الكتب حسب الفئة
-            filterBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    // إزالة التنشيط من جميع الأزرار
-                    filterBtns.forEach(b => b.classList.remove('active'));
-                    
-                    // تنشيط الزر الحالي
+            // أحداث التبويبات الرئيسية
+            mainTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    mainTabs.forEach(t => t.classList.remove('active'));
                     this.classList.add('active');
                     
+                    subTabsContainers.forEach(container => {
+                        container.classList.remove('active');
+                    });
+                    
                     const category = this.getAttribute('data-category');
-                    filterBooks(category);
+                    currentCategory = category;
+                    currentGrade = 'all';
+                    
+                    if (category !== 'all' && category !== 'kindergarten') {
+                        const subContainer = document.querySelector(`.sub-tabs-container[data-for-category="${category}"]`);
+                        if (subContainer) {
+                            subContainer.classList.add('active');
+                            subContainer.querySelector('.sub-tab').classList.add('active');
+                        }
+                    }
+                    
+                    currentPage = 1;
+                    filterAndDisplayBooks();
                 });
             });
             
-            // إغلاق مودال صورة الكتاب
-            document.querySelector('.close-book-modal').addEventListener('click', function() {
-                document.querySelector('.book-modal').style.display = 'none';
+            // أحداث التبويبات الفرعية
+            subTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const container = this.closest('.sub-tabs-container');
+                    container.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    currentGrade = this.getAttribute('data-grade');
+                    currentPage = 1;
+                    filterAndDisplayBooks();
+                });
             });
             
-            // إغلاق المودال عند النقر خارج الصورة
-            document.querySelector('.book-modal').addEventListener('click', function(e) {
-                if (e.target === this) {
-                    this.style.display = 'none';
-                }
+            // أحداث القائمة الجانبية للهاتف
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.add('active');
+                document.body.style.overflow = 'hidden';
             });
             
-            // فتح/إغلاق سلة التسوق
+            closeMobileMenu.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+            
+            // أحداث السلة
             cartBtn.addEventListener('click', () => {
                 cartModal.style.display = 'flex';
                 document.body.style.overflow = 'hidden';
             });
             
-            closeCart.addEventListener('click', () => {
+            closeModal.addEventListener('click', () => {
                 cartModal.style.display = 'none';
                 document.body.style.overflow = 'auto';
             });
             
-            // إغلاق السلة عند النقر خارجها
             cartModal.addEventListener('click', (e) => {
                 if (e.target === cartModal) {
                     cartModal.style.display = 'none';
@@ -2121,49 +2574,62 @@
                 }
             });
             
-            // إتمام الشراء
+            // أحداث إتمام الشراء
             checkoutBtn.addEventListener('click', () => {
                 if (cart.length === 0) {
                     alert('السلة فارغة! يرجى إضافة بعض الكتب أولاً.');
                     return;
                 }
                 
-                // إنشاء رسالة واتساب
                 let whatsappMessage = 'مرحباً، أريد طلب الكتب التالية:\n\n';
                 
                 cart.forEach(item => {
                     whatsappMessage += `📖 *${item.title}*\n`;
+                    whatsappMessage += `📝 ${item.desc}\n`;
                     whatsappMessage += `💰 السعر: ${item.price} ج.م\n`;
-                    whatsappMessage += `رابط صورة الكتاب: ${item.img}\n\n`;
+                    whatsappMessage += `🖼️ رابط صورة الكتاب: ${item.img}\n\n`;
                 });
                 
-                whatsappMessage += `المجموع: ${totalPrice.toFixed(2)} ج.م\n\nشكراً!`;
+                whatsappMessage += `المجموع: ${totalPrice.toFixed(2)} ج.م\n\n`;
+                whatsappMessage += `شكراً!`;
                 
-                // ترميز الرسالة للرابط
                 const encodedMessage = encodeURIComponent(whatsappMessage);
                 const whatsappUrl = `https://wa.me/201097670474?text=${encodedMessage}`;
-                
-                // فتح واتساب
                 window.open(whatsappUrl, '_blank');
                 
-                // إظهار رسالة التأكيد
                 cartModal.style.display = 'none';
                 confirmation.style.display = 'block';
-                document.body.style.overflow = 'hidden';
                 
-                // تفريغ السلة بعد الإرسال
                 cart = [];
                 totalPrice = 0;
                 updateCartUI();
             });
             
-            // إغلاق رسالة التأكيد
+            // أحداث رسالة التأكيد
             confirmBtn.addEventListener('click', () => {
                 confirmation.style.display = 'none';
                 document.body.style.overflow = 'auto';
             });
             
-            // عند تحميل الصفحة، عرض الكتب مع الترقيم
+            // إغلاق مودال تفاصيل الكتاب
+            closeDetails.addEventListener('click', () => {
+                bookDetailsModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+            
+            closeDetailsBtn.addEventListener('click', () => {
+                bookDetailsModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+            
+            bookDetailsModal.addEventListener('click', (e) => {
+                if (e.target === bookDetailsModal) {
+                    bookDetailsModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // عرض الكتب عند التحميل
             displayBooks(books);
         });
     </script>
