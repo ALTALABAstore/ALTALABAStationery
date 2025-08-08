@@ -623,8 +623,8 @@
             visibility: visible;
         }
         
-        /* Lightbox for image zoom */
-        .lightbox {
+        /* Lightbox for product details */
+        .product-lightbox {
             position: fixed;
             top: 0;
             left: 0;
@@ -640,38 +640,174 @@
             transition: opacity 0.3s, visibility 0.3s;
         }
         
-        .lightbox.active {
+        .product-lightbox.active {
             opacity: 1;
             visibility: visible;
         }
         
-        .lightbox-content {
-            max-width: 90%;
-            max-height: 90%;
+        .product-lightbox-content {
+            background-color: white;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2rem;
             position: relative;
             animation: zoomIn 0.3s ease;
         }
         
-        .lightbox-content img {
-            max-width: 100%;
-            max-height: 80vh;
-            border-radius: 5px;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
-            border: 5px solid white;
-        }
-        
         .close-lightbox {
             position: absolute;
-            top: -50px;
-            right: 0;
-            color: white;
-            font-size: 2.5rem;
+            top: 15px;
+            right: 15px;
+            color: #666;
+            font-size: 1.8rem;
             cursor: pointer;
             transition: transform 0.3s ease;
         }
         
         .close-lightbox:hover {
             transform: rotate(90deg);
+            color: var(--accent-color);
+        }
+        
+        .product-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .product-main-image {
+            width: 100%;
+            height: 350px;
+            overflow: hidden;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        
+        .product-main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .product-thumbnails {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .product-thumbnail {
+            width: 70px;
+            height: 70px;
+            border-radius: 5px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .product-thumbnail:hover, .product-thumbnail.active {
+            border-color: var(--primary-color);
+        }
+        
+        .product-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .product-info-details {
+            flex: 1;
+        }
+        
+        .product-name-details {
+            font-size: 1.8rem;
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+        }
+        
+        .product-desc-details {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .product-meta-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .product-availability-details {
+            background-color: var(--light-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .product-availability-details.available {
+            color: var(--success-color);
+        }
+        
+        .product-rating-details {
+            background-color: var(--light-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--warning-color);
+        }
+        
+        .product-tags-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .product-tag-details {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .add-to-cart-details {
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary-color), #2980b9);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex: 1;
+        }
+        
+        .add-to-cart-details:hover {
+            background: linear-gradient(135deg, #2980b9, var(--primary-color));
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(41, 128, 185, 0.3);
         }
         
         /* Floating cart icon */
@@ -1003,6 +1139,19 @@
                 right: -90%;
             }
             
+            .product-lightbox-content {
+                width: 95%;
+                padding: 1rem;
+            }
+            
+            .product-main-image {
+                height: 250px;
+            }
+            
+            .product-name-details {
+                font-size: 1.4rem;
+            }
+            
             .floating-cart,
             .floating-whatsapp,
             .back-to-top {
@@ -1070,6 +1219,22 @@
                 padding: 0.4rem 0.6rem;
                 font-size: 0.8rem;
                 min-width: 30px;
+            }
+            
+            .product-details {
+                flex-direction: column;
+            }
+            
+            .product-main-image {
+                height: 200px;
+            }
+            
+            .product-thumbnails {
+                justify-content: center;
+            }
+            
+            .product-actions {
+                flex-direction: column;
             }
         }
     </style>
@@ -1152,18 +1317,20 @@
     
     <div class="overlay" id="overlay"></div>
     
-    <!-- Lightbox for image zoom -->
-    <div class="lightbox" id="lightbox">
-        <div class="lightbox-content">
+    <!-- Product Details Lightbox -->
+    <div class="product-lightbox" id="product-lightbox">
+        <div class="product-lightbox-content">
             <span class="close-lightbox"><i class="fas fa-times"></i></span>
-            <img id="lightbox-image" src="" alt="">
+            <div class="product-details" id="product-details">
+                <!-- سيتم ملؤها بتفاصيل المنتج عند النقر عليه -->
+            </div>
         </div>
     </div>
     
     <script>
-        // بيانات المنتجات
+        // بيانات المنتجات مع إضافة صور إضافية لكل منتج
         const products = [
-                                 {
+            {
             id: 303,
             name: "    عرض على كرتونة الورق مالتى أوفيس 80 جرام ب 715 جنيه   ",
             price: 12.5,
@@ -3818,17 +3985,23 @@
             rating: 5
         }, 
             {
-            id: 150,
-            name: "      دوسيه بلاستيك خرامة ",
-            price: 12.5,
-            desc: "     سعر خاص للجملة  ",
-            image: "https://i.postimg.cc/K8j0f247/image.webp",
-            badge: "جديد",
-            category: "student",
-            tags: ["أدوات", "طلابية"],
-            availability: "متوفر",
-            rating: 5
-        },
+                id: 150,
+                name: "دوسيه بلاستيك خرامة",
+                price: 12.5,
+                desc: "دوسيه بلاستيك مع خرامة مدمجة. عملي وسهل الاستخدام مع إمكانية ترتيب الأوراق بشكل منظم.",
+                image: "https://i.postimg.cc/K8j0f247/image.webp",
+                images: [
+                    "https://i.postimg.cc/K8j0f247/image.webp",
+                    "https://i.postimg.cc/qMfytdHD/2735934-600x450.jpg",
+                    "https://i.postimg.cc/XYtbWxC5/20181029-193959-600x600-removebg-preview.png",
+                    "https://i.postimg.cc/pX6T9fjW/All-4838-1.jpg"
+                ],
+                badge: "جديد",
+                category: "student",
+                tags: ["أدوات", "طلابية"],
+                availability: "متوفر",
+                rating: 5
+            }
         ];
         
         // عناصر DOM
@@ -3845,8 +4018,8 @@
         const overlay = document.getElementById('overlay');
         const cartItemsContainer = document.getElementById('cart-items');
         const checkoutBtn = document.getElementById('checkout-btn');
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImage = document.getElementById('lightbox-image');
+        const productLightbox = document.getElementById('product-lightbox');
+        const productDetailsContainer = document.getElementById('product-details');
         const closeLightbox = document.querySelector('.close-lightbox');
         const searchInput = document.getElementById('search-input');
         const paginationContainer = document.getElementById('pagination');
@@ -3905,7 +4078,7 @@
                 
                 productCard.innerHTML = `
                     ${ribbon}
-                    <div class="product-image">
+                    <div class="product-image" data-id="${product.id}">
                         <img src="${product.image}" alt="${product.name}" data-src="${product.image}">
                         ${badge}
                         ${product.availability === 'متوفر' ? '<span class="product-badge">متوفر</span>' : ''}
@@ -4044,29 +4217,87 @@
                 button.addEventListener('click', addToCart);
             });
             
-            // إضافة حدث النقر على الصور لتكبيرها
-            document.querySelectorAll('.product-image img').forEach(img => {
-                img.addEventListener('click', openLightbox);
+            // إضافة حدث النقر على الصور لفتح تفاصيل المنتج
+            document.querySelectorAll('.product-image').forEach(image => {
+                image.addEventListener('click', openProductDetails);
             });
         }
         
-        // فتح Lightbox لتكبير الصورة
-        function openLightbox(e) {
-            const imgSrc = e.target.getAttribute('data-src') || e.target.src;
-            lightboxImage.src = imgSrc;
-            lightbox.classList.add('active');
+        // فتح تفاصيل المنتج
+        function openProductDetails(e) {
+            const productId = parseInt(e.currentTarget.getAttribute('data-id'));
+            const product = products.find(p => p.id === productId);
+            
+            if (!product) return;
+            
+            // إنشاء عناصر تفاصيل المنتج
+            productDetailsContainer.innerHTML = `
+                <div class="product-main-image">
+                    <img src="${product.image}" alt="${product.name}" id="main-product-image">
+                </div>
+                <div class="product-thumbnails" id="product-thumbnails">
+                    ${product.images.map((img, index) => `
+                        <div class="product-thumbnail ${index === 0 ? 'active' : ''}" data-src="${img}">
+                            <img src="${img}" alt="${product.name}">
+                        </div>
+                    `).join('')}
+                </div>
+                <div class="product-info-details">
+                    <h2 class="product-name-details">${product.name}</h2>
+                    <p class="product-desc-details">${product.desc}</p>
+                    <div class="product-meta-details">
+                        <span class="product-availability-details ${product.availability === 'متوفر' ? 'available' : ''}">
+                            <i class="fas ${product.availability === 'متوفر' ? 'fa-check-circle' : 'fa-times-circle'}"></i>
+                            ${product.availability}
+                        </span>
+                        <span class="product-rating-details">
+                            <i class="fas fa-star"></i>
+                            ${product.rating}/5
+                        </span>
+                    </div>
+                    <div class="product-tags-details">
+                        ${product.tags.map(tag => `<span class="product-tag-details">${tag}</span>`).join('')}
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart-details" data-id="${product.id}">
+                            <i class="fas fa-cart-plus"></i>
+                            أضف للسلة
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            // فتح lightbox
+            productLightbox.classList.add('active');
             document.body.style.overflow = 'hidden';
+            
+            // إضافة أحداث النقر على الصور المصغرة
+            document.querySelectorAll('.product-thumbnail').forEach(thumbnail => {
+                thumbnail.addEventListener('click', () => {
+                    // تحديث الصورة الرئيسية
+                    const mainImage = document.getElementById('main-product-image');
+                    const newSrc = thumbnail.getAttribute('data-src');
+                    mainImage.src = newSrc;
+                    
+                    // تحديث حالة الصور المصغرة النشطة
+                    document.querySelectorAll('.product-thumbnail').forEach(t => t.classList.remove('active'));
+                    thumbnail.classList.add('active');
+                });
+            });
+            
+            // إضافة حدث النقر على زر الإضافة للسلة
+            document.querySelector('.add-to-cart-details').addEventListener('click', addToCart);
         }
         
-        // إغلاق Lightbox
-        function closeLightboxHandler() {
-            lightbox.classList.remove('active');
+        // إغلاق تفاصيل المنتج
+        function closeProductDetails() {
+            productLightbox.classList.remove('active');
             document.body.style.overflow = '';
         }
         
         // إضافة منتج إلى السلة
         function addToCart(e) {
-            const productId = parseInt(e.target.getAttribute('data-id'));
+            const productId = parseInt(e.currentTarget.getAttribute('data-id'));
             const product = products.find(p => p.id === productId);
             
             const existingItem = cart.find(item => item.id === productId);
@@ -4217,7 +4448,7 @@
                 return;
             }
             
-            // إنشاء رسالة الطلب
+            // إنشاء رسالة الطلب بدون الأسعار
             let message = `🎉 *طلب جديد من متجر مكتبة الطلبة* 🎉\n\n`;
             message += `📋 *تفاصيل الطلب:*\n`;
             message += '────────────────\n';
@@ -4319,14 +4550,15 @@
         overlay.addEventListener('click', () => {
             cartSidebar.classList.remove('open');
             overlay.classList.remove('active');
+            closeProductDetails();
         });
         
         checkoutBtn.addEventListener('click', sendWhatsAppOrder);
         
-        closeLightbox.addEventListener('click', closeLightboxHandler);
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) {
-                closeLightboxHandler();
+        closeLightbox.addEventListener('click', closeProductDetails);
+        productLightbox.addEventListener('click', (e) => {
+            if (e.target === productLightbox) {
+                closeProductDetails();
             }
         });
         
@@ -4347,10 +4579,10 @@
             });
         });
         
-        // إغلاق Lightbox عند الضغط على زر Escape
+        // إغلاق تفاصيل المنتج عند الضغط على زر Escape
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-                closeLightboxHandler();
+            if (e.key === 'Escape' && productLightbox.classList.contains('active')) {
+                closeProductDetails();
             }
         });
         
@@ -4359,6 +4591,3 @@
     </script>
 </body>
 </html>
-
-
-
