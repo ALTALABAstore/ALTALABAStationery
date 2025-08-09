@@ -623,7 +623,7 @@
             visibility: visible;
         }
         
-        /* Product Details Lightbox */
+        /* Lightbox for product details */
         .product-lightbox {
             position: fixed;
             top: 0;
@@ -696,7 +696,6 @@
             display: flex;
             gap: 10px;
             margin-top: 10px;
-            justify-content: center;
         }
         
         .product-thumbnail {
@@ -1239,6 +1238,7 @@
             }
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -1328,36 +1328,14 @@
     </div>
     
     <script>
-        // بيانات المنتجات
+        // بيانات المنتجات مع إضافة صور إضافية لكل منتج
         const products = [
-                              {
-            id: 304,
-            name: "  كرتونة ورق أمنية 80 جرام  ",
-            price: 12.5,
-            desc: "    جودة عالية  ",
-            image: "https://i.postimg.cc/d1YhWXg9/22.jpg",
-                   images: [
-                    "https://i.postimg.cc/J46B1pB1/1234.jpg",
-                    "https://i.postimg.cc/8P0j8sqc/image.jpg",
-                    "https://i.postimg.cc/PfKC4Sym/image.jpg",
-                ],
-            badge: "جديد",
-            category: "office",
-            tags: ["أمنية", "أدوات"],
-            availability: "متوفر",
-            rating: 5
-        },
-                       {
+            {
             id: 303,
             name: "    عرض على كرتونة الورق مالتى أوفيس 80 جرام ب 715 جنيه   ",
             price: 12.5,
             desc: "    جودة عالية  ",
             image: "https://i.postimg.cc/kMwL1p1y/333.jpg",
-                   images: [
-                    "https://i.postimg.cc/RVVMZ9ct/image.jpg",
-                    "https://i.postimg.cc/fR1ZC917/image.jpg",
-                    "https://i.postimg.cc/3JBF2j46/000.jpg",
-                ],
             badge: "جديد",
             category: "office",
             tags: ["  مالتى أوفيس", "أدوات"],
@@ -1370,11 +1348,6 @@
             price: 12.5,
             desc: "    جودة عالية  ",
             image: "https://i.postimg.cc/zBH3th5C/11.jpg",
-                   images: [
-                    "https://i.postimg.cc/J4nSDhtb/545454656.jpg",
-                    "https://i.postimg.cc/Bndx5mpq/1211121212.webp",
-                    "https://i.postimg.cc/c1Xwkxhk/6544789987897879.jpg",
-                ],
             badge: "جديد",
             category: "office",
             tags: ["  مرام", "أدوات"],
@@ -1387,9 +1360,6 @@
             price: 12.5,
             desc: "   جديد  ",
             image: "https://i.postimg.cc/7Y2bM0Xw/1.jpg",
-                  images: [
-                    "https://i.postimg.cc/7Y2bM0Xw/1.jpg",
-                ],
             badge: "جديد",
             category: "student",
             tags: ["تكت", "طلابية"],
@@ -1402,9 +1372,6 @@
             price: 12.5,
             desc: "   جديد  ",
             image: "https://i.postimg.cc/1XBRCSjZ/1.jpg",
-                 images: [
-                    "https://i.postimg.cc/1XBRCSjZ/1.jpg",
-                ],
             badge: "جديد",
             category: "student",
             tags: ["مقلمة", "طلابية"],
@@ -1417,10 +1384,6 @@
             price: 30,
             desc: "قلم هايلايتر جودة عالية ",
             image: "https://i.postimg.cc/xTfBwVKQ/image.jpg",
-               images: [
-                    "https://i.postimg.cc/xTfBwVKQ/image.jpg",
-                    "https://i.postimg.cc/MKs4wf0C/Whats-App-Image-2025-08-09-at-10-24-30-AM.jpg",
-                ],
             category: "student",
             tags: ["أدوات مكتبية", "قرطاسية"],
             availability: "متوفر",
@@ -1432,11 +1395,6 @@
             price: 45,
             desc: "علبة أدوات هندسية 7 قطع ",
             image: "https://i.postimg.cc/gJyB7gjr/image.jpg",
-            images: [
-                    "https://i.postimg.cc/gJyB7gjr/image.jpg",
-                    "https://i.postimg.cc/nzCKvM9D/8.jpg",
-                    "https://i.postimg.cc/m2g6dNs2/2.jpg",
-                ],
             badge: "جديد",
             category: "student",
             tags: ["أدوات هندسية", "طلاب"],
@@ -1449,11 +1407,6 @@
             price: 45,
             desc: "علبة أدوات هندسية 7 قطع .",
             image: "https://i.postimg.cc/m2g6dNs2/2.jpg",
-                 images: [
-                    "https://i.postimg.cc/m2g6dNs2/2.jpg",
-                    "https://i.postimg.cc/nzCKvM9D/8.jpg",
-                    "https://i.postimg.cc/gJyB7gjr/image.jpg",
-                ],
             category: "student",
             tags: ["أدوات هندسية", "طلاب"],
             availability: "متوفر",
@@ -1465,11 +1418,6 @@
             price: 115,
             desc: "علبة أدوات هندسية جودة عالية.",
             image: "https://i.postimg.cc/zD0xRbgm/115.jpg",
-               images: [
-                    "https://i.postimg.cc/zD0xRbgm/115.jpg",
-                    "https://i.postimg.cc/DZcB6mpX/115.jpg",
-                    "https://i.postimg.cc/667JQ0q9/9.jpg",
-                ],
             badge: "عرض خاص",
             category: "student",
             tags: ["أدوات هندسية", "عرض خاص"],
@@ -1482,11 +1430,6 @@
             price: 115,
             desc: "علبة أدوات هندسية عالية الجودة",
             image: "https://i.postimg.cc/DZcB6mpX/115.jpg",
-                images: [
-                    "https://i.postimg.cc/DZcB6mpX/115.jpg",
-                    "https://i.postimg.cc/zD0xRbgm/115.jpg",
-                    "https://i.postimg.cc/667JQ0q9/9.jpg",
-                ],
             category: "student",
             tags: ["أدوات هندسية", "طلاب"],
             availability: "متوفر",
@@ -1498,10 +1441,6 @@
             price:45,
             desc: "علبة أدوات هندسية عالية الجودة",
             image: "https://i.postimg.cc/yNHmGsZX/image.jpg",
-                    images: [
-                   "https://i.postimg.cc/yNHmGsZX/image.jpg",
-                    "https://i.postimg.cc/xjWCjq04/3.jpg",
-                ],
             category: "student",
             tags: ["أدوات هندسية", "طلاب"],
             availability: "متوفر",
@@ -1513,10 +1452,6 @@
             price:45,
             desc: "علبة أدوات  عالية الجودة",
             image: "https://i.postimg.cc/tRZ5vXSw/image.jpg",
-                      images: [
-                   "https://i.postimg.cc/tRZ5vXSw/image.jpg",
-                    "https://i.postimg.cc/63Jj5dmQ/5.jpg",
-                ],
             category: "student",
             tags: ["أدوات هندسية", "طلاب"],
             availability: "متوفر",
@@ -1528,9 +1463,6 @@
             price:20,
             desc: "علبة أدوات  عالية الجودة",
             image: "https://i.postimg.cc/fRKjSkyt/image.jpg",
-                      images: [
-                   "https://i.postimg.cc/fRKjSkyt/image.jpg",
-                ],
             category: "student",
             tags: ["أدوات هندسية", "طلاب"],
             availability: "متوفر",
@@ -1542,9 +1474,6 @@
             price:10,
             desc: " جليتر لميع   ",
             image: "https://i.postimg.cc/q7FK2KTR/image.jpg",
-                   images: [
-                   "https://i.postimg.cc/q7FK2KTR/image.jpg",
-                ],
             category: "student",
             tags: ["أدوات فنية", "زينة"],
             availability: "متوفر",
@@ -1556,9 +1485,6 @@
             price:20,
             desc: "  مسطرة معدن 30 سم   ",
             image: "https://i.postimg.cc/02rh5RNq/image.jpg",
-                  images: [
-                   "https://i.postimg.cc/02rh5RNq/image.jpg",
-                ],
             category: "student",
             tags: ["أدوات هندسية", "طلاب"],
             availability: "متوفر",
@@ -1566,15 +1492,12 @@
         },
         {
             id: 13,
-            name: "قلم رصاص سنون 0.7 ",
+            name: "قلم رصاص سنون 0.70 ",
             price:20,
-            desc: "  قلم رصاص سنون 0.7    ",
+            desc: "  قلم رصاص سنون 0.70    ",
             image: "https://i.postimg.cc/V613zJJ7/0-7.jpg",
-                  images: [
-                   "https://i.postimg.cc/V613zJJ7/0-7.jpg",
-                ],
             category: "student",
-            tags: ["أقلام", "رصاص"],
+            tags: ["أقلام", "قرطاسية"],
             availability: "متوفر",
             rating: 5
         },
@@ -1584,11 +1507,8 @@
             price:25,
             desc: "  قلم جلف 4 لون شفاف",
             image: "https://i.postimg.cc/s2JT9w2c/4.jpg",
-               images: [
-                   "https://i.postimg.cc/s2JT9w2c/4.jpg",
-                ],
             category: "student",
-            tags: ["أقلام", "[جاف]"],
+            tags: ["أقلام", "قرطاسية"],
             availability: "متوفر",
             rating: 5
         },
@@ -1598,9 +1518,6 @@
             price:25,
             desc: " قلم جلف 4 لون أسود",
             image: "https://i.postimg.cc/7Y1YV4qy/4-4.jpg",
-               images: [
-                   "https://i.postimg.cc/7Y1YV4qy/4-4.jpg",
-                ],
             category: "student",
             tags: ["أقلام", "قرطاسية"],
             availability: "متوفر",
@@ -1612,9 +1529,6 @@
             price:25,
             desc: " قلم جلف 4 لون مشكل",
             image: "https://i.postimg.cc/RhChJCDd/4.jpg",
-                images: [
-                   "https://i.postimg.cc/RhChJCDd/4.jpg",
-                ],
             category: "student",
             tags: ["أقلام", "قرطاسية"],
             availability: "متوفر",
@@ -1626,39 +1540,149 @@
             price:35 ,
             desc: "صلصال فوم متوسط ",
             image: "https://i.postimg.cc/vZnYB6mM/image.jpg",
-               images: [
-                   "https://i.postimg.cc/vZnYB6mM/image.jpg",
-                ],
             category: "games",
             tags: ["ألعاب", "أطفال"],
             availability: "متوفر",
             rating: 5
         },
-          
-               {
+            {
+            id: 214,
+            name: "  A5 كشكول 144 ورقة هارد كفر     ",
+            price: 12.5,
+            desc: "   متوفر جميع الأشكال   ",
+            image: "https://i.postimg.cc/FKZ2f9KR/Whats-App-Image-2025-07-29-at-9-42-57-AM-1.jpg",
+            badge: "جديد",
+            category: "student",
+            tags: ["كشكول ", "طلابية"],
+            availability: "متوفر",
+            rating: 5
+        },
+                   {
+            id: 214,
+            name: "  A4 كشكول دبوس  فرنساوى 60 ورقة  ",
+            price: 12.5,
+            desc: "   متوفر جميع الأشكال   ",
+            image: "https://i.postimg.cc/gjDwQLcp/Whats-App-Image-2025-07-29-at-9-42-45-AM.jpg",
+            badge: "جديد",
+            category: "student",
+            tags: ["كشكول ", "طلابية"],
+            availability: "متوفر",
+            rating: 5
+        },
+                                      {
+            id: 214,
+            name: " كشكول سيلك هارد كفر 100 ورقة  ",
+            price: 12.5,
+            desc: "   متوفر جميع الأشكال   ",
+            image: "https://i.postimg.cc/CMfmXhVq/Whats-App-Image-2025-07-29-at-9-42-43-AM.jpg",
+            badge: "جديد",
+            category: "student",
+            tags: ["كشكول ", "طلابية"],
+            availability: "متوفر",
+            rating: 5
+        },
+                                             {
+            id: 213,
+            name: " كشكول سيلك هارد كفر  ",
+            price: 12.5,
+            desc: "   متوفر جميع الأشكال   ",
+            image: "https://i.postimg.cc/Gm9rnT3Q/Whats-App-Image-2025-07-29-at-9-42-57-AM.jpg",
+            badge: "جديد",
+            category: "student",
+            tags: ["كشكول ", "طلابية"],
+            availability: "متوفر",
+            rating: 5
+        },
+                                             {
+            id: 212,
+            name: " كشكول سيلك هارد كفر  ",
+            price: 12.5,
+            desc: "   متوفر جميع الأشكال   ",
+            image: "https://i.postimg.cc/RhGJ3JHF/Whats-App-Image-2025-07-29-at-9-42-55-AM.jpg",
+            badge: "جديد",
+            category: "student",
+            tags: ["كشكول ", "طلابية"],
+            availability: "متوفر",
+            rating: 5
+        },
+                                           {
+            id: 211,
+            name: " كشكول سيلك هارد كفر  ",
+            price: 12.5,
+            desc: "   متوفر جميع الأشكال   ",
+            image: "https://i.postimg.cc/59Qrw57L/Whats-App-Image-2025-07-29-at-9-42-56-AM.jpg",
+            badge: "جديد",
+            category: "student",
+            tags: ["كشكول ", "طلابية"],
+            availability: "متوفر",
+            rating: 5
+        },
+                                     {
+            id: 210,
+            name: "  كشكول منترا جامبو 160 ورقة    ",
+            price: 12.5,
+            desc: "   متوفر جميع الأشكال   ",
+            image: "https://i.postimg.cc/L8J2fg1W/Whats-App-Image-2025-07-29-at-1-52-39-PM.jpg",
+            badge: "جديد",
+            category: "student",
+            tags: ["كشكول ", "طلابية"],
+            availability: "متوفر",
+            rating: 5
+        },
+                          {
+            id: 209,
+            name: "  كشكول منترا جامبو 240 ورقة    ",
+            price: 12.5,
+            desc: "   متوفر جميع الأشكال   ",
+            image: "https://i.postimg.cc/Kvnnb4zd/Whats-App-Image-2025-07-29-at-9-42-53-AM.jpg",
+            badge: "جديد",
+            category: "student",
+            tags: ["كشكول ", "طلابية"],
+            availability: "متوفر",
+            rating: 5
+        },
+                  {
+            id: 208,
+            name: "  كشكول منترا جامبو 120 ورقة    ",
+            price: 12.5,
+            desc: "   متوفر جميع الأشكال   ",
+            image: "https://i.postimg.cc/pyNy7Qzp/Whats-App-Image-2025-07-29-at-9-42-52-AM.jpg",
+            badge: "جديد",
+            category: "student",
+            tags: ["كشكول ", "طلابية"],
+            availability: "متوفر",
+            rating: 5
+        },
+                                                {
+            id: 207,
+            name: "  كشكول منترا جامبو 200 ورقة    ",
+            price: 12.5,
+            desc: "   متوفر جميع الأشكال   ",
+            image: "https://i.postimg.cc/9f9ZQMF3/Whats-App-Image-2025-07-29-at-9-42-00-AM.jpg",
+            badge: "جديد",
+            category: "student",
+            tags: ["كشكول ", "طلابية"],
+            availability: "متوفر",
+            rating: 5
+        },
+                                         {
             id: 206,
             name: "  نوتة   ",
             price: 12.5,
             desc: "   متوفر جميع الألوان   ",
             image: "https://i.postimg.cc/XJF8mLyC/Whats-App-Image-2025-07-29-at-10-36-42-AM.jpg",
-             images: [
-                   "https://i.postimg.cc/XJF8mLyC/Whats-App-Image-2025-07-29-at-10-36-42-AM.jpg",
-                ],
             badge: "جديد",
             category: "student",
             tags: ["نوتة ", "طلابية"],
             availability: "متوفر",
             rating: 5
         },
-            {
+                                      {
             id: 205,
             name: "  نوتة   ",
             price: 12.5,
             desc: "   متوفر جميع الألوان   ",
             image: "https://i.postimg.cc/KYWqd4qd/Whats-App-Image-2025-07-29-at-10-35-25-AM.jpg",
-              images: [
-                   "https://i.postimg.cc/KYWqd4qd/Whats-App-Image-2025-07-29-at-10-35-25-AM.jpg",
-                ],
             badge: "جديد",
             category: "student",
             tags: ["نوتة ", "طلابية"],
@@ -1672,9 +1696,6 @@
             price: 12.5,
             desc: "   متوفر جميع الألوان   ",
             image: "https://i.postimg.cc/VkM39qKd/Whats-App-Image-2025-07-29-at-10-35-16-AM.jpg",
-             images: [
-                   "https://i.postimg.cc/VkM39qKd/Whats-App-Image-2025-07-29-at-10-35-16-AM.jpg",
-                ],
             badge: "جديد",
             category: "student",
             tags: ["نوتة ", "طلابية"],
@@ -1687,9 +1708,6 @@
             price: 12.5,
             desc: "   متوفر جميع الألوان   ",
             image: "https://i.postimg.cc/JzDRfHPL/Whats-App-Image-2025-07-29-at-10-29-30-AM.jpg",
-              images: [
-                   "https://i.postimg.cc/JzDRfHPL/Whats-App-Image-2025-07-29-at-10-29-30-AM.jpg",
-                ],
             badge: "جديد",
             category: "student",
             tags: ["نوتة ", "طلابية"],
@@ -1702,9 +1720,6 @@
             price: 12.5,
             desc: "   متوفر جميع الألوان   ",
             image: "https://i.postimg.cc/5NpH4zBQ/Whats-App-Image-2025-07-29-at-10-29-30-AM-1.jpg",
-                 images: [
-                   "https://i.postimg.cc/5NpH4zBQ/Whats-App-Image-2025-07-29-at-10-29-30-AM-1.jpg",
-                ],
             badge: "جديد",
             category: "student",
             tags: ["نوتة ", "طلابية"],
@@ -3986,127 +4001,7 @@
                 tags: ["أدوات", "طلابية"],
                 availability: "متوفر",
                 rating: 5
-            },
-              {
-            id: 214,
-            name: "  A5 كشكول 144 ورقة هارد كفر     ",
-            price: 12.5,
-            desc: "   متوفر جميع الأشكال   ",
-            image: "https://i.postimg.cc/FKZ2f9KR/Whats-App-Image-2025-07-29-at-9-42-57-AM-1.jpg",
-            badge: "جديد",
-            category: "student",
-            tags: ["كشكول ", "طلابية"],
-            availability: "متوفر",
-            rating: 5
-        },
-                   {
-            id: 214,
-            name: "  A4 كشكول دبوس  فرنساوى 60 ورقة  ",
-            price: 12.5,
-            desc: "   متوفر جميع الأشكال   ",
-            image: "https://i.postimg.cc/gjDwQLcp/Whats-App-Image-2025-07-29-at-9-42-45-AM.jpg",
-            badge: "جديد",
-            category: "student",
-            tags: ["كشكول ", "طلابية"],
-            availability: "متوفر",
-            rating: 5
-        },
-                                      {
-            id: 214,
-            name: " كشكول سيلك هارد كفر 100 ورقة  ",
-            price: 12.5,
-            desc: "   متوفر جميع الأشكال   ",
-            image: "https://i.postimg.cc/CMfmXhVq/Whats-App-Image-2025-07-29-at-9-42-43-AM.jpg",
-            badge: "جديد",
-            category: "student",
-            tags: ["كشكول ", "طلابية"],
-            availability: "متوفر",
-            rating: 5
-        },
-                                             {
-            id: 213,
-            name: " كشكول سيلك هارد كفر  ",
-            price: 12.5,
-            desc: "   متوفر جميع الأشكال   ",
-            image: "https://i.postimg.cc/Gm9rnT3Q/Whats-App-Image-2025-07-29-at-9-42-57-AM.jpg",
-            badge: "جديد",
-            category: "student",
-            tags: ["كشكول ", "طلابية"],
-            availability: "متوفر",
-            rating: 5
-        },
-                                             {
-            id: 212,
-            name: " كشكول سيلك هارد كفر  ",
-            price: 12.5,
-            desc: "   متوفر جميع الأشكال   ",
-            image: "https://i.postimg.cc/RhGJ3JHF/Whats-App-Image-2025-07-29-at-9-42-55-AM.jpg",
-            badge: "جديد",
-            category: "student",
-            tags: ["كشكول ", "طلابية"],
-            availability: "متوفر",
-            rating: 5
-        },
-                  {
-            id: 211,
-            name: " كشكول سيلك هارد كفر  ",
-            price: 12.5,
-            desc: "   متوفر جميع الأشكال   ",
-            image: "https://i.postimg.cc/59Qrw57L/Whats-App-Image-2025-07-29-at-9-42-56-AM.jpg",
-            badge: "جديد",
-            category: "student",
-            tags: ["كشكول ", "طلابية"],
-            availability: "متوفر",
-            rating: 5
-        },
-                                     {
-            id: 210,
-            name: "  كشكول منترا جامبو 160 ورقة    ",
-            price: 12.5,
-            desc: "   متوفر جميع الأشكال   ",
-            image: "https://i.postimg.cc/L8J2fg1W/Whats-App-Image-2025-07-29-at-1-52-39-PM.jpg",
-            badge: "جديد",
-            category: "student",
-            tags: ["كشكول ", "طلابية"],
-            availability: "متوفر",
-            rating: 5
-        },
-                          {
-            id: 209,
-            name: "  كشكول منترا جامبو 240 ورقة    ",
-            price: 12.5,
-            desc: "   متوفر جميع الأشكال   ",
-            image: "https://i.postimg.cc/Kvnnb4zd/Whats-App-Image-2025-07-29-at-9-42-53-AM.jpg",
-            badge: "جديد",
-            category: "student",
-            tags: ["كشكول ", "طلابية"],
-            availability: "متوفر",
-            rating: 5
-        },
-                  {
-            id: 208,
-            name: "  كشكول منترا جامبو 120 ورقة    ",
-            price: 12.5,
-            desc: "   متوفر جميع الأشكال   ",
-            image: "https://i.postimg.cc/pyNy7Qzp/Whats-App-Image-2025-07-29-at-9-42-52-AM.jpg",
-            badge: "جديد",
-            category: "student",
-            tags: ["كشكول ", "طلابية"],
-            availability: "متوفر",
-            rating: 5
-        },
-                                                {
-            id: 207,
-            name: "  كشكول منترا جامبو 200 ورقة    ",
-            price: 12.5,
-            desc: "   متوفر جميع الأشكال   ",
-            image: "https://i.postimg.cc/9f9ZQMF3/Whats-App-Image-2025-07-29-at-9-42-00-AM.jpg",
-            badge: "جديد",
-            category: "student",
-            tags: ["كشكول ", "طلابية"],
-            availability: "متوفر",
-            rating: 5
-        },
+            }
         ];
         
         // عناصر DOM
@@ -4131,9 +4026,6 @@
         
         // سلة التسوق
         let cart = [];
-        
-        // متغير لتتبع الصور المختارة لكل منتج
-        const selectedProductImages = {};
         
         // متغيرات التقسيم إلى صفحات
         let currentPage = 1;
@@ -4338,19 +4230,14 @@
             
             if (!product) return;
             
-            // نبدأ بالصورة الرئيسية إذا لم يتم اختيار صورة أخرى
-            if (!selectedProductImages[productId]) {
-                selectedProductImages[productId] = product.image;
-            }
-            
             // إنشاء عناصر تفاصيل المنتج
             productDetailsContainer.innerHTML = `
                 <div class="product-main-image">
-                    <img src="${selectedProductImages[productId]}" alt="${product.name}" id="main-product-image">
+                    <img src="${product.image}" alt="${product.name}" id="main-product-image">
                 </div>
                 <div class="product-thumbnails" id="product-thumbnails">
                     ${product.images.map((img, index) => `
-                        <div class="product-thumbnail ${selectedProductImages[productId] === img ? 'active' : ''}" data-src="${img}">
+                        <div class="product-thumbnail ${index === 0 ? 'active' : ''}" data-src="${img}">
                             <img src="${img}" alt="${product.name}">
                         </div>
                     `).join('')}
@@ -4392,9 +4279,6 @@
                     const newSrc = thumbnail.getAttribute('data-src');
                     mainImage.src = newSrc;
                     
-                    // تحديث الصورة المختارة للمنتج
-                    selectedProductImages[productId] = newSrc;
-                    
                     // تحديث حالة الصور المصغرة النشطة
                     document.querySelectorAll('.product-thumbnail').forEach(t => t.classList.remove('active'));
                     thumbnail.classList.add('active');
@@ -4416,18 +4300,13 @@
             const productId = parseInt(e.currentTarget.getAttribute('data-id'));
             const product = products.find(p => p.id === productId);
             
-            // استخدام الصورة المختارة إذا كانت متاحة، وإلا الصورة الرئيسية
-            const selectedImage = selectedProductImages[productId] || product.image;
-            
             const existingItem = cart.find(item => item.id === productId);
             
             if (existingItem) {
                 existingItem.quantity += 1;
-                existingItem.image = selectedImage; // تحديث الصورة إذا كانت موجودة بالفعل
             } else {
                 cart.push({
                     ...product,
-                    image: selectedImage, // حفظ الصورة المختارة
                     quantity: 1
                 });
             }
@@ -4442,9 +4321,6 @@
                 headerCartIcon.classList.remove('bounce');
                 floatingCart.classList.remove('bounce');
             }, 800);
-            
-            // إغلاق نافذة تفاصيل المنتج بعد الإضافة
-            closeProductDetails();
         }
         
         // تحديث عرض السلة
@@ -4520,7 +4396,6 @@
                 item.quantity -= 1;
             } else {
                 cart = cart.filter(item => item.id !== productId);
-                delete selectedProductImages[productId]; // حذف الصورة المختارة عند إزالة المنتج
             }
             
             updateCart();
@@ -4538,7 +4413,6 @@
         function removeFromCart(e) {
             const productId = parseInt(e.target.closest('.remove-item').getAttribute('data-id'));
             cart = cart.filter(item => item.id !== productId);
-            delete selectedProductImages[productId]; // حذف الصورة المختارة عند إزالة المنتج
             updateCart();
         }
         
