@@ -623,7 +623,7 @@
             visibility: visible;
         }
         
-        /* Lightbox for product details */
+        /* Product Details Lightbox */
         .product-lightbox {
             position: fixed;
             top: 0;
@@ -696,6 +696,7 @@
             display: flex;
             gap: 10px;
             margin-top: 10px;
+            justify-content: center;
         }
         
         .product-thumbnail {
@@ -1238,7 +1239,6 @@
             }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -1328,14 +1328,17 @@
     </div>
     
     <script>
-        // بيانات المنتجات مع إضافة صور إضافية لكل منتج
+        // بيانات المنتجات
         const products = [
-                                                                {
+              {
             id: 307,
             name: "  ألوان خشب  48 لون طويلة mg  ",
             price: 12.5,
             desc: "    جودة عالية   ",
             image: "https://i.postimg.cc/4x0kS8VP/4.jpg",
+                  images: [
+                   "https://i.postimg.cc/4x0kS8VP/4.jpg",
+                ],
             badge: "جديد",
             category: "art",
             tags: ["ألوان", "رسم"],
@@ -1348,6 +1351,9 @@
             price: 12.5,
             desc: "    جودة عالية   ",
             image: "https://i.postimg.cc/DZLTsqWg/2.jpg",
+                 images: [
+                   "https://i.postimg.cc/DZLTsqWg/2.jpg",
+                ],
             badge: "جديد",
             category: "art",
             tags: ["ألوان", "رسم"],
@@ -1360,6 +1366,9 @@
             price: 12.5,
             desc: "    جودة عالية   ",
             image: "https://i.postimg.cc/Y2F9fFcT/1.jpg",
+              images: [
+                   "https://i.postimg.cc/Y2F9fFcT/1.jpg",
+                ],
             badge: "جديد",
             category: "art",
             tags: ["ألوان", "رسم"],
@@ -1372,18 +1381,24 @@
             price: 12.5,
             desc: "    جودة عالية   ",
             image: "https://i.postimg.cc/Pq6L9nKc/3.jpg",
+             images: [
+                   "https://i.postimg.cc/Pq6L9nKc/3.jpg",
+                ],
             badge: "جديد",
             category: "art",
             tags: ["ألوان", "رسم"],
             availability: "متوفر",
             rating: 5
         },
-            {
+                       {
             id: 303,
             name: "    عرض على كرتونة الورق مالتى أوفيس 80 جرام ب 715 جنيه   ",
             price: 12.5,
             desc: "    جودة عالية  ",
             image: "https://i.postimg.cc/kMwL1p1y/333.jpg",
+            images: [
+                   "https://i.postimg.cc/kMwL1p1y/333.jpg",
+                ],
             badge: "جديد",
             category: "office",
             tags: ["  مالتى أوفيس", "أدوات"],
@@ -1396,6 +1411,9 @@
             price: 12.5,
             desc: "    جودة عالية  ",
             image: "https://i.postimg.cc/zBH3th5C/11.jpg",
+             images: [
+                   "https://i.postimg.cc/zBH3th5C/11.jpg",
+                ],
             badge: "جديد",
             category: "office",
             tags: ["  مرام", "أدوات"],
@@ -1408,6 +1426,9 @@
             price: 12.5,
             desc: "   جديد  ",
             image: "https://i.postimg.cc/7Y2bM0Xw/1.jpg",
+              images: [
+                   "https://i.postimg.cc/7Y2bM0Xw/1.jpg",
+                ],
             badge: "جديد",
             category: "student",
             tags: ["تكت", "طلابية"],
@@ -1420,6 +1441,9 @@
             price: 12.5,
             desc: "   جديد  ",
             image: "https://i.postimg.cc/1XBRCSjZ/1.jpg",
+              images: [
+                   "https://i.postimg.cc/1XBRCSjZ/1.jpg",
+                ],
             badge: "جديد",
             category: "student",
             tags: ["مقلمة", "طلابية"],
@@ -1432,6 +1456,9 @@
             price: 30,
             desc: "قلم هايلايتر جودة عالية ",
             image: "https://i.postimg.cc/xTfBwVKQ/image.jpg",
+               images: [
+                    "https://i.postimg.cc/xTfBwVKQ/image.jpg",
+                ],
             category: "student",
             tags: ["أدوات مكتبية", "قرطاسية"],
             availability: "متوفر",
@@ -1443,6 +1470,9 @@
             price: 45,
             desc: "علبة أدوات هندسية 7 قطع ",
             image: "https://i.postimg.cc/gJyB7gjr/image.jpg",
+             images: [
+                    "https://i.postimg.cc/gJyB7gjr/image.jpg",
+                ],
             badge: "جديد",
             category: "student",
             tags: ["أدوات هندسية", "طلاب"],
@@ -1455,6 +1485,9 @@
             price: 45,
             desc: "علبة أدوات هندسية 7 قطع .",
             image: "https://i.postimg.cc/m2g6dNs2/2.jpg",
+                 images: [
+                    "https://i.postimg.cc/m2g6dNs2/2.jpg",
+                ],
             category: "student",
             tags: ["أدوات هندسية", "طلاب"],
             availability: "متوفر",
@@ -1466,6 +1499,9 @@
             price: 115,
             desc: "علبة أدوات هندسية جودة عالية.",
             image: "https://i.postimg.cc/zD0xRbgm/115.jpg",
+                images: [
+                    "https://i.postimg.cc/zD0xRbgm/115.jpg",
+                ],
             badge: "عرض خاص",
             category: "student",
             tags: ["أدوات هندسية", "عرض خاص"],
@@ -1478,6 +1514,9 @@
             price: 115,
             desc: "علبة أدوات هندسية عالية الجودة",
             image: "https://i.postimg.cc/DZcB6mpX/115.jpg",
+               images: [
+                    "https://i.postimg.cc/DZcB6mpX/115.jpg",
+                ],
             category: "student",
             tags: ["أدوات هندسية", "طلاب"],
             availability: "متوفر",
@@ -1489,6 +1528,9 @@
             price:45,
             desc: "علبة أدوات هندسية عالية الجودة",
             image: "https://i.postimg.cc/yNHmGsZX/image.jpg",
+              images: [
+                    "https://i.postimg.cc/yNHmGsZX/image.jpg",
+                ],
             category: "student",
             tags: ["أدوات هندسية", "طلاب"],
             availability: "متوفر",
@@ -1500,6 +1542,9 @@
             price:45,
             desc: "علبة أدوات  عالية الجودة",
             image: "https://i.postimg.cc/tRZ5vXSw/image.jpg",
+             images: [
+                    "https://i.postimg.cc/tRZ5vXSw/image.jpg",
+                ],
             category: "student",
             tags: ["أدوات هندسية", "طلاب"],
             availability: "متوفر",
@@ -1511,6 +1556,9 @@
             price:20,
             desc: "علبة أدوات  عالية الجودة",
             image: "https://i.postimg.cc/fRKjSkyt/image.jpg",
+            images: [
+                    "https://i.postimg.cc/fRKjSkyt/image.jpg",
+                ],
             category: "student",
             tags: ["أدوات هندسية", "طلاب"],
             availability: "متوفر",
@@ -4075,6 +4123,9 @@
         // سلة التسوق
         let cart = [];
         
+        // متغير لتتبع الصور المختارة لكل منتج
+        const selectedProductImages = {};
+        
         // متغيرات التقسيم إلى صفحات
         let currentPage = 1;
         const productsPerPage = 16;
@@ -4278,14 +4329,19 @@
             
             if (!product) return;
             
+            // نبدأ بالصورة الرئيسية إذا لم يتم اختيار صورة أخرى
+            if (!selectedProductImages[productId]) {
+                selectedProductImages[productId] = product.image;
+            }
+            
             // إنشاء عناصر تفاصيل المنتج
             productDetailsContainer.innerHTML = `
                 <div class="product-main-image">
-                    <img src="${product.image}" alt="${product.name}" id="main-product-image">
+                    <img src="${selectedProductImages[productId]}" alt="${product.name}" id="main-product-image">
                 </div>
                 <div class="product-thumbnails" id="product-thumbnails">
                     ${product.images.map((img, index) => `
-                        <div class="product-thumbnail ${index === 0 ? 'active' : ''}" data-src="${img}">
+                        <div class="product-thumbnail ${selectedProductImages[productId] === img ? 'active' : ''}" data-src="${img}">
                             <img src="${img}" alt="${product.name}">
                         </div>
                     `).join('')}
@@ -4327,6 +4383,9 @@
                     const newSrc = thumbnail.getAttribute('data-src');
                     mainImage.src = newSrc;
                     
+                    // تحديث الصورة المختارة للمنتج
+                    selectedProductImages[productId] = newSrc;
+                    
                     // تحديث حالة الصور المصغرة النشطة
                     document.querySelectorAll('.product-thumbnail').forEach(t => t.classList.remove('active'));
                     thumbnail.classList.add('active');
@@ -4348,13 +4407,18 @@
             const productId = parseInt(e.currentTarget.getAttribute('data-id'));
             const product = products.find(p => p.id === productId);
             
+            // استخدام الصورة المختارة إذا كانت متاحة، وإلا الصورة الرئيسية
+            const selectedImage = selectedProductImages[productId] || product.image;
+            
             const existingItem = cart.find(item => item.id === productId);
             
             if (existingItem) {
                 existingItem.quantity += 1;
+                existingItem.image = selectedImage; // تحديث الصورة إذا كانت موجودة بالفعل
             } else {
                 cart.push({
                     ...product,
+                    image: selectedImage, // حفظ الصورة المختارة
                     quantity: 1
                 });
             }
@@ -4369,6 +4433,9 @@
                 headerCartIcon.classList.remove('bounce');
                 floatingCart.classList.remove('bounce');
             }, 800);
+            
+            // إغلاق نافذة تفاصيل المنتج بعد الإضافة
+            closeProductDetails();
         }
         
         // تحديث عرض السلة
@@ -4444,6 +4511,7 @@
                 item.quantity -= 1;
             } else {
                 cart = cart.filter(item => item.id !== productId);
+                delete selectedProductImages[productId]; // حذف الصورة المختارة عند إزالة المنتج
             }
             
             updateCart();
@@ -4461,6 +4529,7 @@
         function removeFromCart(e) {
             const productId = parseInt(e.target.closest('.remove-item').getAttribute('data-id'));
             cart = cart.filter(item => item.id !== productId);
+            delete selectedProductImages[productId]; // حذف الصورة المختارة عند إزالة المنتج
             updateCart();
         }
         
@@ -4639,4 +4708,3 @@
     </script>
 </body>
 </html>
-
