@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مكتبة الطلبة - متجر المستلزمات الدراسية</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-color: #3498db;
@@ -16,6 +17,10 @@
             --warning-color: #f39c12;
             --text-color: #34495e;
             --border-color: #dfe6e9;
+            --tab-bg: #ffffff;
+            --tab-hover-bg: #f8f9fa;
+            --tab-active-bg: #e3f2fd;
+            --tab-indicator: #e74c3c;
         }
         
         * {
@@ -29,6 +34,8 @@
             background-color: var(--light-color);
             color: var(--text-color);
             overflow-x: hidden;
+            font-weight: 400;
+            line-height: 1.6;
         }
         
         header {
@@ -46,13 +53,14 @@
         
         .logo {
             font-size: 1.8rem;
-            font-weight: bold;
+            font-weight: 800;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
             transition: transform 0.3s ease;
             color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
         
         .logo:hover {
@@ -105,60 +113,88 @@
             transition: all 0.3s ease;
         }
         
+        /* تحسينات التبويبات - النسخة المحسنة */
         .tabs-container {
             width: 100%;
             overflow-x: auto;
-            background-color: white;
+            background-color: var(--tab-bg);
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
             z-index: 99;
             -webkit-overflow-scrolling: touch;
+            padding: 0.5rem 0;
+        }
+        
+        .tabs-scroll-wrapper {
+            position: relative;
+            width: 100%;
         }
         
         .tabs {
             display: flex;
             width: max-content;
             padding: 0 10px;
+            position: relative;
         }
         
         .tab {
-            padding: 1rem 1.2rem;
+            padding: 1rem 1.8rem;
             cursor: pointer;
             white-space: nowrap;
-            border-bottom: 3px solid transparent;
             transition: all 0.3s ease;
-            font-weight: bold;
+            font-weight: 600;
             position: relative;
             overflow: hidden;
             color: var(--text-color);
-            font-size: 0.95rem;
+            font-size: 1rem;
+            margin: 0 2px;
+            background-color: transparent;
+            border-radius: 8px 8px 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
         }
         
         .tab:hover {
-            background-color: var(--light-color);
+            background-color: var(--tab-hover-bg);
             color: var(--primary-color);
         }
         
         .tab.active {
-            border-bottom: 3px solid var(--accent-color);
             color: var(--accent-color);
+            font-weight: 700;
         }
         
-        .tab::after {
-            content: '';
+        .tab-icon {
+            font-size: 1.2rem;
+            margin-bottom: 0.4rem;
+            transition: all 0.3s ease;
+        }
+        
+        .tab:hover .tab-icon {
+            transform: translateY(-3px);
+        }
+        
+        .tab.active .tab-icon {
+            color: var(--accent-color);
+            animation: pulse 1.5s infinite;
+        }
+        
+        .tab-text {
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-indicator {
             position: absolute;
             bottom: 0;
-            right: 0;
-            width: 100%;
-            height: 2px;
-            background-color: var(--accent-color);
-            transform: translateX(-100%);
-            transition: transform 0.3s ease;
-        }
-        
-        .tab:hover::after {
-            transform: translateX(0);
+            height: 3px;
+            background-color: var(--tab-indicator);
+            border-radius: 3px 3px 0 0;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            box-shadow: 0 2px 5px rgba(231, 76, 60, 0.3);
         }
         
         /* شريط البحث */
@@ -193,6 +229,7 @@
             font-size: 1rem;
             outline: none;
             color: var(--text-color);
+            font-weight: 400;
         }
         
         .search-box i {
@@ -271,7 +308,7 @@
             font-size: 1.1rem;
             margin-bottom: 0.5rem;
             color: var(--dark-color);
-            font-weight: bold;
+            font-weight: 700;
             transition: color 0.3s ease;
         }
         
@@ -284,14 +321,7 @@
             margin-bottom: 1rem;
             font-size: 0.85rem;
             line-height: 1.5;
-        }
-        
-        .product-price {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: var(--accent-color);
-            margin-bottom: 1rem;
-            font-style: italic;
+            font-weight: 400;
         }
         
         .product-meta {
@@ -304,7 +334,7 @@
         
         .product-availability {
             color: var(--success-color);
-            font-weight: bold;
+            font-weight: 600;
             display: flex;
             align-items: center;
             gap: 5px;
@@ -337,6 +367,7 @@
             border-radius: 20px;
             font-size: 0.75rem;
             transition: all 0.3s ease;
+            font-weight: 500;
         }
         
         .product-tag:hover {
@@ -352,7 +383,7 @@
             color: white;
             border: none;
             border-radius: 6px;
-            font-weight: bold;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             display: flex;
@@ -429,7 +460,7 @@
         
         .cart-title {
             font-size: 1.5rem;
-            font-weight: bold;
+            font-weight: 700;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -513,7 +544,7 @@
         }
         
         .cart-item-name {
-            font-weight: bold;
+            font-weight: 700;
             margin-bottom: 0.5rem;
             color: var(--dark-color);
         }
@@ -559,6 +590,39 @@
             transform: rotate(15deg) scale(1.2);
         }
         
+        /* ملاحظات المنتج في السلة */
+        .cart-item-notes {
+            margin-top: 10px;
+            width: 100%;
+        }
+        
+        .cart-item-notes textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            resize: vertical;
+            min-height: 60px;
+            transition: border-color 0.3s;
+            font-family: 'Tajawal', sans-serif;
+            font-weight: 400;
+        }
+        
+        .cart-item-notes textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+        
+        .cart-item-notes label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.85rem;
+            color: #666;
+            font-weight: 500;
+        }
+        
         .cart-footer {
             padding: 1.5rem;
             border-top: 1px solid #eee;
@@ -572,7 +636,7 @@
             color: white;
             border: none;
             border-radius: 5px;
-            font-weight: bold;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             display: flex;
@@ -727,12 +791,14 @@
             font-size: 1.8rem;
             color: var(--dark-color);
             margin-bottom: 1rem;
+            font-weight: 800;
         }
         
         .product-desc-details {
             color: #666;
             line-height: 1.8;
             margin-bottom: 1.5rem;
+            font-weight: 400;
         }
         
         .product-meta-details {
@@ -750,6 +816,7 @@
             display: flex;
             align-items: center;
             gap: 5px;
+            font-weight: 500;
         }
         
         .product-availability-details.available {
@@ -765,6 +832,7 @@
             align-items: center;
             gap: 5px;
             color: var(--warning-color);
+            font-weight: 500;
         }
         
         .product-tags-details {
@@ -781,6 +849,7 @@
             border-radius: 20px;
             font-size: 0.85rem;
             transition: all 0.3s ease;
+            font-weight: 500;
         }
         
         .product-actions {
@@ -795,7 +864,7 @@
             color: white;
             border: none;
             border-radius: 6px;
-            font-weight: bold;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             display: flex;
@@ -924,6 +993,7 @@
             gap: 10px;
             transform: translateX(150%);
             transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            font-weight: 500;
         }
         
         .notification.show {
@@ -974,6 +1044,7 @@
             align-items: center;
             justify-content: center;
             gap: 5px;
+            font-weight: 500;
         }
         
         .page-btn:hover {
@@ -985,7 +1056,7 @@
             background-color: var(--secondary-color);
             color: white;
             border-color: var(--secondary-color);
-            font-weight: bold;
+            font-weight: 600;
             box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
         }
         
@@ -1088,8 +1159,22 @@
             animation: shine 3s infinite;
         }
         
-        /* Responsive styles */
+        /* تحسينات للجوّال */
         @media (max-width: 768px) {
+            .tab {
+                padding: 0.8rem 1rem;
+                font-size: 0.85rem;
+            }
+            
+            .tab-icon {
+                font-size: 1rem;
+                margin-bottom: 0.3rem;
+            }
+            
+            .tab-text {
+                font-size: 0.8rem;
+            }
+            
             .products-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1rem;
@@ -1112,18 +1197,15 @@
                 margin-bottom: 0.8rem;
             }
             
-            .product-price {
-                font-size: 1rem;
+            .product-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.3rem;
                 margin-bottom: 0.8rem;
             }
             
             .add-to-cart {
                 padding: 0.6rem;
-                font-size: 0.85rem;
-            }
-            
-            .tab {
-                padding: 0.8rem 1rem;
                 font-size: 0.85rem;
             }
             
@@ -1175,9 +1257,34 @@
                 bottom: 140px;
                 right: 20px;
             }
+            
+            .cart-item {
+                flex-direction: column;
+            }
+            
+            .cart-item-image {
+                margin-left: 0;
+                margin-bottom: 10px;
+                width: 100%;
+                height: 120px;
+            }
         }
         
         @media (max-width: 480px) {
+            .tab {
+                padding: 0.7rem 0.8rem;
+                font-size: 0.8rem;
+            }
+            
+            .tab-icon {
+                font-size: 0.9rem;
+                margin-bottom: 0.2rem;
+            }
+            
+            .tab-text {
+                font-size: 0.75rem;
+            }
+            
             .products-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 0.8rem;
@@ -1208,11 +1315,6 @@
             
             .add-to-cart {
                 padding: 0.5rem;
-                font-size: 0.8rem;
-            }
-            
-            .tab {
-                padding: 0.7rem 0.8rem;
                 font-size: 0.8rem;
             }
             
@@ -1255,14 +1357,38 @@
     </header>
     
     <div class="tabs-container">
-        <div class="tabs">
-            <div class="tab active" data-category="all">الكل</div>
-            <div class="tab" data-category="student">مستلزمات طلابية</div>
-            <div class="tab" data-category="office">أدوات مكتبية</div>
-            <div class="tab" data-category="games">ألعاب</div>
-            <div class="tab" data-category="engineering">أدوات هندسية</div>
-            <div class="tab" data-category="lab">أدوات معملية</div>
-            <div class="tab" data-category="art">أدوات رسم</div>
+        <div class="tabs-scroll-wrapper">
+            <div class="tabs" id="tabs">
+                <div class="tab active" data-category="all">
+                    <i class="fas fa-th-large tab-icon"></i>
+                    <span class="tab-text">الكل</span>
+                </div>
+                <div class="tab" data-category="student">
+                    <i class="fas fa-graduation-cap tab-icon"></i>
+                    <span class="tab-text">مستلزمات طلابية</span>
+                </div>
+                <div class="tab" data-category="office">
+                    <i class="fas fa-briefcase tab-icon"></i>
+                    <span class="tab-text">أدوات مكتبية</span>
+                </div>
+                <div class="tab" data-category="games">
+                    <i class="fas fa-gamepad tab-icon"></i>
+                    <span class="tab-text">ألعاب</span>
+                </div>
+                <div class="tab" data-category="engineering">
+                    <i class="fas fa-ruler-combined tab-icon"></i>
+                    <span class="tab-text">أدوات هندسية</span>
+                </div>
+                <div class="tab" data-category="lab">
+                    <i class="fas fa-flask tab-icon"></i>
+                    <span class="tab-text">أدوات معملية</span>
+                </div>
+                <div class="tab" data-category="art">
+                    <i class="fas fa-palette tab-icon"></i>
+                    <span class="tab-text">أدوات رسم</span>
+                </div>
+            </div>
+            <div class="tab-indicator" id="tab-indicator"></div>
         </div>
     </div>
     
@@ -1329,7 +1455,7 @@
     
     <script>
         // بيانات المنتجات
-        const products = [
+ const products = [
              {
             id: 339,
             name: " صلصال بلاستلينا  ",
@@ -2370,7 +2496,7 @@
             rating: 5
         }, 
                           {
-            id: 212,
+            id: 2142,
             name: "  نضارة بحر  ",
             price:40 ,
             desc: "  متعدةة الأشكال ",
@@ -2381,7 +2507,7 @@
             rating: 5
         },
                         {
-            id: 211,
+            id: 21001,
             name: "  لعبة مسدس على كارت  ",
             price:40 ,
             desc: "  متعدةة الأشكال ",
@@ -2392,7 +2518,7 @@
             rating: 5
              },
                           {
-            id: 210,
+            id: 255510,
             name: "  لعبة بوليس على كارت  ",
             price:40 ,
             desc: "  متعدةة الأشكال ",
@@ -2403,7 +2529,7 @@
             rating: 5
         },
                             {
-            id: 209,
+            id: 20229,
             name: "  لعبة بناتى على كارت  ",
             price:40 ,
             desc: "  متعدةة الأشكال ",
@@ -2414,7 +2540,7 @@
             rating: 5
         },
                                  {
-            id: 208,
+            id: 202328,
             name: "  لعبة عدة الميكانيكى على كارت  ",
             price:40 ,
             desc: "  متعدةة الأشكال ",
@@ -2425,7 +2551,7 @@
             rating: 5
         },
                              {
-            id: 207,
+            id: 2000,
             name: "  لعبة عدة المطبخ على كارت  ",
             price:40 ,
             desc: "  متعدةة الأشكال ",
@@ -2436,7 +2562,7 @@
             rating: 5
         },
                                {
-            id: 206,
+            id: 2233206,
             name: "  لعبة   عدة النجار على كارت  ",
             price:40 ,
             desc: "  متعدةة الأشكال ",
@@ -2447,7 +2573,7 @@
             rating: 5
         },
                          {
-            id: 205,
+            id: 203435,
             name: "  لعبة  صياد السمك على كارت  ",
             price:40 ,
             desc: "  متعدةة الأشكال ",
@@ -2458,7 +2584,7 @@
             rating: 5
         },
                      {
-            id: 204,
+            id: 21204,
             name: "  لعبة الأبطال الخارقين على كارت  ",
             price:40 ,
             desc: "  متعدةة الأشكال ",
@@ -2469,7 +2595,7 @@
             rating: 5
         },
            {
-            id: 203,
+            id: 22303,
             name: "   عليقة زجاج  ",
             price: 12.5,
             desc: "    جودة عالية  ",
@@ -2481,7 +2607,7 @@
             rating: 5
         },
                         {
-            id: 202,
+            id: 202222,
             name: " ألة حاسبة مكتب أندلسية  ",
             price: 12.5,
             desc: "    كبيرة  ",
@@ -2493,7 +2619,7 @@
             rating: 5
         },
                  {
-            id: 201,
+            id: 202321,
             name: " ألة حاسبة مكتب أندلسية  ",
             price: 12.5,
             desc: "    صغيرة  ",
@@ -2505,7 +2631,7 @@
             rating: 5
         },
                   {
-            id: 200,
+            id: 234300,
             name: " لعبة بازل تركيب أشكال  ",
             price:40 ,
             desc: "  متعدةة الأشكال ",
@@ -2516,7 +2642,7 @@
             rating: 5
         },
                  {
-            id: 199,
+            id: 126699,
             name: "  قلم بوس بشكل جديد   ",
             price: 12.5,
             desc: "   سعر خاص للكمية ",
@@ -2528,7 +2654,7 @@
             rating: 5
         }, 
                 {
-            id: 198,
+            id: 1990098,
             name: "  هايلايتر   ",
             price: 12.5,
             desc: "   جودة عالية  ",
@@ -4600,6 +4726,8 @@
         ];
         
         // عناصر DOM
+        const tabsContainer = document.getElementById('tabs');
+        const tabIndicator = document.getElementById('tab-indicator');
         const productsContainer = document.getElementById('products-container');
         const tabs = document.querySelectorAll('.tab');
         const headerCartIcon = document.getElementById('header-cart-icon');
@@ -4625,11 +4753,59 @@
         // متغير لتتبع الصور المختارة لكل منتج
         const selectedProductImages = {};
         
+        // متغير لتتبع الملاحظات لكل منتج في السلة
+        const productNotes = {};
+        
         // متغيرات التقسيم إلى صفحات
         let currentPage = 1;
         const productsPerPage = 16;
         let currentCategory = 'all';
         let currentSearchQuery = '';
+        
+        // تهيئة مؤشر التبويبات
+        function initTabIndicator() {
+            const activeTab = document.querySelector('.tab.active');
+            if (activeTab) {
+                updateTabIndicator(activeTab);
+            }
+            
+            // إضافة أحداث النقر على التبويبات
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    updateTabIndicator(tab);
+                    
+                    const category = tab.getAttribute('data-category');
+                    currentCategory = category;
+                    currentPage = 1;
+                    displayProducts(category, currentSearchQuery, currentPage);
+                    
+                    // تأثير النقر على التبويب
+                    tab.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        tab.style.transform = 'scale(1)';
+                    }, 200);
+                });
+            });
+        }
+        
+        // تحديث موضع مؤشر التبويب
+        function updateTabIndicator(activeTab) {
+            const tabRect = activeTab.getBoundingClientRect();
+            const containerRect = tabsContainer.getBoundingClientRect();
+            
+            tabIndicator.style.width = `${tabRect.width - 20}px`;
+            tabIndicator.style.left = `${tabRect.left - containerRect.left + 10}px`;
+        }
+        
+        // تحديث موضع المؤشر عند تغيير حجم النافذة
+        window.addEventListener('resize', () => {
+            const activeTab = document.querySelector('.tab.active');
+            if (activeTab) {
+                updateTabIndicator(activeTab);
+            }
+        });
         
         // عرض المنتجات مع التقسيم إلى صفحات
         function displayProducts(category = 'all', searchQuery = '', page = 1) {
@@ -4693,7 +4869,6 @@
                         <div class="product-tags">
                             ${product.tags.map(tag => `<span class="product-tag">${tag}</span>`).join('')}
                         </div>
-                        <div class="product-price">السعر عند الطلب</div>
                         <button class="add-to-cart" data-id="${product.id}">
                             <i class="fas fa-cart-plus"></i>
                             أضف للسلة
@@ -4920,6 +5095,11 @@
                     image: selectedImage, // حفظ الصورة المختارة
                     quantity: 1
                 });
+                
+                // تهيئة ملاحظات فارغة للمنتج الجديد
+                if (!productNotes[productId]) {
+                    productNotes[productId] = '';
+                }
             }
             
             updateCart();
@@ -4967,12 +5147,23 @@
                             <span>${item.quantity}</span>
                             <button class="quantity-btn increase" data-id="${item.id}">+</button>
                         </div>
+                        <div class="cart-item-notes">
+                            <label for="notes-${item.id}">ملاحظات خاصة بهذا المنتج:</label>
+                            <textarea id="notes-${item.id}" data-id="${item.id}" placeholder="اكتب ملاحظاتك هنا (لون، حجم، تفاصيل خاصة...)">${productNotes[item.id] || ''}</textarea>
+                        </div>
                     </div>
                     <button class="remove-item" data-id="${item.id}">
                         <i class="fas fa-trash"></i>
                     </button>
                 `;
                 cartItemsContainer.appendChild(cartItem);
+                
+                // إضافة حدث تغيير للملاحظات
+                const notesTextarea = cartItem.querySelector(`#notes-${item.id}`);
+                notesTextarea.addEventListener('change', (e) => {
+                    const productId = parseInt(e.target.getAttribute('data-id'));
+                    productNotes[productId] = e.target.value;
+                });
             });
             
             const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -5011,6 +5202,7 @@
             } else {
                 cart = cart.filter(item => item.id !== productId);
                 delete selectedProductImages[productId]; // حذف الصورة المختارة عند إزالة المنتج
+                delete productNotes[productId]; // حذف الملاحظات عند إزالة المنتج
             }
             
             updateCart();
@@ -5029,6 +5221,7 @@
             const productId = parseInt(e.target.closest('.remove-item').getAttribute('data-id'));
             cart = cart.filter(item => item.id !== productId);
             delete selectedProductImages[productId]; // حذف الصورة المختارة عند إزالة المنتج
+            delete productNotes[productId]; // حذف الملاحظات عند إزالة المنتج
             updateCart();
         }
         
@@ -5072,6 +5265,12 @@
             cart.forEach((item, index) => {
                 message += `${index + 1}. *${item.name}*\n`;
                 message += `   - الكمية: ${item.quantity}\n`;
+                
+                // إضافة الملاحظات إذا كانت موجودة
+                if (productNotes[item.id] && productNotes[item.id].trim() !== '') {
+                    message += `   - الملاحظات: ${productNotes[item.id]}\n`;
+                }
+                
                 message += `   - رابط الصورة: ${item.image}\n`;
                 message += '────────────────\n';
             });
@@ -5116,30 +5315,6 @@
         }
         
         // أحداث DOM
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                tabs.forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-                const category = tab.getAttribute('data-category');
-                currentCategory = category;
-                currentPage = 1;
-                displayProducts(category, currentSearchQuery, currentPage);
-                
-                // تأثير النقر على التبويب
-                tab.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    tab.style.transform = 'scale(1)';
-                }, 200);
-            });
-        });
-        
-        // حدث البحث
-        searchInput.addEventListener('input', () => {
-            currentSearchQuery = searchInput.value;
-            currentPage = 1;
-            displayProducts(currentCategory, currentSearchQuery, currentPage);
-        });
-        
         headerCartIcon.addEventListener('click', () => {
             cartSidebar.classList.add('open');
             overlay.classList.add('active');
@@ -5178,6 +5353,13 @@
             }
         });
         
+        // حدث البحث
+        searchInput.addEventListener('input', () => {
+            currentSearchQuery = searchInput.value;
+            currentPage = 1;
+            displayProducts(currentCategory, currentSearchQuery, currentPage);
+        });
+        
         // إظهار/إخفاء زر العودة للأعلى
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 300) {
@@ -5203,26 +5385,13 @@
         });
         
         // تهيئة الصفحة
-        displayProducts();
+        function initPage() {
+            initTabIndicator();
+            displayProducts();
+        }
+        
+        // استدعاء تهيئة الصفحة عند تحميل DOM
+        document.addEventListener('DOMContentLoaded', initPage);
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
