@@ -1456,7 +1456,243 @@
     <script>
         // بيانات المنتجات
  const products = [
-     {
+    {
+  id: 360,
+  name: "بكر كاشير",
+  price: 30,
+  desc: "بكر كاشير  خامة عالية ",
+  image: "https://i.postimg.cc/MTr3CKnB/b1cd2042-951d-415c-bfdd-d0ebea527ec3.png",
+  images: ["https://i.postimg.cc/MTr3CKnB/b1cd2042-951d-415c-bfdd-d0ebea527ec3.png", "https://i.postimg.cc/15x1XJzq/41-Hx6-Ds-He-EL-UF1000-1000-QL80.jpg"],
+  category: "office",
+  rating: 5,
+  availability: "متوفر",
+  badge: "متميز",
+  tags: ["بكر", "أدوات"],
+  dateAdded: "2025-09-19T12:03:09.497Z"
+},
+
+{
+  id: 361,
+  name: "بكر فورى ",
+  price: 10,
+  desc: "ورق فورى فيزيتا",
+  image: "https://i.postimg.cc/0jSQmjmd/010420241501166596c83c3d2de.jpg",
+  images: ["https://i.postimg.cc/0jSQmjmd/010420241501166596c83c3d2de.jpg", "https://i.postimg.cc/qvw729tY/13595f97-23af-47dd-af15-266c091f05d3-1000x983-72093023256-7o97d-Ld-Wow-Yv-XYCj-D94-OA1n-GUMbe-L6t-RVq-W7-I2hd.jpg"],
+  category: "office",
+  rating: 5,
+  availability: "متوفر",
+  badge: "متميز",
+  tags: ["بكر", "أدوات"],
+  dateAdded: "2025-09-19T12:04:50.562Z"
+},
+{
+  id: 359,
+  name: "ألوان مياه حجارة",
+  price: 20,
+  desc: "ألوان حجارة ",
+  image: "https://i.postimg.cc/FFyNjycJ/Popular-Cheap-Price-Non-Toxic-12-Colors-Artist-Palette-Solid-Watercolor-Cake-Packed-with-Quality-Bru.avif",
+  images: ["https://i.postimg.cc/FFyNjycJ/Popular-Cheap-Price-Non-Toxic-12-Colors-Artist-Palette-Solid-Watercolor-Cake-Packed-with-Quality-Bru.avif", "https://i.postimg.cc/6pmX9YsF/71hf-K-4-UVL.jpg"],
+  category: "student",
+  rating: 5,
+  availability: "متوفر",
+  badge: "جديد",
+  tags: ["أدوات", "رسم"],
+  dateAdded: "2025-09-19T11:57:54.989Z"
+},
+ {
+  id: 348,
+  name: "فرخ لوح عادى",
+  price: 10,
+  desc: "فرخ لوح 100 * 70 ",
+  image: "https://i.postimg.cc/FFc1wQQw/HTB15x3-Da-Evr-K1-Rj-Sszfq6x-JNVXa-B-jpg-350x350.avif",
+  images: ["https://i.postimg.cc/FFc1wQQw/HTB15x3-Da-Evr-K1-Rj-Sszfq6x-JNVXa-B-jpg-350x350.avif"],
+  category: "student",
+  rating: 5,
+  availability: "متوفر",
+  badge: "متعدد الألوان",
+  tags: ["لوح بريستول", "سباليز"],
+  dateAdded: "2025-09-19T11:04:18.360Z"
+},
+
+{
+  id: 349,
+  name: "فرخ لوح كانسون",
+  price: 25,
+  desc: "فرخ لوح كانسون سميك 100 * 70 ",
+  image: "https://i.postimg.cc/fbNJw2jB/az3-Zb7kj-FJog0da-Sb-P9ulk-DIJTN7yap-Sb-JQjx-Sw-Q.jpg",
+  images: ["https://i.postimg.cc/fbNJw2jB/az3-Zb7kj-FJog0da-Sb-P9ulk-DIJTN7yap-Sb-JQjx-Sw-Q.jpg"],
+  category: "student",
+  rating: 5,
+  availability: "متوفر",
+  badge: "متميز",
+  tags: ["فرخ كانسون", "سباليز"],
+  dateAdded: "2025-09-19T11:06:59.181Z"
+},
+
+{
+  id: 350,
+  name: "سنون قلم روترنج",
+  price: 40,
+  desc: "سنون قلم روترنج ( HB , 2B ,.....)",
+  image: "https://i.postimg.cc/d0NmNZy2/37249320-d13f-4837-9348-517c0eeb245f.avif",
+  images: ["https://i.postimg.cc/d0NmNZy2/37249320-d13f-4837-9348-517c0eeb245f.avif"],
+  category: "student",
+  rating: 5,
+  availability: "متوفر",
+  badge: "متميز",
+  tags: ["سنون", "أقلام"],
+  dateAdded: "2025-09-19T11:14:51.440Z"
+},
+
+{
+  id: 351,
+  name: "أسطوانات كمبيوتر",
+  price: 10,
+  desc: "أسطوانات كمبيوتر  بمساحة 700 ميجا",
+  image: "https://i.postimg.cc/gjj0Sr3Z/Hbf3944d9a00648e29dee411f02b49005m.avif",
+  images: ["https://i.postimg.cc/gjj0Sr3Z/Hbf3944d9a00648e29dee411f02b49005m.avif"],
+  category: "office",
+  rating: 5,
+  availability: "متوفر",
+  badge: "تخزين جيد ",
+  tags: ["أسطوانات", "كمبيوتر"],
+  dateAdded: "2025-09-19T11:18:19.205Z"
+},
+
+{
+  id: 352,
+  name: "أسطوانات  dvd",
+  price: 15,
+  desc: "أسطوانات  dvd  بمساحة 4.70 جيجا ",
+  image: "https://i.postimg.cc/X7DsDh6G/41s-GBFFe6-GL-jpg-BO30-255-255-255-UF900-850-SR1910-1000-0-C-QL100.jpg",
+  images: ["https://i.postimg.cc/X7DsDh6G/41s-GBFFe6-GL-jpg-BO30-255-255-255-UF900-850-SR1910-1000-0-C-QL100.jpg"],
+  category: "office",
+  rating: 5,
+  availability: "متوفر",
+  badge: "مساحة تخزين عالية ",
+  tags: ["أسطوانة", "كمبيوتر"],
+  dateAdded: "2025-09-19T11:27:05.237Z"
+},
+
+{
+  id: 353,
+  name: "دبابيس ورق ",
+  price: 10,
+  desc: "دبابيس ورق متعددة الأحجام",
+  image: "https://i.postimg.cc/RhbVt96L/cc230dd0-386d-4e29-9bd1-0e819c1bba8b.png",
+  images: ["https://i.postimg.cc/RhbVt96L/cc230dd0-386d-4e29-9bd1-0e819c1bba8b.png", "https://i.postimg.cc/3RxTFVHS/003-mm6933631546187.jpg", "https://i.postimg.cc/ZnPXkLZB/Black-Binder-Clips-Paper-Clamp.avif"],
+  category: "office",
+  rating: 5,
+  availability: "متوفر",
+  badge: "متعددة الألوان",
+  tags: ["دبابيس", "أدوات مكتبية"],
+  dateAdded: "2025-09-19T11:32:47.912Z"
+},
+
+{
+  id: 354,
+  name: "دبوس ضغط ملون",
+  price: 10,
+  desc: "دبوس ضغط ملون ",
+  image: "https://i.postimg.cc/Jn3Wm85z/05v2-Qah-V0-CVIQb-Yo-TI2-N3-QUs07-V7r3-EFm-Q9-Ld-C5-V.webp",
+  images: ["https://i.postimg.cc/Jn3Wm85z/05v2-Qah-V0-CVIQb-Yo-TI2-N3-QUs07-V7r3-EFm-Q9-Ld-C5-V.webp", "https://i.postimg.cc/Hsv1TBXX/86ec932a-d064-4cc3-a9ac-8da28b87102a-1000x991.webp"],
+  category: "office",
+  rating: 5,
+  availability: "متوفر",
+  badge: "دبوس ملون",
+  tags: ["دبوس", "أدوات"],
+  dateAdded: "2025-09-19T11:34:56.580Z"
+},
+
+{
+  id: 355,
+  name: "دبوس ورق ملون",
+  price: 10,
+  desc: "دبوس ورق ملون ",
+  image: "https://i.postimg.cc/Bbv7yfhy/61tsdg6-HPx-L-UF1000-1000-QL80.jpg",
+  images: ["https://i.postimg.cc/Bbv7yfhy/61tsdg6-HPx-L-UF1000-1000-QL80.jpg", "https://i.postimg.cc/50sn8kxm/aa6e35c2-7ede-4f9b-9498-18e8afeefb38-748.webp"],
+  category: "office",
+  rating: 5,
+  availability: "متوفر",
+  badge: "جديد",
+  tags: ["دبوس", "أدوات"],
+  dateAdded: "2025-09-19T11:37:15.802Z"
+},
+
+{
+  id: 356,
+  name: "دبوس طرحة كبير",
+  price: 10,
+  desc: "دبوس طرحة",
+  image: "https://i.postimg.cc/RZfmGwJt/2f71075a-8a1e-458c-abe3-1aa2feaa765e-1000x1000-rt67-ERRk8a-H4-Pnf-Zo-O7-So-Q31h-Hd-It-YSDIuymwg-Gz.webp",
+  images: ["https://i.postimg.cc/RZfmGwJt/2f71075a-8a1e-458c-abe3-1aa2feaa765e-1000x1000-rt67-ERRk8a-H4-Pnf-Zo-O7-So-Q31h-Hd-It-YSDIuymwg-Gz.webp"],
+  category: "office",
+  rating: 5,
+  availability: "متوفر",
+  badge: "متميز",
+  tags: ["دبوس", "أدوات"],
+  dateAdded: "2025-09-19T11:43:27.360Z"
+},
+
+{
+  id: 357,
+  name: "دبابيس ملونة حلزونية",
+  price: 10,
+  desc: "دبابيس ملونة ",
+  image: "https://i.postimg.cc/3J89thyF/pngtree-multicolored-paper-clips-for-organized-fun-png-image-16079715.png",
+  images: ["https://i.postimg.cc/3J89thyF/pngtree-multicolored-paper-clips-for-organized-fun-png-image-16079715.png"],
+  category: "office",
+  rating: 5,
+  availability: "متوفر",
+  badge: "متميز",
+  tags: ["دبابيس أدوات مكتبية"],
+  dateAdded: "2025-09-19T11:49:20.130Z"
+},
+
+{
+  id: 358,
+  name: "ألوان مياه أنبوبة ",
+  price: 0,
+  desc: "دستة ألون مياه",
+  image: "https://i.postimg.cc/QCQ8C5g1/51-YF2-Jevj-L-AC-11zon.webp",
+  images: ["https://i.postimg.cc/QCQ8C5g1/51-YF2-Jevj-L-AC-11zon.webp", "https://i.postimg.cc/s2bsJKw5/maxresdefault.jpg"],
+  category: "art",
+  rating: 5,
+  availability: "متوفر",
+  badge: "متميز",
+  tags: ["رسم", "أدوات"],
+  dateAdded: "2025-09-19T11:51:28.360Z"
+},
+{
+  id: 362,
+  name: "سبورة مغناطيس  معلم",
+  price: 100,
+  desc: "متوفر جميع المقاسات",
+  image: "https://i.postimg.cc/Mp795Yxg/02b023e2-0add-4508-8163-99ec41405996-1000x1000-AGKfc-TXMk3-P1d-HFGve-Qd5-FUv-Evmx-B83-Wjgrh-JLc1.webp",
+  images: ["https://i.postimg.cc/Mp795Yxg/02b023e2-0add-4508-8163-99ec41405996-1000x1000-AGKfc-TXMk3-P1d-HFGve-Qd5-FUv-Evmx-B83-Wjgrh-JLc1.webp"],
+  category: "student",
+  rating: 5,
+  availability: "متوفر",
+  badge: "متميز",
+  tags: ["سبورة", "أدوات"],
+  dateAdded: "2025-09-19T12:22:34.917Z"
+},
+
+{
+  id: 363,
+  name: "جلاد كتب شفاف",
+  price: 10,
+  desc: "جلاد شفاف ",
+  image: "https://i.postimg.cc/28hpphr7/61ci-MLj0-As-L.jpg",
+  images: ["https://i.postimg.cc/28hpphr7/61ci-MLj0-As-L.jpg"],
+  category: "student",
+  rating: 5,
+  availability: "متوفر",
+  badge: "جديد",
+  tags: ["أدوات", "جلاد"],
+  dateAdded: "2025-09-19T12:27:13.308Z"
+},
+    {
   id: 343,
   name: "أقلام جل mg",
   price: 10,
@@ -5512,4 +5748,3 @@
     </script>
 </body>
 </html>
-
