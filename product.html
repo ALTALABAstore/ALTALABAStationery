@@ -21,6 +21,7 @@
             --tab-hover-bg: #f8f9fa;
             --tab-active-bg: #e3f2fd;
             --tab-indicator: #e74c3c;
+            --header-bg: linear-gradient(135deg, #2c3e50, #4a6580);
         }
         
         * {
@@ -38,38 +39,69 @@
             line-height: 1.6;
         }
         
+        /* تحسين الهيدر */
         header {
-            background: linear-gradient(135deg, var(--primary-color), #2980b9);
+            background: var(--header-bg);
             color: white;
-            padding: 1rem;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 0.8rem 1.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
             position: relative;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 100;
+            border-bottom: 3px solid var(--accent-color);
         }
         
         .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo-img {
+            width: 60px;
+            height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            transition: transform 0.3s ease;
+            background: white;
+            border-radius: 12px;
+            padding: 5px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .logo-img img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .logo:hover .logo-img {
+            transform: rotate(5deg) scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo-main-text {
+            font-size: 1.8rem;
+            font-weight: 800;
             color: white;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            line-height: 1.2;
         }
         
-        .logo:hover {
-            transform: scale(1.05);
-        }
-        
-        .logo img {
-            height: 45px;
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        .logo-sub-text {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.85);
+            margin-top: 2px;
         }
         
         .header-cart {
@@ -83,16 +115,24 @@
             position: relative;
             cursor: pointer;
             transition: transform 0.3s ease;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            backdrop-filter: blur(5px);
         }
         
         .header-cart-icon:hover {
             transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.2);
         }
         
         .header-cart-icon i {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             color: white;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
         
         .header-cart-count {
@@ -111,6 +151,77 @@
             font-weight: bold;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
+            border: 2px solid #2c3e50;
+        }
+        
+        /* البانر الثابت - التعديل الرئيسي هنا */
+        .banner-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            height: 400px;
+            margin: 0 auto;
+            background: #f0f4f8;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .banner-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .banner-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .banner-subtitle {
+            font-size: 1.5rem;
+            font-weight: 400;
+            max-width: 800px;
+            margin-bottom: 20px;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        .banner-btn {
+            padding: 15px 40px;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            font-size: 1.2rem;
+        }
+        
+        .banner-btn:hover {
+            background: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
         }
         
         /* تحسينات التبويبات - النسخة المحسنة */
@@ -124,6 +235,7 @@
             z-index: 99;
             -webkit-overflow-scrolling: touch;
             padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
         }
         
         .tabs-scroll-wrapper {
@@ -214,6 +326,8 @@
             border-radius: 30px;
             padding: 0.5rem 1rem;
             transition: all 0.3s ease;
+            max-width: 600px;
+            margin: 0 auto;
         }
         
         .search-box:focus-within {
@@ -1161,6 +1275,49 @@
         
         /* تحسينات للجوّال */
         @media (max-width: 768px) {
+            header {
+                padding: 0.7rem 1rem;
+            }
+            
+            .logo-main-text {
+                font-size: 1.5rem;
+            }
+            
+            .logo-sub-text {
+                font-size: 0.8rem;
+            }
+            
+            .logo-img {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .header-cart-icon {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .header-cart-icon i {
+                font-size: 1.3rem;
+            }
+            
+            .banner-container {
+                height: 300px;
+            }
+            
+            .banner-title {
+                font-size: 2rem;
+            }
+            
+            .banner-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .banner-btn {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+            
             .tab {
                 padding: 0.8rem 1rem;
                 font-size: 0.85rem;
@@ -1207,14 +1364,6 @@
             .add-to-cart {
                 padding: 0.6rem;
                 font-size: 0.85rem;
-            }
-            
-            .logo {
-                font-size: 1.5rem;
-            }
-            
-            .logo img {
-                height: 40px;
             }
             
             .cart-sidebar {
@@ -1271,6 +1420,38 @@
         }
         
         @media (max-width: 480px) {
+            .logo-main-text {
+                font-size: 1.3rem;
+            }
+            
+            .logo-sub-text {
+                display: none;
+            }
+            
+            .logo-img {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .banner-container {
+                height: 250px;
+            }
+            
+            .banner-title {
+                font-size: 1.6rem;
+                margin-bottom: 8px;
+            }
+            
+            .banner-subtitle {
+                font-size: 1rem;
+                margin-bottom: 12px;
+            }
+            
+            .banner-btn {
+                padding: 10px 25px;
+                font-size: 0.9rem;
+            }
+            
             .tab {
                 padding: 0.7rem 0.8rem;
                 font-size: 0.8rem;
@@ -1345,8 +1526,13 @@
 <body>
     <header>
         <div class="logo">
-            <img src="https://i.postimg.cc/x1Xncp9W/logo.png" alt="مكتبة الطلبة">
-            <span>مكتبة الطلبة</span>
+            <div class="logo-img">
+                <img src="https://i.postimg.cc/x1Xncp9W/logo.png" alt="مكتبة الطلبة">
+            </div>
+            <div class="logo-text">
+                <div class="logo-main-text">مكتبة الطلبة</div>
+                <div class="logo-sub-text">متجر المستلزمات الدراسية</div>
+            </div>
         </div>
         <div class="header-cart">
             <div class="header-cart-icon" id="header-cart-icon">
@@ -1355,6 +1541,16 @@
             </div>
         </div>
     </header>
+    
+    <!-- البانر الثابت - التعديل الرئيسي هنا -->
+    <div class="banner-container">
+        <img src="https://i.postimg.cc/hvFCjWjX/How-to-Engage-Reluctant-Learners.jpg" alt="عروض العودة إلى المدارس" class="banner-image">
+        <div class="banner-overlay">
+            <h2 class="banner-title">   " معاك دايما فى كل خطوة تقربك من حلمك!" </h2>
+            <p class="banner-subtitle">     ( نتمنى لكم  دوام التفوق والنجاح ) </p>
+            <button class="banner-btn">تسوق الآن <i class="fas fa-arrow-left"></i></button>
+        </div>
+    </div>
     
     <div class="tabs-container">
         <div class="tabs-scroll-wrapper">
@@ -1455,8 +1651,8 @@
     
     <script>
         // بيانات المنتجات
- const products = [
-    {
+        const products = [
+         {
   id: 360,
   name: "بكر كاشير",
   price: 30,
@@ -5164,6 +5360,7 @@
                 availability: "متوفر",
                 rating: 5
             }
+
         ];
         
         // عناصر DOM
@@ -5836,5 +6033,3 @@
     </script>
 </body>
 </html>
-
-
