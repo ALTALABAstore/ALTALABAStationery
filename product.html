@@ -154,7 +154,7 @@
             border: 2px solid #2c3e50;
         }
         
-        /* البانر الثابت - التعديل الرئيسي هنا */
+        /* البانر الثابت */
         .banner-container {
             width: 100%;
             overflow: hidden;
@@ -224,7 +224,7 @@
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
         }
         
-        /* تحسينات التبويبات - النسخة المحسنة */
+        /* تحسينات التبويبات */
         .tabs-container {
             width: 100%;
             overflow-x: auto;
@@ -490,8 +490,15 @@
             transform: translateY(-2px);
         }
         
+        /* أزرار المنتج - التعديل الرئيسي هنا */
+        .product-actions {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+        
         .add-to-cart {
-            width: 100%;
+            flex: 1;
             padding: 0.7rem;
             background: linear-gradient(135deg, var(--primary-color), #2980b9);
             color: white;
@@ -515,7 +522,32 @@
             box-shadow: 0 5px 15px rgba(41, 128, 185, 0.3);
         }
         
-        .add-to-cart::after {
+        .inquiry-btn {
+            flex: 1;
+            padding: 0.7rem;
+            background: linear-gradient(135deg, var(--secondary-color), #27ae60);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
+            font-size: 0.9rem;
+        }
+        
+        .inquiry-btn:hover {
+            background: linear-gradient(135deg, #27ae60, var(--secondary-color));
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+        }
+        
+        .add-to-cart::after, .inquiry-btn::after {
             content: '';
             position: absolute;
             top: -50%;
@@ -527,9 +559,225 @@
             transition: all 0.3s;
         }
         
-        .add-to-cart:hover::after {
+        .add-to-cart:hover::after, .inquiry-btn:hover::after {
             right: 120%;
         }
+        
+        /* نافذة الاستفسار - تحسينات للجوال */
+        .inquiry-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            padding: 1rem;
+        }
+        
+        .inquiry-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .inquiry-modal-content {
+            background-color: white;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 1.5rem;
+            position: relative;
+            animation: zoomIn 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .inquiry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .inquiry-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .inquiry-title i {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+        
+        .close-inquiry {
+            background: none;
+            border: none;
+            color: #666;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .close-inquiry:hover {
+            transform: rotate(90deg);
+            color: var(--accent-color);
+            background-color: #f5f5f5;
+        }
+        
+        .inquiry-product-info {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 1.2rem;
+            padding: 0.8rem;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            align-items: center;
+        }
+        
+        .inquiry-product-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #eee;
+            flex-shrink: 0;
+        }
+        
+        .inquiry-product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .inquiry-product-details {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .inquiry-product-name {
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            color: var(--dark-color);
+            font-size: 0.95rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .inquiry-product-desc {
+            font-size: 0.8rem;
+            color: #666;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .inquiry-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+        
+        .form-group label {
+            font-weight: 600;
+            color: var(--dark-color);
+            font-size: 0.85rem;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            padding: 0.7rem 0.9rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-family: 'Tajawal', sans-serif;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+        
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .inquiry-actions {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+        
+        .send-inquiry-btn {
+            flex: 1;
+            padding: 0.8rem;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 0.9rem;
+        }
+        
+        .send-inquiry-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+        }
+        
+        .cancel-inquiry-btn {
+            padding: 0.8rem 1.2rem;
+            background-color: #f5f5f5;
+            color: var(--text-color);
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+        
+        .cancel-inquiry-btn:hover {
+            background-color: #e9e9e9;
+        }
+        
+        /* باقي الأنماط تبقى كما هي */
         
         .cart-sidebar {
             position: fixed;
@@ -966,7 +1214,7 @@
             font-weight: 500;
         }
         
-        .product-actions {
+        .product-actions-details {
             display: flex;
             gap: 1rem;
             margin-top: 2rem;
@@ -992,6 +1240,28 @@
             background: linear-gradient(135deg, #2980b9, var(--primary-color));
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(41, 128, 185, 0.3);
+        }
+        
+        .inquiry-btn-details {
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, var(--secondary-color), #27ae60);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex: 1;
+        }
+        
+        .inquiry-btn-details:hover {
+            background: linear-gradient(135deg, #27ae60, var(--secondary-color));
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
         }
         
         /* Floating cart icon */
@@ -1218,6 +1488,17 @@
             to { transform: scale(1); opacity: 1; }
         }
         
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
         @keyframes confettiFall {
             0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
             100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
@@ -1361,7 +1642,11 @@
                 margin-bottom: 0.8rem;
             }
             
-            .add-to-cart {
+            .product-actions {
+                flex-direction: column;
+            }
+            
+            .add-to-cart, .inquiry-btn {
                 padding: 0.6rem;
                 font-size: 0.85rem;
             }
@@ -1382,6 +1667,10 @@
             
             .product-name-details {
                 font-size: 1.4rem;
+            }
+            
+            .product-actions-details {
+                flex-direction: column;
             }
             
             .floating-cart,
@@ -1416,6 +1705,66 @@
                 margin-bottom: 10px;
                 width: 100%;
                 height: 120px;
+            }
+            
+            /* تحسينات نافذة الاستفسار للجوال */
+            .inquiry-modal {
+                padding: 0.5rem;
+                align-items: flex-end;
+            }
+            
+            .inquiry-modal-content {
+                max-height: 85vh;
+                padding: 1.2rem;
+                border-radius: 15px 15px 0 0;
+                animation: slideUp 0.3s ease;
+            }
+            
+            .inquiry-header {
+                margin-bottom: 0.8rem;
+                padding-bottom: 0.8rem;
+            }
+            
+            .inquiry-title {
+                font-size: 1.2rem;
+            }
+            
+            .inquiry-product-info {
+                padding: 0.7rem;
+                margin-bottom: 1rem;
+            }
+            
+            .inquiry-product-image {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .inquiry-product-name {
+                font-size: 0.9rem;
+            }
+            
+            .inquiry-product-desc {
+                font-size: 0.75rem;
+            }
+            
+            .form-group input,
+            .form-group textarea {
+                padding: 0.6rem 0.8rem;
+                font-size: 0.85rem;
+            }
+            
+            .form-group textarea {
+                min-height: 80px;
+            }
+            
+            .inquiry-actions {
+                flex-direction: column;
+                gap: 0.6rem;
+            }
+            
+            .send-inquiry-btn, .cancel-inquiry-btn {
+                padding: 0.7rem;
+                font-size: 0.85rem;
             }
         }
         
@@ -1494,7 +1843,7 @@
                 margin-bottom: 0.8rem;
             }
             
-            .add-to-cart {
+            .add-to-cart, .inquiry-btn {
                 padding: 0.5rem;
                 font-size: 0.8rem;
             }
@@ -1517,8 +1866,135 @@
                 justify-content: center;
             }
             
-            .product-actions {
-                flex-direction: column;
+            /* تحسينات إضافية للجوال */
+            .inquiry-modal {
+                padding: 0.3rem;
+            }
+            
+            .inquiry-modal-content {
+                padding: 1rem;
+                max-height: 80vh;
+            }
+            
+            .inquiry-header {
+                margin-bottom: 0.7rem;
+                padding-bottom: 0.7rem;
+            }
+            
+            .inquiry-title {
+                font-size: 1.1rem;
+                gap: 6px;
+            }
+            
+            .inquiry-title i {
+                font-size: 1rem;
+            }
+            
+            .close-inquiry {
+                width: 30px;
+                height: 30px;
+                font-size: 1.1rem;
+            }
+            
+            .inquiry-product-info {
+                padding: 0.6rem;
+                margin-bottom: 0.8rem;
+                gap: 10px;
+            }
+            
+            .inquiry-product-image {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .inquiry-product-name {
+                font-size: 0.85rem;
+            }
+            
+            .inquiry-product-desc {
+                font-size: 0.7rem;
+            }
+            
+            .inquiry-form {
+                gap: 0.6rem;
+            }
+            
+            .form-group {
+                gap: 0.3rem;
+            }
+            
+            .form-group label {
+                font-size: 0.8rem;
+            }
+            
+            .form-group input,
+            .form-group textarea {
+                padding: 0.5rem 0.7rem;
+                font-size: 0.8rem;
+            }
+            
+            .form-group textarea {
+                min-height: 70px;
+            }
+            
+            .inquiry-actions {
+                margin-top: 0.8rem;
+            }
+            
+            .send-inquiry-btn, .cancel-inquiry-btn {
+                padding: 0.6rem;
+                font-size: 0.8rem;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .inquiry-modal-content {
+                padding: 0.8rem;
+            }
+            
+            .inquiry-header {
+                margin-bottom: 0.6rem;
+                padding-bottom: 0.6rem;
+            }
+            
+            .inquiry-title {
+                font-size: 1rem;
+            }
+            
+            .inquiry-product-info {
+                padding: 0.5rem;
+                margin-bottom: 0.7rem;
+            }
+            
+            .inquiry-product-image {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .form-group input,
+            .form-group textarea {
+                padding: 0.4rem 0.6rem;
+            }
+            
+            .send-inquiry-btn, .cancel-inquiry-btn {
+                padding: 0.5rem;
+                font-size: 0.75rem;
+            }
+        }
+        
+        /* تحسينات للأجهزة الصغيرة جداً */
+        @media (max-height: 600px) {
+            .inquiry-modal-content {
+                max-height: 75vh;
+            }
+            
+            .inquiry-product-info {
+                padding: 0.5rem;
+                margin-bottom: 0.6rem;
+            }
+            
+            .form-group textarea {
+                min-height: 60px;
             }
         }
     </style>
@@ -1542,7 +2018,7 @@
         </div>
     </header>
     
-    <!-- البانر الثابت - التعديل الرئيسي هنا -->
+    <!-- البانر الثابت -->
     <div class="banner-container">
         <img src="https://i.postimg.cc/hvFCjWjX/How-to-Engage-Reluctant-Learners.jpg" alt="عروض العودة إلى المدارس" class="banner-image">
         <div class="banner-overlay">
@@ -1649,9 +2125,238 @@
         </div>
     </div>
     
+    <!-- نافذة الاستفسار المحسنة -->
+    <div class="inquiry-modal" id="inquiry-modal">
+        <div class="inquiry-modal-content">
+            <div class="inquiry-header">
+                <h3 class="inquiry-title"><i class="fas fa-question-circle"></i> استفسار عن المنتج</h3>
+                <button class="close-inquiry" id="close-inquiry">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="inquiry-product-info" id="inquiry-product-info">
+                <!-- سيتم ملؤها بمعلومات المنتج -->
+            </div>
+            <form class="inquiry-form" id="inquiry-form">
+                <div class="form-group">
+                    <label for="inquiry-name">الاسم</label>
+                    <input type="text" id="inquiry-name" placeholder="اسمك الكريم" required>
+                </div>
+                <div class="form-group">
+                    <label for="inquiry-phone">رقم الهاتف</label>
+                    <input type="tel" id="inquiry-phone" placeholder="رقم هاتفك للتواصل" required>
+                </div>
+                <div class="form-group">
+                    <label for="inquiry-message">رسالة الاستفسار</label>
+                    <textarea id="inquiry-message" placeholder="اكتب استفسارك هنا..." required></textarea>
+                </div>
+                <div class="inquiry-actions">
+                    <button type="button" class="cancel-inquiry-btn" id="cancel-inquiry">إلغاء</button>
+                    <button type="submit" class="send-inquiry-btn">
+                        <i class="fab fa-whatsapp"></i>
+                        إرسال الاستفسار
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script>
         // بيانات المنتجات
         const products = [
+             {
+  id: 401,
+  name: "سبورة كتابة تابلت  LCD PANEL",
+  price: 0,
+  desc: "سبورة كتابة تابلت  LCD PANEL",
+  image: "https://i.postimg.cc/4yfpS6qT/811il-U7-ECc-L-UF1000-1000-QL80.jpg",
+  images: ["https://i.postimg.cc/PrLCrVmy/image.webp", "https://i.postimg.cc/4yfpS6qT/811il-U7-ECc-L-UF1000-1000-QL80.jpg"],
+  category: "games",
+  rating: 5,
+  availability: "متوفر",
+  badge: null,
+  tags: ["تابلت رسم"],
+  dateAdded: "2025-10-09T09:52:35.850Z"
+},
+
+{
+  id: 403,
+  name: "ماكينة بكر تسعير ",
+  price: 0,
+  desc: "ماكينة بكر تسعير ",
+  image: "https://i.postimg.cc/zfMgjmS8/41-IGt-BPl-HCL-AC-UL495-SR435-495.jpg ",
+  images: ["https://i.postimg.cc/zfMgjmS8/41-IGt-BPl-HCL-AC-UL495-SR435-495.jpg", "https://i.postimg.cc/qBG7BVhX/51-RG5-Vbtqp-L.jpg"],
+  category: "office",
+  rating: 5,
+  availability: "متوفر",
+  badge: null,
+  tags: ["ماكينة تسعير"],
+  dateAdded: "2025-10-09T10:01:00.720Z"
+},
+
+{
+  id: 404,
+  name: "لزق دوكو أصفر ",
+  price: 0,
+  desc: "لزق دوكو أصفر  متوفر مقاس صغير وعريض ",
+  image: "https://i.postimg.cc/59HSCgJP/image-1024.jpg",
+  images: ["https://i.postimg.cc/59HSCgJP/image-1024.jpg"],
+  category: "office",
+  rating: 5,
+  availability: "متوفر",
+  badge: null,
+  tags: ["لزق دوكو"],
+  dateAdded: "2025-10-09T10:17:33.086Z"
+},
+
+{
+  id: 405,
+  name: "أقلام رصاص MG",
+  price: 0,
+  desc: "أقلام رصاص MG بأستيكة ",
+  image: "https://i.postimg.cc/W4gPzg3p/webpc-passthru.webp",
+  images: ["https://i.postimg.cc/wTLPhgz0/Untitled-2-jpgaa-4f620e22-4507-4c46-bb0e-ecebc274a7aa.webp", "https://i.postimg.cc/W4gPzg3p/webpc-passthru.webp"],
+  category: "student",
+  rating: 5,
+  availability: "متوفر",
+  badge: null,
+  tags: ["أقلام رصاص"],
+  dateAdded: "2025-10-09T10:21:30.962Z"
+},
+
+{
+  id: 406,
+  name: "أقلام رصاص POWER",
+  price: 0,
+  desc: "أقلام رصاص POWER",
+  image: "https://i.postimg.cc/dQmrdxX5/12727510-8a61-4fcd-b624-0c5542fc7165.webp",
+  images: ["https://i.postimg.cc/dQmrdxX5/12727510-8a61-4fcd-b624-0c5542fc7165.webp"],
+  category: "student",
+  rating: 5,
+  availability: "متوفر",
+  badge: null,
+  tags: ["أقلام رصاص"],
+  dateAdded: "2025-10-09T10:25:56.828Z"
+},
+
+{
+  id: 407,
+  name: "أقلام رصاص BRAVO",
+  price: 0,
+  desc: "أقلام رصاص BRAVO",
+  image: "https://i.postimg.cc/PrvH9gjq/Silver3.webp",
+  images: ["https://i.postimg.cc/PrvH9gjq/Silver3.webp"],
+  category: "student",
+  rating: 5,
+  availability: "متوفر",
+  badge: null,
+  tags: ["أقلام رصاص"],
+  dateAdded: "2025-10-09T10:27:15.419Z"
+},
+
+{
+  id: 408,
+  name: "أقلام رصاص BRAVO",
+  price: 0,
+  desc: "أقلام رصاص BRAVO",
+  image: "https://i.postimg.cc/mkwm52g5/6942109579046dd.webp",
+  images: ["https://i.postimg.cc/mkwm52g5/6942109579046dd.webp"],
+  category: "student",
+  rating: 5,
+  availability: "متوفر",
+  badge: null,
+  tags: ["أقلام رصاص"],
+  dateAdded: "2025-10-09T10:46:26.165Z"
+},
+
+{
+  id: 402,
+  name: "بكر تسعير ",
+  price: 0,
+  desc: "بكر تسعير متوفر جملة وقطاعى",
+  image: "https://i.postimg.cc/GhNqHf6C/02c07d2b-a74d-4361-8c21-5a9fbf721259-1000x800-q-DQs3s-I9-Lpt-Tg-RWU4x-ZX5y-PCHn21-NDV788eoze9-M.webp",
+  images: ["https://i.postimg.cc/GhNqHf6C/02c07d2b-a74d-4361-8c21-5a9fbf721259-1000x800-q-DQs3s-I9-Lpt-Tg-RWU4x-ZX5y-PCHn21-NDV788eoze9-M.webp", "https://i.postimg.cc/4xkpCRrf/2e42e384-21f0-4cde-ab8f-b25ad9aedfbd-thumbnail-1000x1000-70.jpg"],
+  category: "office",
+  rating: 5,
+  availability: "متوفر",
+  badge: null,
+  tags: ["بكر تسعير"],
+  dateAdded: "2025-10-09T10:52:00.603Z"
+},
+
+{
+  id: 409,
+  name: "أقلام رصاص FATIH",
+  price: 0,
+  desc: "أقلام رصاص FATIH",
+  image: "https://i.postimg.cc/0NN1dj9K/81-Kkr5q-r-HL-UF1000-1000-QL80.jpg",
+  images: ["https://i.postimg.cc/0NN1dj9K/81-Kkr5q-r-HL-UF1000-1000-QL80.jpg"],
+  category: "student",
+  rating: 5,
+  availability: "متوفر",
+  badge: null,
+  tags: ["أقلام رصاص"],
+  dateAdded: "2025-10-09T10:53:31.066Z"
+},
+
+{
+  id: 410,
+  name: "دباسة DELI  ",
+  price: 0,
+  desc: "دباسة DELI  ",
+  image: "https://i.postimg.cc/MTQ6VHYF/b52a1f8c355fbe3f0b181ed4226848cd.jpg",
+  images: ["https://i.postimg.cc/MTQ6VHYF/b52a1f8c355fbe3f0b181ed4226848cd.jpg"],
+  category: "office",
+  rating: 5,
+  availability: "متوفر",
+  badge: null,
+  tags: ["دباسة مكتب"],
+  dateAdded: "2025-10-09T10:54:38.920Z"
+},
+
+{
+  id: 411,
+  name: "بطارية كاميلون",
+  price: 0,
+  desc: "بطارية كاميلون AAA",
+  image: "https://i.postimg.cc/52rWg1jb/81r-WIPm-SJx-L-AC-UL495-SR435-495.jpg",
+  images: ["https://i.postimg.cc/52rWg1jb/81r-WIPm-SJx-L-AC-UL495-SR435-495.jpg"],
+  category: "office",
+  rating: 5,
+  availability: "متوفر",
+  badge: null,
+  tags: ["حجارة"],
+  dateAdded: "2025-10-09T11:04:18.268Z"
+},
+
+{
+  id: 412,
+  name: "بطارية ساعة  MG",
+  price: 0,
+  desc: "بطارية ساعة  MG",
+  image: "https://i.postimg.cc/43kSL3vy/25-EAr-R8-C3m0q-XSmahatwjq-CJo8n94x89f6r3-CD2e.jpg",
+  images: ["https://i.postimg.cc/43kSL3vy/25-EAr-R8-C3m0q-XSmahatwjq-CJo8n94x89f6r3-CD2e.jpg"],
+  category: "office",
+  rating: 5,
+  availability: "متوفر",
+  badge: null,
+  tags: ["بطارية"],
+  dateAdded: "2025-10-09T11:42:06.095Z"
+},
+        {
+  id: 400,
+  name: "أستيكة قلم Baile",
+  price: 0,
+  desc: "أستيكة قلم Baile ",
+  image: "https://i.postimg.cc/qMrstTvG/fafd6a55-d80e-4c82-b9d5-10270e51caec.webp",
+  images: ["https://i.postimg.cc/qMrstTvG/fafd6a55-d80e-4c82-b9d5-10270e51caec.webp", "https://i.postimg.cc/8PFSrqXs/2fa867cc-62a5-4c35-8381-7ff6d1ab6b3f.webp"],
+  category: "student",
+  rating: 5,
+  availability: "متوفر",
+  badge: null,
+  tags: ["أستيكة"],
+  dateAdded: "2025-10-09T09:45:15.837Z"
+},
             {
   id: 3645465464502,
   name: "نوتة بكلبس ",
@@ -5479,7 +6184,6 @@
                 availability: "متوفر",
                 rating: 5
             }
-
         ];
         
         // عناصر DOM
@@ -5504,6 +6208,14 @@
         const searchInput = document.getElementById('search-input');
         const paginationContainer = document.getElementById('pagination');
         
+        // عناصر DOM الجديدة
+        const inquiryModal = document.getElementById('inquiry-modal');
+        const closeInquiry = document.getElementById('close-inquiry');
+        const cancelInquiry = document.getElementById('cancel-inquiry');
+        const inquiryForm = document.getElementById('inquiry-form');
+        const inquiryProductInfo = document.getElementById('inquiry-product-info');
+        const inquiryModalContent = document.querySelector('.inquiry-modal-content');
+        
         // سلة التسوق
         let cart = [];
         
@@ -5512,6 +6224,9 @@
         
         // متغير لتتبع الملاحظات لكل منتج في السلة
         const productNotes = {};
+        
+        // متغير لتخزين المنتج الحالي للاستفسار
+        let currentInquiryProduct = null;
         
         // متغيرات التقسيم إلى صفحات
         let currentPage = 1;
@@ -5626,10 +6341,16 @@
                         <div class="product-tags">
                             ${product.tags.map(tag => `<span class="product-tag">${tag}</span>`).join('')}
                         </div>
-                        <button class="add-to-cart" data-id="${product.id}">
-                            <i class="fas fa-cart-plus"></i>
-                            أضف للسلة
-                        </button>
+                        <div class="product-actions">
+                            <button class="add-to-cart" data-id="${product.id}">
+                                <i class="fas fa-cart-plus"></i>
+                                أضف للسلة
+                            </button>
+                            <button class="inquiry-btn" data-id="${product.id}">
+                                <i class="fas fa-question-circle"></i>
+                                استفسار
+                            </button>
+                        </div>
                     </div>
                 `;
                 productsContainer.appendChild(productCard);
@@ -5747,10 +6468,98 @@
                 button.addEventListener('click', addToCart);
             });
             
+            // إضافة حدث النقر على أزرار "استفسار"
+            document.querySelectorAll('.inquiry-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const productId = parseInt(e.currentTarget.getAttribute('data-id'));
+                    openInquiryModal(productId);
+                    
+                    // تأثير النقر على الزر
+                    e.currentTarget.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        e.currentTarget.style.transform = 'scale(1)';
+                    }, 200);
+                });
+            });
+            
             // إضافة حدث النقر على الصور لفتح تفاصيل المنتج
             document.querySelectorAll('.product-image').forEach(image => {
                 image.addEventListener('click', openProductDetails);
             });
+        }
+        
+        // فتح نافذة الاستفسار
+        function openInquiryModal(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+            
+            currentInquiryProduct = product;
+            
+            // تعبئة معلومات المنتج
+            inquiryProductInfo.innerHTML = `
+                <div class="inquiry-product-image">
+                    <img src="${product.image}" alt="${product.name}">
+                </div>
+                <div class="inquiry-product-details">
+                    <h4 class="inquiry-product-name">${product.name}</h4>
+                    <p class="inquiry-product-desc">${product.desc}</p>
+                </div>
+            `;
+            
+            // فتح النافذة
+            inquiryModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // إضافة تأثير الاهتزاز للنافذة على الجوال
+            if (window.innerWidth <= 768) {
+                inquiryModalContent.style.animation = 'slideUp 0.3s ease';
+            }
+        }
+        
+        // إغلاق نافذة الاستفسار
+        function closeInquiryModal() {
+            inquiryModal.classList.remove('active');
+            document.body.style.overflow = '';
+            currentInquiryProduct = null;
+            inquiryForm.reset();
+            
+            // إعادة تعيين الأنيميشن
+            inquiryModalContent.style.animation = '';
+        }
+        
+        // إرسال الاستفسار عبر واتساب
+        function sendInquiry(e) {
+            e.preventDefault();
+            
+            if (!currentInquiryProduct) return;
+            
+            const name = document.getElementById('inquiry-name').value;
+            const phone = document.getElementById('inquiry-phone').value;
+            const message = document.getElementById('inquiry-message').value;
+            
+            if (!name || !phone || !message) {
+                showAlert('يرجى ملء جميع الحقول', 'جميع الحقول مطلوبة', 'error');
+                return;
+            }
+            
+            // إنشاء رسالة الاستفسار
+            let whatsappMessage = `🎓 *استفسار عن منتج - مكتبة الطلبة* 🎓\n\n`;
+            whatsappMessage += `👤 *الاسم:* ${name}\n`;
+            whatsappMessage += `📞 *رقم الهاتف:* ${phone}\n\n`;
+            whatsappMessage += `🛍️ *المنتج:* ${currentInquiryProduct.name}\n`;
+            whatsappMessage += `📝 *الوصف:* ${currentInquiryProduct.desc}\n`;
+            whatsappMessage += `🖼️ *رابط الصورة:* ${currentInquiryProduct.image}\n\n`;
+            whatsappMessage += `💬 *رسالة الاستفسار:*\n${message}\n\n`;
+            whatsappMessage += `شكراً لاهتمامكم بمنتجاتنا ❤️\n`;
+            whatsappMessage += `📚 *مكتبة الطلبة* 📚`;
+            
+            const phoneNumber = '+2001097670474';
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            
+            window.open(whatsappUrl, '_blank');
+            closeInquiryModal();
+            showAlert('تم إرسال الاستفسار', 'سيتم التواصل معك قريباً', 'success');
         }
         
         // فتح تفاصيل المنتج
@@ -5793,10 +6602,14 @@
                     <div class="product-tags-details">
                         ${product.tags.map(tag => `<span class="product-tag-details">${tag}</span>`).join('')}
                     </div>
-                    <div class="product-actions">
+                    <div class="product-actions-details">
                         <button class="add-to-cart-details" data-id="${product.id}">
                             <i class="fas fa-cart-plus"></i>
                             أضف للسلة
+                        </button>
+                        <button class="inquiry-btn-details" data-id="${product.id}">
+                            <i class="fas fa-question-circle"></i>
+                            استفسار
                         </button>
                     </div>
                 </div>
@@ -5825,6 +6638,13 @@
             
             // إضافة حدث النقر على زر الإضافة للسلة
             document.querySelector('.add-to-cart-details').addEventListener('click', addToCart);
+            
+            // إضافة حدث النقر على زر الاستفسار
+            document.querySelector('.inquiry-btn-details').addEventListener('click', (e) => {
+                const productId = parseInt(e.currentTarget.getAttribute('data-id'));
+                closeProductDetails();
+                openInquiryModal(productId);
+            });
         }
         
         // إغلاق تفاصيل المنتج
@@ -6071,6 +6891,33 @@
             }, 3000);
         }
         
+        // إظهار/إخفاء زر العودة للأعلى
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('active');
+            } else {
+                backToTop.classList.remove('active');
+            }
+        });
+        
+        // العودة للأعلى عند النقر على الزر
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // إغلاق تفاصيل المنتج عند الضغط على زر Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && productLightbox.classList.contains('active')) {
+                closeProductDetails();
+            }
+            if (e.key === 'Escape' && inquiryModal.classList.contains('active')) {
+                closeInquiryModal();
+            }
+        });
+        
         // أحداث DOM
         headerCartIcon.addEventListener('click', () => {
             cartSidebar.classList.add('open');
@@ -6099,6 +6946,7 @@
             cartSidebar.classList.remove('open');
             overlay.classList.remove('active');
             closeProductDetails();
+            closeInquiryModal();
         });
         
         checkoutBtn.addEventListener('click', sendWhatsAppOrder);
@@ -6117,28 +6965,19 @@
             displayProducts(currentCategory, currentSearchQuery, currentPage);
         });
         
-        // إظهار/إخفاء زر العودة للأعلى
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTop.classList.add('active');
-            } else {
-                backToTop.classList.remove('active');
+        // إضافة الأحداث الجديدة
+        closeInquiry.addEventListener('click', closeInquiryModal);
+        cancelInquiry.addEventListener('click', closeInquiryModal);
+        inquiryForm.addEventListener('submit', sendInquiry);
+        inquiryModal.addEventListener('click', (e) => {
+            if (e.target === inquiryModal) {
+                closeInquiryModal();
             }
         });
         
-        // العودة للأعلى عند النقر على الزر
-        backToTop.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-        
-        // إغلاق تفاصيل المنتج عند الضغط على زر Escape
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && productLightbox.classList.contains('active')) {
-                closeProductDetails();
-            }
+        // منع إغلاق النافذة عند النقر داخل المحتوى
+        document.querySelector('.inquiry-modal-content').addEventListener('click', (e) => {
+            e.stopPropagation();
         });
         
         // تهيئة الصفحة
@@ -6152,4 +6991,3 @@
     </script>
 </body>
 </html>
-
