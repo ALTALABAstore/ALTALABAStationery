@@ -578,7 +578,7 @@
             line-height: 1.5;
         }
         
-        /* الأسعار والتخفيضات */
+        /* الأسعار والتخفيضات - معدلة */
         .product-price-container {
             display: flex;
             align-items: center;
@@ -587,30 +587,22 @@
             flex-wrap: wrap;
         }
         
-        .original-price {
-            text-decoration: line-through;
-            color: #888;
-            font-size: 0.85rem;
+        .original-price, .save-amount {
+            display: none !important;
         }
         
         .discounted-price {
             color: var(--discount-color);
-            font-size: 1.1rem;
+            font-size: 1.3rem;
             font-weight: bold;
         }
         
         .discount-percentage {
             background-color: var(--save-color);
             color: white;
-            padding: 2px 6px;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            font-weight: bold;
-        }
-        
-        .save-amount {
+            padding: 4px 10px;
+            border-radius: 15px;
             font-size: 0.85rem;
-            color: var(--save-color);
             font-weight: bold;
         }
         
@@ -839,7 +831,7 @@
             color: var(--dark-color);
         }
         
-        /* تعديل الأسعار في السلايدر */
+        /* تعديل الأسعار في السلايدر - معدلة */
         .slider-price-container {
             display: flex;
             align-items: center;
@@ -848,23 +840,21 @@
         }
         
         .slider-original-price {
-            text-decoration: line-through;
-            color: #888;
-            font-size: 0.75rem;
+            display: none !important;
         }
         
         .slider-discounted-price {
             color: var(--discount-color);
-            font-size: 0.9rem;
+            font-size: 1.1rem;
             font-weight: bold;
         }
         
         .slider-discount-percentage {
             background-color: var(--save-color);
             color: white;
-            padding: 2px 5px;
+            padding: 3px 8px;
             border-radius: 10px;
-            font-size: 0.65rem;
+            font-size: 0.75rem;
             font-weight: bold;
         }
         
@@ -1681,7 +1671,7 @@
             font-size: 0.95rem;
         }
         
-        /* تعديل السعر في السلة */
+        /* تعديل السعر في السلة - معدلة */
         .cart-item-price-container {
             display: flex;
             align-items: center;
@@ -1691,14 +1681,12 @@
         }
         
         .cart-item-original-price {
-            text-decoration: line-through;
-            color: #888;
-            font-size: 0.75rem;
+            display: none !important;
         }
         
         .cart-item-discounted-price {
             color: var(--discount-color);
-            font-size: 0.85rem;
+            font-size: 1rem;
             font-weight: bold;
         }
         
@@ -2233,7 +2221,7 @@
             margin-bottom: 12px;
         }
         
-        /* تعديل الأسعار في الشاشة المصغرة */
+        /* تعديل الأسعار في الشاشة المصغرة - معدلة */
         .modal-price-container {
             display: flex;
             align-items: center;
@@ -2242,30 +2230,22 @@
             flex-wrap: wrap;
         }
         
-        .modal-original-price {
-            text-decoration: line-through;
-            color: #888;
-            font-size: 1rem;
+        .modal-original-price, .modal-save-amount {
+            display: none !important;
         }
         
         .modal-discounted-price {
             color: var(--discount-color);
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             font-weight: bold;
         }
         
         .modal-discount-percentage {
             background-color: var(--save-color);
             color: white;
-            padding: 4px 10px;
+            padding: 5px 12px;
             border-radius: 15px;
-            font-size: 0.85rem;
-            font-weight: bold;
-        }
-        
-        .modal-save-amount {
             font-size: 0.9rem;
-            color: var(--save-color);
             font-weight: bold;
         }
         
@@ -2860,10 +2840,6 @@
                 <span>المجموع:</span>
                 <span id="cartSubtotal">0 ج.م</span>
             </div>
-            <div class="cart-total-item cart-total-savings">
-                <span>المدخر:</span>
-                <span id="cartSavings">0 ج.م</span>
-            </div>
             <div class="cart-final-total">
                 <span>الإجمالي النهائي:</span>
                 <span id="cartFinalTotal">0 ج.م</span>
@@ -2922,7 +2898,6 @@
                 tags: ["أدوات مكتبية", "عرض خاص"],
                 availability: "متوفر",
                 rating: 5,
-                saveAmount: 20
             },
             {
                 id: 2,
@@ -2935,7 +2910,6 @@
                 tags: ["أدوات مكتبية", "عرض خاص"],
                 availability: "متوفر",
                 rating: 5,
-                saveAmount: 20
             },
             {
                 id: 3,
@@ -2948,7 +2922,6 @@
                 tags: ["أدوات مكتبية", "عرض خاص"],
                 availability: "متوفر",
                 rating: 5,
-                saveAmount: 20
             }
         ];
 
@@ -3011,10 +2984,8 @@
                         <p class="product-description">${product.desc}</p>
                         
                         <div class="product-price-container">
-                            <span class="original-price">${product.originalPrice} ج.م</span>
                             <span class="discounted-price">${product.discountedPrice} ج.م</span>
                             <span class="discount-percentage">${product.discountPercentage}%</span>
-                            <span class="save-amount">توفير ${product.saveAmount} ج.م</span>
                         </div>
                         
                         <div class="product-stats">
@@ -3157,7 +3128,6 @@
                     <div class="slider-item-info">
                         <h4 class="slider-item-title">${product.name}</h4>
                         <div class="slider-price-container">
-                            <span class="slider-original-price">${product.originalPrice} ج.م</span>
                             <span class="slider-discounted-price">${product.discountedPrice} ج.م</span>
                             <span class="slider-discount-percentage">${product.discountPercentage}%</span>
                         </div>
@@ -3224,10 +3194,8 @@
                     <p class="modal-product-description">${product.desc}</p>
                     
                     <div class="modal-price-container">
-                        <span class="modal-original-price">${product.originalPrice} ج.م</span>
                         <span class="modal-discounted-price">${product.discountedPrice} ج.م</span>
                         <span class="modal-discount-percentage">${product.discountPercentage}%</span>
-                        <span class="modal-save-amount">توفير ${product.saveAmount} ج.م</span>
                     </div>
                     
                     <div class="product-stats">
@@ -3394,10 +3362,8 @@
                     cart.push({
                         id: product.id,
                         name: product.name,
-                        originalPrice: product.originalPrice,
                         discountedPrice: product.discountedPrice,
                         discountPercentage: product.discountPercentage,
-                        saveAmount: product.saveAmount,
                         image: product.image,
                         quantity: 1
                     });
@@ -3433,11 +3399,9 @@
             const cart = JSON.parse(localStorage.getItem('cart')) || [];
             
             let subtotal = 0;
-            let totalSavings = 0;
             
             cart.forEach(item => {
                 subtotal += item.discountedPrice * item.quantity;
-                totalSavings += item.saveAmount * item.quantity;
             });
             
             const cartTotal = subtotal;
@@ -3445,13 +3409,11 @@
             // تحديث العناصر في واجهة المستخدم
             const cartTotalElement = document.getElementById('cartTotal');
             const cartSubtotalElement = document.getElementById('cartSubtotal');
-            const cartSavingsElement = document.getElementById('cartSavings');
             const cartFinalTotalElement = document.getElementById('cartFinalTotal');
             
             if (cart.length > 0) {
                 cartTotalElement.style.display = 'block';
                 cartSubtotalElement.textContent = subtotal.toFixed(2) + ' ج.م';
-                cartSavingsElement.textContent = totalSavings.toFixed(2) + ' ج.م';
                 cartFinalTotalElement.textContent = cartTotal.toFixed(2) + ' ج.م';
             } else {
                 cartTotalElement.style.display = 'none';
@@ -3484,10 +3446,9 @@
             
             cart.forEach(item => {
                 const product = products.find(p => p.id === item.id) || 
-                            { name: item.name, originalPrice: item.originalPrice, discountedPrice: item.discountedPrice, image: item.image, discountPercentage: item.discountPercentage };
+                            { name: item.name, discountedPrice: item.discountedPrice, image: item.image, discountPercentage: item.discountPercentage };
                 
                 const itemTotal = item.discountedPrice * item.quantity;
-                const itemSavings = item.saveAmount * item.quantity;
                 
                 itemsHTML += `
                     <div class="cart-item" data-id="${item.id}">
@@ -3497,7 +3458,6 @@
                         <div class="cart-item-details">
                             <h4 class="cart-item-title">${product.name}</h4>
                             <div class="cart-item-price-container">
-                                <span class="cart-item-original-price">${product.originalPrice} ج.م</span>
                                 <span class="cart-item-discounted-price">${product.discountedPrice} ج.م</span>
                             </div>
                             <div class="cart-item-controls">
@@ -3505,9 +3465,6 @@
                                 <span class="cart-item-quantity">${item.quantity}</span>
                                 <button class="cart-item-increase" onclick="increaseCartItem(${item.id})"><i class="fas fa-plus"></i></button>
                                 <button class="cart-item-remove" onclick="removeCartItem(${item.id})"><i class="fas fa-trash"></i> حذف</button>
-                            </div>
-                            <div style="font-size: 0.8rem; color: var(--save-color); margin-top: 5px;">
-                                توفير: ${itemSavings.toFixed(2)} ج.م
                             </div>
                         </div>
                     </div>
@@ -3583,35 +3540,29 @@
             message += "🛍️ *المنتجات المطلوبة:*\n\n";
             
             let subtotal = 0;
-            let totalSavings = 0;
             let itemCount = 0;
             
             // إضافة تفاصيل كل منتج
             cart.forEach((item, index) => {
                 const product = products.find(p => p.id === item.id) || 
-                            { name: item.name, originalPrice: item.originalPrice, discountedPrice: item.discountedPrice, discountPercentage: item.discountPercentage };
+                            { name: item.name, discountedPrice: item.discountedPrice, discountPercentage: item.discountPercentage };
                 
                 const itemTotal = item.discountedPrice * item.quantity;
-                const itemSavings = (item.originalPrice - item.discountedPrice) * item.quantity;
                 
                 subtotal += itemTotal;
-                totalSavings += itemSavings;
                 itemCount += item.quantity;
                 
                 message += `*${index + 1}. ${product.name}*\n`;
-                message += `   - السعر الأصلي: ${product.originalPrice} ج.م\n`;
                 message += `   - السعر بعد الخصم: ${product.discountedPrice} ج.م\n`;
                 message += `   - نسبة الخصم: ${product.discountPercentage}%\n`;
                 message += `   - الكمية: ${item.quantity}\n`;
-                message += `   - الإجمالي: ${itemTotal.toFixed(2)} ج.م\n`;
-                message += `   - التوفير: ${itemSavings.toFixed(2)} ج.م\n\n`;
+                message += `   - الإجمالي: ${itemTotal.toFixed(2)} ج.م\n\n`;
             });
             
             // إضافة المجموع
             message += "💰 *ملخص الطلب:*\n";
             message += `   - عدد المنتجات: ${itemCount}\n`;
-            message += `   - المجموع: ${subtotal.toFixed(2)} ج.م\n`;
-            message += `   - إجمالي التوفير: ${totalSavings.toFixed(2)} ج.م\n\n`;
+            message += `   - المجموع: ${subtotal.toFixed(2)} ج.م\n\n`;
             
             // إضافة معلومات العميل
             message += "👤 *بيانات العميل:*\n";
