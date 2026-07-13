@@ -8,23 +8,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #4a6bff;
-            --primary-dark: #3a56cc;
-            --secondary: #6c5ce7;
-            --accent: #ff7675;
-            --dark: #2d3436;
-            --dark-gray: #636e72;
-            --medium-gray: #b2bec3;
-            --light-gray: #f5f6fa;
-            --light: #ffffff;
-            --white: #ffffff;
-            --success: #00b894;
-            --warning: #fdcb6e;
-            --danger: #d63031;
-            --border-radius: 10px;
-            --shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 5px 15px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
+            --primary: #6C5CE7;
+            --primary-light: #A29BFE;
+            --secondary: #FD79A8;
+            --accent: #FDCB6E;
+            --gradient-start: #6C5CE7;
+            --gradient-end: #A29BFE;
+            --dark: #2D3436;
+            --dark-gray: #636E72;
+            --medium-gray: #B2BEC3;
+            --light-gray: #F8F9FA;
+            --white: #FFFFFF;
+            --success: #00B894;
+            --danger: #E17055;
+            --shadow: 0 4px 20px rgba(108, 92, 231, 0.15);
+            --shadow-lg: 0 8px 40px rgba(108, 92, 231, 0.2);
+            --border-radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         * {
@@ -36,27 +36,27 @@
         
         body {
             font-family: 'Tajawal', sans-serif;
-            background-color: var(--light);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             color: var(--dark);
             line-height: 1.6;
             min-height: 100vh;
             font-size: 14px;
+            padding: 0;
         }
         
-        /* شريط التنقل المحدث */
         .navbar {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            padding: 0.8rem 0;
-            box-shadow: var(--shadow-lg);
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            padding: 14px 0 16px;
             position: sticky;
             top: 0;
-            z-index: 1000;
+            z-index: 100;
+            box-shadow: 0 4px 30px rgba(108, 92, 231, 0.3);
         }
         
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 1.2rem;
+            padding: 0 16px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -65,77 +65,80 @@
         .nav-logo {
             color: white;
             font-size: 1.1rem;
-            font-weight: 700;
+            font-weight: 900;
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 0.6rem;
-            transition: var(--transition);
-        }
-        
-        .nav-logo:hover {
-            transform: translateY(-2px);
+            gap: 10px;
         }
         
         .nav-logo img {
-            width: 2rem;
-            height: 2rem;
+            width: 32px;
+            height: 32px;
             object-fit: contain;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.2);
+            padding: 4px;
+        }
+        
+        .nav-logo i {
+            font-size: 1.2rem;
         }
         
         .nav-links {
             display: none;
             list-style: none;
-            gap: 1.2rem;
+            gap: 8px;
         }
         
         .nav-links a {
-            color: white;
+            color: rgba(255,255,255,0.8);
             text-decoration: none;
             font-weight: 500;
-            padding: 0.5rem 0.8rem;
-            border-radius: var(--border-radius);
+            padding: 8px 16px;
+            border-radius: 50px;
             transition: var(--transition);
-            position: relative;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
         
-        .nav-links a:hover {
-            background: rgba(255, 255, 255, 0.15);
-        }
-        
+        .nav-links a:hover,
         .nav-links a.active {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255,255,255,0.2);
+            color: white;
         }
         
         .mobile-menu-btn {
             color: white;
-            font-size: 1.5rem;
-            background: none;
+            font-size: 1.4rem;
+            background: rgba(255,255,255,0.15);
             border: none;
             cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 12px;
             transition: var(--transition);
-            padding: 0.4rem;
-            border-radius: 50%;
+            backdrop-filter: blur(10px);
         }
         
         .mobile-menu-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255,255,255,0.25);
         }
         
-        /* القائمة الجانبية المحسنة */
         .mobile-menu {
             position: fixed;
             top: 0;
             right: -100%;
-            width: 85%;
-            max-width: 300px;
+            width: 80%;
+            max-width: 320px;
             height: 100vh;
-            background: white;
-            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: -10px 0 40px rgba(0,0,0,0.1);
             z-index: 1100;
             transition: right 0.3s ease;
-            padding: 1.2rem;
+            padding: 24px 20px;
             overflow-y: auto;
         }
         
@@ -147,30 +150,31 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--light-gray);
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid var(--light-gray);
         }
         
         .mobile-menu-header h3 {
             color: var(--primary);
             font-size: 1.1rem;
+            font-weight: 800;
         }
         
         .close-mobile-menu {
-            background: none;
+            background: var(--light-gray);
             border: none;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: var(--dark);
             cursor: pointer;
+            padding: 6px 12px;
+            border-radius: 12px;
             transition: var(--transition);
-            padding: 0.2rem;
-            border-radius: 50%;
         }
         
         .close-mobile-menu:hover {
-            color: var(--danger);
-            background: var(--light-gray);
+            background: var(--danger);
+            color: white;
         }
         
         .mobile-menu-links {
@@ -178,7 +182,7 @@
         }
         
         .mobile-menu-links li {
-            margin-bottom: 1rem;
+            margin-bottom: 6px;
         }
         
         .mobile-menu-links a {
@@ -188,134 +192,89 @@
             font-size: 0.95rem;
             display: flex;
             align-items: center;
-            padding: 0.6rem 0.8rem;
+            padding: 12px 16px;
             border-radius: var(--border-radius);
             transition: var(--transition);
+            gap: 12px;
         }
         
         .mobile-menu-links a i {
-            margin-left: 0.6rem;
-            font-size: 1rem;
-            color: var(--medium-gray);
+            font-size: 1.1rem;
+            color: var(--primary);
+            width: 28px;
+            text-align: center;
         }
         
         .mobile-menu-links a:hover,
         .mobile-menu-links a.active {
-            background: var(--light-gray);
+            background: linear-gradient(135deg, rgba(108, 92, 231, 0.1), rgba(253, 121, 168, 0.1));
             color: var(--primary);
-            transform: translateX(-3px);
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 1.5rem 1.2rem;
+            padding: 16px 16px 80px;
         }
         
-        /* تحسينات للرأس */
-        .header {
-            text-align: center;
-            margin-bottom: 2rem;
-            position: relative;
-            overflow: hidden;
-            padding: 1.5rem 1rem;
-            border-radius: var(--border-radius);
-            background: linear-gradient(135deg, rgba(74, 107, 255, 0.05) 0%, rgba(108, 92, 231, 0.05) 100%);
-        }
-        
-        .header::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            background: url('https://i.postimg.cc/x1Xncp9W/logo.png') no-repeat;
-            background-size: 25%;
-            background-position: 90% 50%;
-            opacity: 0.03;
-            z-index: 0;
-        }
-        
-        .logo {
-            width: 5rem;
-            height: 5rem;
-            margin: 0 auto 1rem;
-            object-fit: contain;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .page-title {
-            color: var(--primary);
-            font-size: 1.6rem;
-            margin-bottom: 0.6rem;
-            font-weight: 800;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .page-subtitle {
-            color: var(--dark-gray);
-            font-size: 0.95rem;
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.6;
-            position: relative;
-            z-index: 1;
-        }
-        
-        /* تحسينات صندوق البحث */
         .search-container {
-            margin: 1.5rem auto;
+            margin: 0 auto 16px;
             width: 100%;
-            max-width: 500px;
             position: relative;
         }
         
         .search-box {
             width: 100%;
-            padding: 0.8rem 1.2rem;
-            border: 1px solid var(--light-gray);
+            padding: 14px 20px 14px 50px;
+            border: none;
             border-radius: 50px;
             font-family: 'Tajawal';
             font-size: 0.9rem;
             outline: none;
             transition: var(--transition);
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(10px);
+            color: var(--dark);
             box-shadow: var(--shadow);
-            padding-right: 3rem;
         }
         
         .search-box:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(74, 107, 255, 0.2);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.15), var(--shadow);
+            transform: translateY(-2px);
+        }
+        
+        .search-box::placeholder {
+            color: var(--medium-gray);
         }
         
         .search-container i {
             position: absolute;
             top: 50%;
-            right: 1.2rem;
+            right: 20px;
             transform: translateY(-50%);
-            color: var(--medium-gray);
+            color: var(--primary);
             font-size: 1rem;
+            opacity: 0.6;
         }
         
-        /* نظام التبويبات المحسن */
         .tabs-container {
-            background: white;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(10px);
             border-radius: var(--border-radius);
-            box-shadow: var(--shadow-lg);
+            box-shadow: var(--shadow);
             overflow: hidden;
-            margin: 2rem 0;
-            border: 1px solid var(--light-gray);
+            margin: 0 0 20px;
+            border: 1px solid rgba(255,255,255,0.3);
         }
         
         .main-tabs {
             display: flex;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
+            background: var(--light-gray);
             overflow-x: auto;
             scrollbar-width: none;
-            padding: 0.4rem 0.4rem;
+            padding: 6px;
+            gap: 4px;
         }
         
         .main-tabs::-webkit-scrollbar {
@@ -323,33 +282,41 @@
         }
         
         .main-tab {
-            padding: 0.7rem 1.2rem;
-            color: white;
+            padding: 10px 16px;
+            color: var(--dark-gray);
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
             white-space: nowrap;
-            position: relative;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             flex-shrink: 0;
-            margin: 0 0.2rem;
             border-radius: 50px;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .main-tab i {
+            font-size: 0.8rem;
         }
         
         .main-tab:hover {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(108, 92, 231, 0.08);
+            color: var(--primary);
         }
         
         .main-tab.active {
-            background: rgba(255, 255, 255, 0.25);
-            box-shadow: 0 3px 5px rgba(0,0,0,0.1);
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
         }
         
         .sub-tabs-container {
-            padding: 0.8rem;
-            background: var(--light-gray);
+            padding: 10px 12px;
+            background: rgba(255,255,255,0.5);
             display: none;
-            border-top: 1px solid var(--light-gray);
+            border-top: 1px solid rgba(0,0,0,0.05);
         }
         
         .sub-tabs-container.active {
@@ -360,33 +327,32 @@
         .sub-tabs {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.6rem;
-            margin-bottom: 0.4rem;
+            gap: 6px;
         }
         
         .sub-tab {
-            background: white;
-            border: 1px solid var(--light-gray);
-            padding: 0.4rem 1rem;
+            background: rgba(255,255,255,0.8);
+            padding: 6px 14px;
             border-radius: 50px;
             cursor: pointer;
             transition: var(--transition);
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 500;
-            box-shadow: var(--shadow);
-            flex-shrink: 0;
+            color: var(--dark-gray);
+            border: 1px solid rgba(0,0,0,0.05);
         }
         
         .sub-tab:hover {
-            border-color: var(--primary);
+            background: rgba(108, 92, 231, 0.08);
             color: var(--primary);
+            border-color: var(--primary-light);
         }
         
         .sub-tab.active {
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
             color: white;
-            border-color: var(--primary);
-            box-shadow: 0 3px 6px rgba(74, 107, 255, 0.2);
+            border-color: transparent;
+            box-shadow: 0 2px 10px rgba(108, 92, 231, 0.25);
         }
         
         @keyframes fadeIn {
@@ -394,65 +360,52 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
-        /* عنوان القسم المحسن */
         .section-title {
-            color: var(--primary);
-            font-size: 1.3rem;
-            margin: 1.5rem 0 1.2rem;
-            position: relative;
-            padding-right: 0.8rem;
+            color: var(--dark);
+            font-size: 1.2rem;
+            margin: 8px 0 16px;
+            font-weight: 800;
             display: flex;
             align-items: center;
-        }
-        
-        .section-title::after {
-            content: "";
-            position: absolute;
-            right: 0;
-            bottom: -0.4rem;
-            width: 2.5rem;
-            height: 2px;
-            background: linear-gradient(to right, var(--accent), var(--primary));
-            border-radius: 2px;
+            gap: 10px;
         }
         
         .section-title i {
-            margin-left: 0.6rem;
-            color: var(--accent);
+            color: var(--primary);
             font-size: 1.1rem;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         
-        /* شبكة الكتب المعدلة لعرض منتجين في الصف */
+        /* شبكة الكتب - منتجين جنب بعض */
         .books-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1.2rem;
-            margin-top: 1.2rem;
+            gap: 14px;
+            margin-top: 4px;
         }
         
         .book-card {
-            background: white;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
             border-radius: var(--border-radius);
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: var(--transition);
             position: relative;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            opacity: 0;
-            transform: translateY(15px);
-            animation: cardAppear 0.5s ease forwards;
+            border: 1px solid rgba(255,255,255,0.5);
+            cursor: pointer;
+            animation: cardAppear 0.4s ease forwards;
+        }
+        
+        .book-card:active {
+            transform: scale(0.97);
         }
         
         @keyframes cardAppear {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .book-card:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-lg);
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .book-card::before {
@@ -461,38 +414,46 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
-            background: linear-gradient(to right, var(--primary), var(--accent));
+            height: 4px;
+            background: linear-gradient(to right, var(--gradient-start), var(--secondary), var(--accent));
+            z-index: 2;
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
         }
         
+        /* تعديل صورة الكتاب لتظهر كاملة */
         .book-image {
-            height: 160px;
+            height: 200px;
             overflow: hidden;
             position: relative;
+            background: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
         }
         
         .book-image img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             transition: transform 0.4s ease;
         }
         
         .book-card:hover .book-image img {
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
         
         .book-info {
-            padding: 0.8rem;
-            position: relative;
+            padding: 12px 14px 14px;
         }
         
         .book-title {
             font-size: 0.85rem;
             font-weight: 700;
-            margin-bottom: 0.4rem;
+            margin-bottom: 4px;
             color: var(--dark);
             display: -webkit-box;
+            -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
             min-height: 2.4rem;
@@ -501,35 +462,34 @@
         
         .book-desc {
             color: var(--medium-gray);
-            margin-bottom: 0.4rem;
-            font-size: 0.75rem;
+            margin-bottom: 6px;
+            font-size: 0.7rem;
             display: -webkit-box;
+            -webkit-line-clamp: 1;
             -webkit-box-orient: vertical;
             overflow: hidden;
-            min-height: 1.8rem;
-            line-height: 1.5;
         }
         
         .book-rating {
             color: #FFD700;
-            margin-bottom: 0.4rem;
-            font-size: 0.7rem;
+            margin-bottom: 6px;
+            font-size: 0.65rem;
             display: flex;
             align-items: center;
-            gap: 0.2rem;
+            gap: 4px;
         }
         
         .book-rating span {
             color: var(--dark-gray);
-            margin-right: 0.2rem;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
+            font-weight: 600;
         }
         
         .book-price-container {
             display: flex;
             flex-direction: column;
-            gap: 0.4rem;
-            margin-top: 0.4rem;
+            gap: 8px;
+            margin-top: 6px;
         }
         
         .book-price {
@@ -539,13 +499,13 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 0.4rem;
+            gap: 4px;
         }
         
         .original-price {
             text-decoration: line-through;
             color: var(--medium-gray);
-            font-size: 0.75rem;
+            font-size: 0.7rem;
         }
         
         .discount-price {
@@ -558,203 +518,191 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 0.5rem 0.7rem;
-            border-radius: var(--border-radius);
+            padding: 10px 14px;
+            border-radius: 50px;
             font-family: 'Tajawal';
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             transition: var(--transition);
             text-decoration: none;
             border: none;
             outline: none;
-            position: relative;
-            overflow: hidden;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             width: 100%;
+            gap: 8px;
         }
         
         .btn-primary {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
             color: white;
-            box-shadow: var(--shadow);
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
         }
         
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-            background: linear-gradient(to right, var(--primary-dark), var(--secondary));
+            box-shadow: 0 6px 25px rgba(108, 92, 231, 0.4);
         }
         
-        .btn-whatsapp {
-            background: linear-gradient(to right, #25D366, #128C7E);
-            color: white;
-            box-shadow: var(--shadow);
-            padding: 0.4rem;
-            width: 2.2rem;
-            height: 2.2rem;
-            border-radius: 50%;
+        .btn-primary:active {
+            transform: scale(0.97);
         }
         
-        .btn-whatsapp:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-            background: linear-gradient(to right, #20bd5d, #0e7a6a);
-        }
-        
-        /* شريط التخفيضات المحسن */
         .discount-badge {
             position: absolute;
-            top: 0.6rem;
-            left: 0.6rem;
-            background: linear-gradient(45deg, var(--danger), #ff6b81);
+            top: 10px;
+            left: 10px;
+            background: linear-gradient(135deg, var(--danger), #E17055);
             color: white;
-            padding: 0.2rem 0.5rem;
+            padding: 4px 10px;
             border-radius: 50px;
             font-weight: 800;
-            z-index: 1;
-            font-size: 0.7rem;
-            box-shadow: var(--shadow);
-            animation: pulse 1.5s infinite;
+            z-index: 2;
+            font-size: 0.65rem;
+            box-shadow: 0 4px 15px rgba(225, 112, 85, 0.3);
+            animation: pulse 2s infinite;
         }
         
         @keyframes pulse {
-            0% { transform: scale(1); }
+            0%, 100% { transform: scale(1); }
             50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
         }
         
-        /* رسالة عدم وجود نتائج محسنة */
         .no-results {
             grid-column: 1 / -1;
             text-align: center;
-            padding: 2rem 1rem;
+            padding: 40px 20px;
             color: var(--medium-gray);
-            background: white;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(10px);
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
         }
         
         .no-results i {
-            font-size: 2.5rem;
-            color: var(--light-gray);
-            margin-bottom: 1.2rem;
+            font-size: 3rem;
+            color: var(--primary-light);
+            margin-bottom: 12px;
+            opacity: 0.5;
         }
         
         .no-results h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.6rem;
+            font-size: 1.1rem;
+            margin-bottom: 6px;
             color: var(--dark);
         }
         
         .no-results p {
-            font-size: 0.9rem;
-            max-width: 450px;
+            font-size: 0.85rem;
+            max-width: 300px;
             margin: 0 auto;
-            line-height: 1.6;
         }
         
-        /* الترقيم المحسن */
         .pagination {
             display: flex;
             justify-content: center;
-            margin-top: 2.5rem;
+            margin-top: 24px;
             flex-wrap: wrap;
-            gap: 0.6rem;
+            gap: 6px;
         }
         
         .page-btn {
-            background: white;
-            border: 1px solid var(--light-gray);
-            padding: 0.4rem 0.8rem;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0,0,0,0.05);
+            padding: 8px 14px;
             border-radius: 50px;
             cursor: pointer;
             transition: var(--transition);
             font-family: 'Tajawal';
-            min-width: 2.2rem;
+            min-width: 36px;
             text-align: center;
             font-size: 0.8rem;
-            font-weight: 500;
+            font-weight: 600;
             box-shadow: var(--shadow);
+            color: var(--dark);
         }
         
-        .page-btn:hover:not(.active) {
-            background: var(--secondary);
+        .page-btn:hover:not(.active):not(.disabled) {
+            background: var(--primary);
             color: white;
-            border-color: var(--secondary);
+            border-color: var(--primary);
             transform: translateY(-2px);
         }
         
         .page-btn.active {
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
             color: white;
-            border-color: var(--primary);
-            box-shadow: 0 3px 6px rgba(74, 107, 255, 0.2);
+            border-color: transparent;
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
         }
         
         .page-btn.disabled {
-            opacity: 0.5;
+            opacity: 0.4;
             cursor: not-allowed;
             transform: none !important;
         }
         
-        /* سلة التسوق المحسنة */
         .cart-container {
             position: fixed;
-            bottom: 1.5rem;
-            left: 1.5rem;
+            bottom: 24px;
+            left: 24px;
             z-index: 1000;
         }
         
         .cart-btn {
-            background: linear-gradient(45deg, var(--accent), #ff8c66);
+            background: linear-gradient(135deg, var(--gradient-start), var(--secondary));
             color: white;
-            width: 3rem;
-            height: 3rem;
+            width: 56px;
+            height: 56px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.3rem;
-            box-shadow: 0 4px 15px rgba(255, 118, 117, 0.3);
+            box-shadow: 0 8px 30px rgba(108, 92, 231, 0.4);
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             position: relative;
         }
         
         .cart-btn:hover {
-            transform: scale(1.05) rotate(5deg);
-            box-shadow: 0 6px 20px rgba(255, 118, 117, 0.4);
+            transform: scale(1.05) rotate(-5deg);
+            box-shadow: 0 12px 40px rgba(108, 92, 231, 0.5);
+        }
+        
+        .cart-btn:active {
+            transform: scale(0.95);
         }
         
         .cart-count {
             position: absolute;
-            top: -0.2rem;
-            right: -0.2rem;
-            background: var(--primary);
+            top: -4px;
+            right: -4px;
+            background: var(--danger);
             color: white;
-            width: 1.3rem;
-            height: 1.3rem;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 0.7rem;
             font-weight: 800;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 12px rgba(225, 112, 85, 0.4);
+            border: 2px solid white;
         }
         
-        /* مودال السلة المحسن */
         .modal {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(3px);
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
             display: none;
             justify-content: center;
-            align-items: center;
+            align-items: flex-end;
             z-index: 2000;
             opacity: 0;
             transition: opacity 0.3s ease;
@@ -765,17 +713,17 @@
         }
         
         .modal-content {
-            background: white;
-            width: 95%;
-            max-width: 450px;
-            border-radius: var(--border-radius);
-            padding: 1.2rem;
-            box-shadow: var(--shadow-lg);
-            max-height: 85vh;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            width: 100%;
+            max-width: 500px;
+            border-radius: 24px 24px 0 0;
+            padding: 24px 20px 28px;
+            box-shadow: 0 -10px 50px rgba(0,0,0,0.1);
+            max-height: 80vh;
             overflow-y: auto;
-            transform: translateY(15px);
+            transform: translateY(20px);
             transition: transform 0.3s ease;
-            position: relative;
         }
         
         .modal.show .modal-content {
@@ -786,83 +734,86 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.2rem;
-            padding-bottom: 0.8rem;
-            border-bottom: 1px solid var(--light-gray);
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid var(--light-gray);
         }
         
         .modal-title {
-            font-size: 1.3rem;
-            color: var(--primary);
+            font-size: 1.2rem;
+            color: var(--dark);
             margin: 0;
             display: flex;
             align-items: center;
-            gap: 0.6rem;
+            gap: 10px;
+            font-weight: 800;
+        }
+        
+        .modal-title i {
+            color: var(--primary);
         }
         
         .close-modal {
-            background: none;
+            background: var(--light-gray);
             border: none;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             cursor: pointer;
-            color: var(--medium-gray);
+            color: var(--dark);
             transition: var(--transition);
-            padding: 0.2rem;
-            border-radius: 50%;
+            padding: 6px 12px;
+            border-radius: 12px;
         }
         
         .close-modal:hover {
-            color: var(--danger);
-            background: var(--light-gray);
+            background: var(--danger);
+            color: white;
         }
         
         .cart-items {
-            margin-bottom: 1.2rem;
+            margin-bottom: 16px;
         }
         
         .cart-item {
             display: flex;
             align-items: center;
-            margin-bottom: 0.8rem;
-            padding-bottom: 0.8rem;
+            gap: 12px;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
             border-bottom: 1px solid var(--light-gray);
-            transition: var(--transition);
         }
         
         .cart-item:last-child {
             border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-        
-        .cart-item:hover {
-            transform: translateX(3px);
         }
         
         .cart-item-img {
-            width: 3.5rem;
-            height: 4.5rem;
-            object-fit: cover;
-            border-radius: var(--border-radius);
-            margin-left: 0.8rem;
+            width: 56px;
+            height: 72px;
+            object-fit: contain;
+            border-radius: 12px;
             box-shadow: var(--shadow);
+            flex-shrink: 0;
+            background: var(--light-gray);
+            padding: 4px;
         }
         
         .cart-item-details {
             flex: 1;
+            min-width: 0;
         }
         
         .cart-item-title {
             font-weight: 700;
-            margin-bottom: 0.2rem;
             font-size: 0.85rem;
             color: var(--dark);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
         .cart-item-desc {
             color: var(--medium-gray);
-            font-size: 0.75rem;
-            margin-bottom: 0.4rem;
+            font-size: 0.7rem;
         }
         
         .cart-item-price {
@@ -873,23 +824,24 @@
         
         .remove-item {
             color: var(--danger);
-            background: none;
+            background: var(--light-gray);
             border: none;
             cursor: pointer;
-            font-size: 1rem;
-            padding: 0.4rem;
-            border-radius: 50%;
+            font-size: 0.9rem;
+            padding: 8px 10px;
+            border-radius: 12px;
             transition: var(--transition);
+            flex-shrink: 0;
         }
         
         .remove-item:hover {
-            background: var(--light-gray);
-            transform: scale(1.05);
+            background: var(--danger);
+            color: white;
         }
         
         .cart-footer {
-            border-top: 1px solid var(--light-gray);
-            padding-top: 1.2rem;
+            border-top: 2px solid var(--light-gray);
+            padding-top: 16px;
         }
         
         .cart-total {
@@ -897,7 +849,7 @@
             justify-content: space-between;
             font-weight: 800;
             font-size: 1.1rem;
-            margin-bottom: 1.2rem;
+            margin-bottom: 14px;
             color: var(--dark);
         }
         
@@ -907,26 +859,29 @@
         
         .checkout-btn {
             width: 100%;
-            padding: 0.8rem;
-            font-size: 0.9rem;
+            padding: 14px;
+            font-size: 0.95rem;
             font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.6rem;
+            border-radius: var(--border-radius);
+            gap: 10px;
         }
         
-        /* مودال تفاصيل الكتاب المحسن */
         .book-details-modal .modal-content {
-            max-width: 95%;
+            border-radius: 24px 24px 0 0;
             padding: 0;
             overflow: hidden;
+            max-height: 90vh;
         }
         
         .book-details-header {
             position: relative;
-            height: 220px;
+            height: 240px;
             overflow: hidden;
+            background: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
         }
         
         .book-details-header::after {
@@ -935,109 +890,100 @@
             bottom: 0;
             left: 0;
             right: 0;
-            height: 80px;
-            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-            z-index: 1;
+            height: 70px;
+            background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
         }
         
         .book-details-header img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-        
-        .book-details-modal:hover .book-details-header img {
-            transform: scale(1.03);
+            object-fit: contain;
         }
         
         .book-details-body {
-            padding: 1.2rem;
+            padding: 20px;
         }
         
         .book-details-title {
-            font-size: 1.3rem;
-            color: var(--primary);
-            margin-bottom: 0.4rem;
+            font-size: 1.2rem;
+            color: var(--dark);
+            margin-bottom: 4px;
             font-weight: 800;
-            line-height: 1.4;
         }
         
         .book-details-author {
             color: var(--medium-gray);
-            font-size: 0.9rem;
-            margin-bottom: 1.2rem;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
-            gap: 0.4rem;
+            gap: 6px;
         }
         
         .book-details-author i {
-            color: var(--accent);
-            font-size: 0.9rem;
+            color: var(--secondary);
         }
         
         .book-details-rating {
-            margin-bottom: 1.2rem;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
         }
         
         .book-details-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.4rem;
-            margin: 1.2rem 0;
+            gap: 6px;
+            margin: 10px 0;
         }
         
         .book-details-tags .book-tag {
             background: var(--light-gray);
             color: var(--dark-gray);
-            padding: 0.3rem 0.7rem;
+            padding: 4px 12px;
             border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            border: 1px solid var(--light-gray);
+            font-size: 0.7rem;
+            font-weight: 600;
+            border: 1px solid rgba(0,0,0,0.05);
         }
         
         .book-details-price {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 800;
             color: var(--primary);
-            margin: 1.2rem 0;
+            margin: 12px 0;
             display: flex;
             align-items: center;
-            gap: 0.8rem;
+            gap: 10px;
         }
         
         .book-details-price .original-price {
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: var(--medium-gray);
             text-decoration: line-through;
         }
         
         .book-details-description {
             line-height: 1.7;
-            margin-bottom: 1.2rem;
+            margin-bottom: 16px;
             color: var(--dark-gray);
             font-size: 0.9rem;
         }
         
         .book-details-actions {
             display: flex;
-            gap: 0.8rem;
-            margin-top: 1.5rem;
+            gap: 10px;
+            margin-top: 16px;
         }
         
         .book-details-actions .btn {
             flex: 1;
+            padding: 12px;
+            font-size: 0.85rem;
         }
         
         .btn-outline {
             background: white;
-            border: 1px solid var(--primary);
+            border: 2px solid var(--primary);
             color: var(--primary);
             font-weight: 700;
         }
@@ -1046,47 +992,72 @@
             background: var(--light-gray);
         }
         
-        /* زر العودة في تفاصيل الكتاب */
         .btn-close-details {
             position: absolute;
-            bottom: 1.2rem;
-            left: 1.2rem;
-            background: var(--primary);
-            color: white;
+            bottom: 16px;
+            left: 16px;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            color: var(--dark);
             z-index: 2;
-            padding: 0.6rem 1.2rem;
+            padding: 8px 16px;
             border-radius: 50px;
             box-shadow: var(--shadow-lg);
             display: flex;
             align-items: center;
-            gap: 0.4rem;
-            font-weight: 600;
+            gap: 8px;
+            font-weight: 700;
             transition: var(--transition);
-            font-size: 0.9rem;
+            font-size: 0.8rem;
+            border: none;
+            cursor: pointer;
         }
         
         .btn-close-details:hover {
-            background: var(--primary-dark);
+            background: white;
             transform: translateY(-2px);
-            box-shadow: 0 5px 12px rgba(74, 107, 255, 0.3);
         }
         
-        /* رسالة تأكيد محسنة */
+        .close-details {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        
+        .close-details:hover {
+            background: rgba(0,0,0,0.7);
+            transform: rotate(90deg);
+        }
+        
         .confirmation {
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: white;
-            padding: 1.5rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-lg);
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            padding: 32px 28px;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
             text-align: center;
             z-index: 3000;
             display: none;
             max-width: 90%;
-            width: 100%;
-            max-width: 350px;
+            width: 340px;
             opacity: 0;
             transition: opacity 0.3s ease;
         }
@@ -1096,9 +1067,9 @@
         }
         
         .confirmation i {
-            font-size: 3rem;
+            font-size: 3.5rem;
             color: #25D366;
-            margin-bottom: 1.2rem;
+            margin-bottom: 14px;
             animation: bounce 0.7s;
         }
         
@@ -1109,145 +1080,109 @@
         }
         
         .confirmation h3 {
-            margin-bottom: 0.8rem;
-            color: var(--primary);
-            font-size: 1.3rem;
+            margin-bottom: 8px;
+            color: var(--dark);
+            font-size: 1.2rem;
         }
         
         .confirmation p {
-            margin-bottom: 1.2rem;
+            margin-bottom: 16px;
             color: var(--medium-gray);
             font-size: 0.9rem;
             line-height: 1.6;
         }
         
         .confirmation-btn {
-            padding: 0.8rem;
+            padding: 12px;
             width: 100%;
             font-weight: 700;
             font-size: 0.9rem;
         }
         
-        /* رسالة Toast */
         .toast-notification {
             position: fixed;
-            bottom: 1.5rem;
+            bottom: 90px;
             left: 50%;
             transform: translateX(-50%);
-            background: var(--dark);
+            background: rgba(45, 52, 54, 0.95);
+            backdrop-filter: blur(10px);
             color: white;
-            padding: 0.8rem 1.5rem;
+            padding: 12px 24px;
             border-radius: 50px;
-            font-size: 0.9rem;
-            box-shadow: var(--shadow-lg);
+            font-size: 0.85rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
             z-index: 4000;
             opacity: 0;
             transition: opacity 0.3s ease;
+            max-width: 90%;
+            text-align: center;
+            font-weight: 500;
         }
         
         .toast-notification.show {
             opacity: 1;
         }
         
-        /* تحسينات للشاشات الصغيرة جداً */
-        @media (max-width: 400px) {
-            .books-grid {
-                gap: 0.8rem;
-            }
-            
+        @media (max-width: 380px) {
             .book-image {
-                height: 140px;
+                height: 160px;
             }
             
             .book-title {
-                font-size: 0.8rem;
-            }
-            
-            .book-desc {
-                font-size: 0.7rem;
-            }
-            
-            .btn {
-                padding: 0.4rem 0.6rem;
                 font-size: 0.75rem;
-            }
-            
-            .page-title {
-                font-size: 1.3rem;
-            }
-            
-            .page-subtitle {
-                font-size: 0.85rem;
-            }
-        }
-        
-        /* تحسينات للشاشات المتوسطة */
-        @media (min-width: 768px) {
-            .container {
-                padding: 2rem;
-            }
-            
-            .books-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 1.5rem;
-            }
-            
-            .book-image {
-                height: 180px;
-            }
-            
-            .book-title {
-                font-size: 0.9rem;
-            }
-            
-            .book-desc {
-                font-size: 0.8rem;
+                min-height: 2rem;
             }
             
             .btn {
-                padding: 0.6rem 0.9rem;
-                font-size: 0.85rem;
+                font-size: 0.65rem;
+                padding: 8px 10px;
             }
             
-            .nav-links {
-                display: flex;
-            }
-            
-            .mobile-menu-btn {
-                display: none;
+            .books-grid {
+                gap: 10px;
             }
         }
         
-        /* تحسينات للشاشات الكبيرة */
-        @media (min-width: 992px) {
+        @media (min-width: 768px) {
             .books-grid {
-                grid-template-columns: repeat(4, 1fr);
+                grid-template-columns: repeat(2, 1fr);
+                gap: 18px;
+                max-width: 700px;
+                margin-left: auto;
+                margin-right: auto;
             }
             
             .book-image {
-                height: 200px;
+                height: 240px;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .books-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 24px;
+                max-width: 800px;
+                margin-left: auto;
+                margin-right: auto;
             }
             
-            .page-title {
-                font-size: 2rem;
+            .book-image {
+                height: 260px;
             }
             
-            .page-subtitle {
-                font-size: 1.1rem;
-            }
-            
-            .section-title {
-                font-size: 1.5rem;
+            .container {
+                padding: 24px 24px 80px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- شريط التنقل المحسن -->
+    <!-- شريط التنقل -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
                 <img src="https://i.postimg.cc/x1Xncp9W/logo.png" alt="شعار مكتبة الطلبة">
+                <i class="fas fa-book-open"></i>
                 مكتبة الطلبة
             </a>
             
@@ -1262,10 +1197,10 @@
         </div>
     </nav>
     
-    <!-- القائمة الجانبية المحسنة للهاتف -->
+    <!-- القائمة الجانبية -->
     <div class="mobile-menu" id="mobile-menu">
         <div class="mobile-menu-header">
-            <h3>مكتبة الطلبة</h3>
+            <h3><i class="fas fa-book-open" style="color: var(--primary);"></i> مكتبة الطلبة</h3>
             <button class="close-mobile-menu">
                 <i class="fas fa-times"></i>
             </button>
@@ -1275,24 +1210,24 @@
             <li><a href="product.html" class="active"><i class="fas fa-book-open"></i> المنتجات</a></li>
         </ul>
     </div>
-
+    
     <div class="container">
+        <!-- صندوق البحث -->
         <div class="search-container">
             <input type="text" class="search-box" placeholder="ابحث عن كتاب، مؤلف أو صف دراسي...">
             <i class="fas fa-search"></i>
         </div>
         
-        <!-- نظام التبويبات المحسن -->
+        <!-- نظام التبويبات -->
         <div class="tabs-container">
             <div class="main-tabs">
-                <div class="main-tab active" data-category="all">الكل <i class="fas fa-book"></i></div>
-                <div class="main-tab" data-category="kindergarten">رياض أطفال <i class="fas fa-child"></i></div>
-                <div class="main-tab" data-category="primary">المرحلة الابتدائية <i class="fas fa-school"></i></div>
-                <div class="main-tab" data-category="preparatory">المرحلة الإعدادية <i class="fas fa-graduation-cap"></i></div>
-                <div class="main-tab" data-category="secondary">المرحلة الثانوية <i class="fas fa-user-graduate"></i></div>
+                <div class="main-tab active" data-category="all"><i class="fas fa-book"></i> الكل</div>
+                <div class="main-tab" data-category="kindergarten"><i class="fas fa-child"></i> رياض أطفال</div>
+                <div class="main-tab" data-category="primary"><i class="fas fa-school"></i> ابتدائي</div>
+                <div class="main-tab" data-category="preparatory"><i class="fas fa-graduation-cap"></i> إعدادي</div>
+                <div class="main-tab" data-category="secondary"><i class="fas fa-user-graduate"></i> ثانوي</div>
             </div>
             
-            <!-- تبويبات المرحلة الابتدائية -->
             <div class="sub-tabs-container" data-for-category="primary">
                 <div class="sub-tabs">
                     <div class="sub-tab active" data-grade="all">الكل</div>
@@ -1305,7 +1240,6 @@
                 </div>
             </div>
             
-            <!-- تبويبات المرحلة الإعدادية -->
             <div class="sub-tabs-container" data-for-category="preparatory">
                 <div class="sub-tabs">
                     <div class="sub-tab active" data-grade="all">الكل</div>
@@ -1315,7 +1249,6 @@
                 </div>
             </div>
             
-            <!-- تبويبات المرحلة الثانوية -->
             <div class="sub-tabs-container" data-for-category="secondary">
                 <div class="sub-tabs">
                     <div class="sub-tab active" data-grade="all">الكل</div>
@@ -1331,35 +1264,34 @@
         </h2>
         
         <div class="books-grid" id="books-container">
-            <!-- الكتب سيتم إضافتها هنا بواسطة الجافاسكريبت -->
+            <!-- الكتب ستضاف هنا -->
         </div>
         
         <div class="pagination" id="pagination">
-            <!-- أزرار الترقيم ستضاف هنا بالجافاسكريبت -->
+            <!-- أزرار الترقيم ستضاف هنا -->
         </div>
     </div>
     
-    <!-- سلة التسوق المحسنة -->
+    <!-- سلة التسوق -->
     <div class="cart-container">
-        <div class="cart-btn pulse">
+        <div class="cart-btn">
             <i class="fas fa-shopping-cart"></i>
             <span class="cart-count">0</span>
         </div>
     </div>
     
-    <!-- نافذة السلة المحسنة -->
+    <!-- مودال السلة -->
     <div class="modal" id="cart-modal">
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title"><i class="fas fa-shopping-cart"></i> سلة التسوق</h3>
-                <button class="close-modal">&times;</button>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
             </div>
             <div class="cart-items" id="cart-items">
-                <!-- العناصر تضاف هنا بالجافاسكريبت -->
-                <div class="no-results" id="cart-empty-message" style="display: none;">
+                <div class="no-results" id="cart-empty-message" style="display: none; padding: 20px;">
                     <i class="fas fa-shopping-basket"></i>
-                    <h3>سلة التسوق فارغة</h3>
-                    <p>لم تقم بإضافة أي كتب إلى السلة بعد</p>
+                    <h3 style="font-size: 0.9rem;">السلة فارغة</h3>
+                    <p style="font-size: 0.8rem;">لم تقم بإضافة أي كتب بعد</p>
                 </div>
             </div>
             <div class="cart-footer" id="cart-footer" style="display: none;">
@@ -1374,22 +1306,14 @@
         </div>
     </div>
     
-    <!-- رسالة تأكيد محسنة -->
-    <div class="confirmation" id="confirmation">
-        <i class="fab fa-whatsapp"></i>
-        <h3>تم إرسال طلبك بنجاح!</h3>
-        <p>سيتم التواصل معك عبر واتساب خلال دقائق لتأكيد الطلب وتفاصيل التسليم. شكراً لثقتك بمكتبة الطلبة!</p>
-        <button class="btn btn-primary confirmation-btn">حسناً</button>
-    </div>
-    
-    <!-- مودال تفاصيل الكتاب المحسن -->
+    <!-- مودال تفاصيل الكتاب -->
     <div class="modal book-details-modal" id="book-details-modal">
         <div class="modal-content">
             <div class="book-details-header">
                 <img id="details-book-image" src="" alt="صورة الكتاب">
-                <button class="close-modal close-details">&times;</button>
-                <button class="btn btn-close-details" id="btn-close-details">
-                    <i class="fas fa-arrow-right"></i> العودة للكتب
+                <button class="close-details"><i class="fas fa-times"></i></button>
+                <button class="btn-close-details" id="btn-close-details">
+                    <i class="fas fa-arrow-right"></i> العودة
                 </button>
             </div>
             <div class="book-details-body">
@@ -1397,19 +1321,10 @@
                 <p class="book-details-author">
                     <i class="fas fa-user-edit"></i> <span id="details-book-author"></span>
                 </p>
-                
-                <div class="book-rating book-details-rating" id="details-book-rating"></div>
-                
+                <div class="book-details-rating" id="details-book-rating"></div>
                 <div class="book-details-tags" id="details-book-tags"></div>
-                
                 <div class="book-details-price" id="details-book-price"></div>
-                
-                <p class="book-details-description" id="details-book-description">
-                    هذا الكتاب هو مرجع شامل يغطي جميع جوانب المنهج الدراسي. يحتوي على شرح مفصل لكل الدروس،
-                    أمثلة تطبيقية، تمارين متنوعة، أسئلة امتحانات سابقة مع الحلول، ونماذج اختبارات لتقييم المستوى.
-                    تم إعداده بأسلوب سهل ومبسط يناسب جميع مستويات الطلاب.
-                </p>
-                
+                <p class="book-details-description" id="details-book-description"></p>
                 <div class="book-details-actions">
                     <button class="btn btn-outline" id="details-add-to-cart">
                         <i class="fas fa-cart-plus"></i> أضف للسلة
@@ -1422,153 +1337,2262 @@
         </div>
     </div>
     
+    <!-- رسالة تأكيد -->
+    <div class="confirmation" id="confirmation">
+        <i class="fab fa-whatsapp"></i>
+        <h3>تم إرسال طلبك بنجاح! 🎉</h3>
+        <p>سيتم التواصل معك عبر واتساب خلال دقائق لتأكيد الطلب وتفاصيل التسليم. شكراً لثقتك بمكتبة الطلبة!</p>
+        <button class="btn btn-primary confirmation-btn">حسناً</button>
+    </div>
+    
     <script>
-        // بيانات الكتب المحسنة
+        // بيانات الكتب (نفس البيانات السابقة)
         const books = [
              {
-                id: 1,
-                name: " كتاب الاضواء فى الرياضيات 2027 ",
-                price:149   ,
-                desc: " للصف الأول الإبتدائى  ",
-                image: "https://i.postimg.cc/HLKyzZNF/Cam-Scanner-13-07-2026-11-15-3.jpg",
-                category: "primary",
-                grade: "grade1",
-                author: "مكتبة الطلــبة",
-                tags: ["الأضواء  ", "الرياضيات "],
-                availability: "متوفر",
-                rating: 5
-            },
-                  {
-                id: 2,
-                name: " كتاب جيم فى اللغة الإنجليزية 2027 ",
-                price:165   ,
-                desc: " للصف الثانى الإبتدائى  ",
-                image: "https://i.postimg.cc/J4zmPrWT/Cam-Scanner-13-07-2026-11-15-4.jpg",
-                category: "primary",
-                grade: "grade2",
-                author: "مكتبة الطلــبة",
-                tags: ["الأضواء  ", "اللغة الإنجليزية "],
-                availability: "متوفر",
-                rating: 5
-            },
-                             {
-                id: 3,
-                name: " كتاب جيم فى اللغة الإنجليزية 2027 ",
-                price:165   ,
-                desc: " للصف الأول الإبتدائى  ",
-                image: "https://i.postimg.cc/zf5xFf96/Cam-Scanner-13-07-2026-11-15-5.jpg",
-                category: "primary",
-                grade: "grade2",
-                author: "مكتبة الطلــبة",
-                tags: ["الأضواء  ", "اللغة الإنجليزية "],
-                availability: "متوفر",
-                rating: 5
-            },
-                             {
-                id: 4,
-                name: " كتاب جيم فى اللغة الإنجليزية 2027 ",
-                price:179   ,
-                desc: " للصف السادس الإبتدائى  ",
-                image: "https://i.postimg.cc/bNkMx4ZW/Cam-Scanner-13-07-2026-11-15-2.jpg",
-                category: "primary",
-                grade: "grade6",
-                author: "مكتبة الطلــبة",
-                tags: ["الأضواء  ", "اللغة الإنجليزية "],
-                availability: "متوفر",
-                rating: 5
-            },
-                      {
-                id: 5,
-                name: " كتاب الأضواء فى اللغة العربية 2027 ",
-                price:159   ,
-                desc: " للصف الأول الإبتدائى  ",
-                image: "https://i.postimg.cc/k5pf3yV6/Cam-Scanner-13-07-2026-11-15-7.jpg",
-                category: "primary",
-                grade: "grade1",
-                author: "مكتبة الطلــبة",
-                tags: ["الأضواء  ", "اللغة العربية "],
-                availability: "متوفر",
-                rating: 5
-            },
-                      {
-                id: 6,
-                name: " كتاب الأضواء فى اللغة العربية 2027 ",
-                price:159   ,
-                desc: " للصف الثانى الإبتدائى  ",
-                image: "https://i.postimg.cc/YCS6rWBb/Cam-Scanner-13-07-2026-11-15-11.jpg",
-                category: "primary",
-                grade: "grade2",
-                author: "مكتبة الطلــبة",
-                tags: ["الأضواء  ", "اللغة العربية "],
-                availability: "متوفر",
-                rating: 5
-            },
-                                  {
-                id: 7,
-                name: " كتاب الأضواء فى اللغة العربية 2027 ",
-                price:169   ,
-                desc: " للصف الثالث الإبتدائى  ",
-                image: "https://i.postimg.cc/Fszz1g1F/Cam-Scanner-13-07-2026-11-15-9.jpg",
-                category: "primary",
+                id: 178,
+                name: " كتاب أفوجادروا فى الكيمياء مراجعة نهائية 2026 ",
+                price:250   ,
+                desc: " للصف الثالث الثانوى ",
+                image: "https://i.postimg.cc/0QBW2htG/Whats-App-Image-2026-02-28-at-2-02-50-PM.jpg",
+                category: "secondary",
                 grade: "grade3",
                 author: "مكتبة الطلــبة",
-                tags: ["الأضواء  ", "اللغة العربية "],
+                tags: ["  مراجعة  ", "الثانوى "],
+                availability: "متوفر",
+                rating: 5
+            },
+             {
+                id: 177,
+                name: " كتاب الامتحان فيزياء مراجعة نهائية 2026 ",
+                price:299   ,
+                desc: " للصف الثالث الثانوى ",
+                image: "https://i.postimg.cc/dVrzNQ5T/Whats-App-Image-2026-02-28-at-2-02-48-PM.jpg",
+                category: "secondary",
+                grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: ["  مراجعة  ", "الثانوى "],
+                availability: "متوفر",
+                rating: 5
+            },
+             {
+                id: 176,
+                name: " كتاب الامتحان أحياء مراجعة نهائية 2026 ",
+                price:299   ,
+                desc: " للصف الثالث الثانوى ",
+                image: "https://i.postimg.cc/sDXjLWW6/Whats-App-Image-2026-02-28-at-2-02-45-PM.jpg",
+                category: "secondary",
+                grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: ["  مراجعة  ", "الثانوى "],
+                availability: "متوفر",
+                rating: 5
+            },
+                                 {
+                id: 175,
+                name: " كتاب التفوق أحياء مراجعة نهائية 2026 ",
+                price:289   ,
+                desc: " للصف الثالث الثانوى ",
+                image: "https://i.postimg.cc/wjDbrFPf/Whats-App-Image-2026-02-25-at-11-41-20-AM.jpg",
+                category: "secondary",
+                grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: ["  مراجعة  ", "الثانوى "],
+                availability: "متوفر",
+                rating: 5
+            },
+                        {
+                id: 174,
+                name: " كتاب مندليف كيمياء مراجعة نهائية 2026 ",
+                price:280   ,
+                desc: " للصف الثالث الثانوى ",
+                image: "https://i.postimg.cc/NjVfNGht/Whats-App-Image-2026-02-25-at-11-41-24-AM.jpg",
+                category: "secondary",
+                grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: ["  مراجعة  ", "الثانوى "],
                 availability: "متوفر",
                 rating: 5
             },
             {
-                id: 8,
-                name: " كتاب الأضواء فى اللغة العربية 2027 ",
-                price:195   ,
-                desc: " للصف الرابع الإبتدائى  ",
-                image: "https://i.postimg.cc/Hs8mfSV9/Cam-Scanner-13-07-2026-11-15-8.jpg",
-                category: "primary",
-                grade: "grade4",
+                id: 173,
+                name: " كتاب التفوق فيزياء مراجعة نهائية 2026 ",
+                price:289   ,
+                desc: " للصف الثالث الثانوى ",
+                image: "https://i.postimg.cc/VL8tRRqD/Whats-App-Image-2026-02-25-at-11-41-25-AM.jpg",
+                category: "secondary",
+                grade: "grade3",
                 author: "مكتبة الطلــبة",
-                tags: ["الأضواء  ", "اللغة العربية "],
+                tags: ["  مراجعة  ", "الثانوى "],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 172,
+                name: " كتاب الوافى كيمياء مراجعة نهائية 2026 ",
+                price:250   ,
+                desc: " للصف الثالث الثانوى ",
+                image: "https://i.postimg.cc/3NpgwfgR/Whats-App-Image-2026-02-25-at-11-41-19-AM.jpg",
+                category: "secondary",
+                grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: ["  مراجعة  ", "الثانوى "],
                 availability: "متوفر",
                 rating: 5
             },
               {
-                id: 9,
-                name: " كتاب الأضواء فى الدراسات الإجتماعية  2027 ",
-                price:159   ,
-                desc: " للصف الخامس الإبتدائى  ",
-                image: "https://i.postimg.cc/dVRbYgvt/Cam-Scanner-13-07-2026-11-15-10.jpg",
-                category: "primary",
-                grade: "grade5",
+                id: 171,
+                name: " كتاب التفوق كيمياء مراجعة نهائية 2026 ",
+                price:269   ,
+                desc: " للصف الثالث الثانوى ",
+                image: "https://i.postimg.cc/7ZzN66n0/Whats-App-Image-2026-02-25-at-11-41-15-AM.jpg",
+                category: "secondary",
+                grade: "grade3",
                 author: "مكتبة الطلــبة",
-                tags: ["الأضواء  ", "الدراسات "],
+                tags: ["  مراجعة  ", "الثانوى "],
+                availability: "متوفر",
+                rating: 5
+            },
+             {
+                id: 170,
+                name: " كتاب الأمتحان فى الكيمياء  2026 ",
+                price:180   ,
+                desc: " للصف الثانى الثانوى ",
+                image: "https://i.postimg.cc/6q8VhHsd/Untitled.jpg",
+                category: "secondary",
+                grade: "grade2",
+                author: "مكتبة الطلــبة",
+                tags: ["  الكيمياء  ", "الثانوى "],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 169,
+                name: " كتاب المعاصر ماث 2026 ",
+                price: 285  ,
+                desc: " للصف الثانى الإعدادى  ",
+                image: "https://i.postimg.cc/zXstqWkS/Whats-App-Image-2026-02-07-at-10-19-53-AM.jpg",
+                category: "preparatory",
+                 grade: "grade2",
+                author: "مكتبة الطلــبة",
+                tags: [" ماث  ", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+             {
+                id: 168,
+                name: " كتاب جيم فى اللغة الإنجليزية 2026 ",
+                price:260   ,
+                desc: " للصف الثانى الثانوى ",
+                image: "https://i.postimg.cc/qRWn2cg7/Whats-App-Image-2026-02-07-at-10-19-52-AM.jpg",
+                category: "secondary",
+                grade: "grade2",
+                author: "مكتبة الطلــبة",
+                tags: ["  اللغة الإنجليزية  ", "الثانوى "],
+                availability: "متوفر",
+                rating: 5
+            },
+             {
+                id: 167,
+                name: " كتاب الأمتحان فى العلوم المتكاملة 2026 ",
+                price:215   ,
+                desc: " للصف الأول الثانوى ",
+                image: "https://i.postimg.cc/TYRCJqwm/Whats-App-Image-2026-02-04-at-6-53-00-PM.jpg",
+                category: "secondary",
+                grade: "grade1",
+                author: "مكتبة الطلــبة",
+                tags: ["  العلوم المتكاملة  ", "الثانوى "],
                 availability: "متوفر",
                 rating: 5
             },
                {
-                id: 10,
-                name: " كتاب الأضواء فى اللغة العربية 2027 ",
-                price:199   ,
-                desc: " للصف الاول الإعدادى  ",
-                image: "https://i.postimg.cc/tJhK4cPr/Cam-Scanner-13-07-2026-11-15-6.jpg",
+                id: 166,
+                name: " كتاب المعاصر ساينس 2026 ",
+                price: 279  ,
+                desc: " للصف الأول الإعدادى  ",
+                image: "https://i.postimg.cc/t4qw7GWb/Whats-App-Image-2026-02-04-at-6-52-57-PM.jpg",
                 category: "preparatory",
+                 grade: "grade1",
+                author: "مكتبة الطلــبة",
+                tags: [" ساينس  ", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+             {
+                id: 165,
+                name: " كتاب المعاصر ماث 2026 ",
+                price: 280  ,
+                desc: " للصف الأول الإعدادى  ",
+                image: "https://i.postimg.cc/XvhfM9nW/Whats-App-Image-2026-02-04-at-6-52-59-PM.jpg",
+                category: "preparatory",
+                 grade: "grade1",
+                author: "مكتبة الطلــبة",
+                tags: [" ماث  ", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 164,
+                name: " كتاب معاصر فى اللغة الإنجليزية 2026 ",
+                price:265   ,
+                desc: " للصف الأول الثانوى ",
+                image: "https://i.postimg.cc/L6qQmZvB/Untitled.jpg",
+                category: "secondary",
                 grade: "grade1",
                 author: "مكتبة الطلــبة",
-                tags: ["الأضواء  ", "اللغة العربية "],
+                tags: ["  اللغة الإنجليزية  ", "الثانوى "],
+                availability: "متوفر",
+                rating: 5
+            },
+             {
+                id: 163,
+                name: " كتاب معاصر فى اللغة الإنجليزية 2026 ",
+                price:265   ,
+                desc: " للصف الثانى الثانوى ",
+                image: "https://i.postimg.cc/MH3L08Kf/Whats-App-Image-2026-02-03-at-11-08-28-AM.jpg",
+                category: "secondary",
+                grade: "grade2",
+                author: "مكتبة الطلــبة",
+                tags: ["  اللغة الإنجليزية  ", "الثانوى "],
                 availability: "متوفر",
                 rating: 5
             },
               {
-                id: 11,
-                name: " كتاب الأضواء فى اللغة الإنجليزية 2027 ",
-                price:199   ,
-                desc: " للصف الاول الإعدادى  ",
-                image: "https://i.postimg.cc/kgctbXq5/Cam-Scanner-13-07-2026-11-15-1.jpg",
-                category: "preparatory",
+                id: 162,
+                name: " كتاب جيم فى اللغة الإنجليزية 2026 ",
+                price:260   ,
+                desc: " للصف الأول الثانوى ",
+                image: "https://i.postimg.cc/0jWhfWjr/Whats-App-Image-2026-01-31-at-11-20-00-AM-(1).jpg",
+                category: "secondary",
                 grade: "grade1",
                 author: "مكتبة الطلــبة",
-                tags: ["الأضواء ", "اللغة الإنجليزية "],
+                tags: ["  اللغة الإنجليزية  ", "الثانوى "],
                 availability: "متوفر",
                 rating: 5
             },
-           
+                        {
+                id: 161,
+                name: " كتاب بيت باى بيت فى اللغة الإنجليزية 2026 ",
+                price: 150  ,
+                desc: " للصف الثالث الإعدادى  ",
+                image: "https://i.postimg.cc/ZKJqDCR9/Whats-App-Image-2026-01-31-at-11-20-00-AM.jpg",
+                category: "preparatory",
+                 grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: [" اللغة الإنجليزية ", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+                    {
+                id: 160,
+                name: " كتاب بيت باى بيت فى اللغة الإنجليزية 2026 ",
+                price: 150  ,
+                desc: " للصف الأول الإعدادى  ",
+                image: "https://i.postimg.cc/KcBKH6Dn/Whats-App-Image-2026-01-31-at-11-19-59-AM.jpg",
+                category: "preparatory",
+                 grade: "grade1",
+                author: "مكتبة الطلــبة",
+                tags: [" اللغة الإنجليزية ", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+                  {
+                id: 159,
+                name: " كتاب بيت باى بيت فى اللغة الإنجليزية 2026 ",
+                price: 150  ,
+                desc: " للصف الثانى الإعدادى  ",
+                image: "https://i.postimg.cc/JhYJRjsP/Whats-App-Image-2026-01-31-at-11-19-59-AM-(1).jpg",
+                category: "preparatory",
+                 grade: "grade2",
+                author: "مكتبة الطلــبة",
+                tags: [" اللغة الإنجليزية ", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 158,
+                name: " كتاب المعلم فى التربية الإسلامية 2026 ",
+                price: 140  ,
+                desc: " للصف الثانى الإعدادى  ",
+                image: "https://i.postimg.cc/mZJPkdX5/Whats-App-Image-2026-01-31-at-11-19-58-AM-(1).jpg",
+                category: "preparatory",
+                 grade: "grade2",
+                author: "مكتبة الطلــبة",
+                tags: [" التربية الإسلامية ", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+             {
+                id: 157,
+                name: " كتاب المعاصر فى اللغة الإنجليزية 2026 ",
+                price:179   ,
+                desc: " للصف الخامس الإبتدائى ",
+                image: "https://i.postimg.cc/kgVw8hq7/Whats-App-Image-2026-01-31-at-11-19-58-AM.jpg",
+                category: "primary",
+                grade: "grade5",
+                author: "مكتبة الطلــبة",
+                tags: ["   كونكت   ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 156,
+                name: " كتاب كيان للمراجعة النهائية فى اللغة العربية 2026 ",
+                price:280   ,
+                desc: " للصف الثاث الثانوى ",
+                image: "https://i.postimg.cc/Ssjp06bF/Whats-App-Image-2026-01-27-at-10-35-31-AM-(1).jpg",
+                category: "secondary",
+                grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: ["  اللغة العربية  ", "الثانوى "],
+                availability: "متوفر",
+                rating: 5
+            },
+                    {
+                id: 155,
+                name: " كتاب المعاصر فى اللغة الإنجليزية كونكت بلس 2026 ",
+                price:195   ,
+                desc: " للصف السادس الإبتدائى ",
+                image: "https://i.postimg.cc/63zTcLV0/Untitled.jpg",
+                category: "primary",
+                grade: "grade6",
+                author: "مكتبة الطلــبة",
+                tags: ["   كونكت بلس  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+             {
+                id: 154,
+                name: " كتاب التأسيس السليم فى اللغة العربية 2026 ",
+                price:169   ,
+                desc: " للصف الرابع الإبتدائى ",
+                image: "https://i.postimg.cc/R0kT9mjv/Whats-App-Image-2026-01-27-at-10-35-30-AM.jpg",
+                category: "primary",
+                grade: "grade4",
+                author: "مكتبة الطلــبة",
+                tags: ["   اللغة العربية  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 153,
+                name: " كتاب التأسيس السليم فى اللغة العربية 2026 ",
+                price:169   ,
+                desc: " للصف الخامس الإبتدائى ",
+                image: "https://i.postimg.cc/Jz76d1WT/Whats-App-Image-2026-01-27-at-10-35-30-AM-(1).jpg",
+                category: "primary",
+                grade: "grade5",
+                author: "مكتبة الطلــبة",
+                tags: ["   اللغة العربية  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+             {
+                id: 152,
+                name: " كتاب التأسيس السليم فى اللغة العربية 2026 ",
+                price:169   ,
+                desc: " للصف السادس الإبتدائى ",
+                image: "https://i.postimg.cc/VLxpGykp/Whats-App-Image-2026-01-27-at-10-35-31-AM.jpg",
+                category: "primary",
+                grade: "grade6",
+                author: "مكتبة الطلــبة",
+                tags: ["   اللغة العربية  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+             {
+                id: 151,
+                name: " كتاب المعاصر رياضيات 2026 ",
+                price: 159  ,
+                desc: " للصف الثانى الإعدادى  ",
+                image: "https://i.postimg.cc/02vX8WJz/Whats-App-Image-2026-01-24-at-12-25-55-PM.jpg",
+                category: "preparatory",
+                 grade: "grade2",
+                author: "مكتبة الطلــبة",
+                tags: [" رياضيات ", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+                {
+                id: 150,
+                name: " كتاب المعاصر ساينس 2026 ",
+                price: 305  ,
+                desc: " للصف الثالث الإعدادى  ",
+                image: "https://i.postimg.cc/85F9671j/Whats-App-Image-2026-01-24-at-12-25-59-PM.jpg",
+                category: "preparatory",
+                 grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: [" ساينس ", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 149,
+                name: " كتاب المعاصر ماث 2026 ",
+                price: 360  ,
+                desc: " للصف الثالث الإعدادى  ",
+                image: "https://i.postimg.cc/Xv26FM9X/Whats-App-Image-2026-01-24-at-12-25-57-PM.jpg",
+                category: "preparatory",
+                 grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: [" ماث ", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+                   {
+                id: 148,
+                name: " كتاب المعاصر هيلوا بلس 2026 ",
+                price: 189  ,
+                desc: " للصف الثالث الإعدادى  ",
+                image: "https://i.postimg.cc/yNywHML3/Untitled.jpg",
+                category: "preparatory",
+                 grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: [" هيلو بلس ", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+                {
+                id: 147,
+                name: " كتاب المعاصر هيلوا بلس 2026 ",
+                price: 189  ,
+                desc: " للصف الثانى الإعدادى  ",
+                image: "https://i.postimg.cc/Y9kMNNsQ/Whats-App-Image-2026-01-24-at-12-26-00-PM-(1).jpg",
+                category: "preparatory",
+                 grade: "grade2",
+                author: "مكتبة الطلــبة",
+                tags: [" هيلو بلس ", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+                  {
+                id: 146,
+                name: " كتاب المعاصر هيلوا بلس 2026 ",
+                price: 199  ,
+                desc: " للصف الأول الإعدادى  ",
+                image: "https://i.postimg.cc/K8vTfLd3/Whats-App-Image-2026-01-24-at-12-26-00-PM.jpg",
+                category: "preparatory",
+                 grade: "grade1",
+                author: "مكتبة الطلــبة",
+                tags: [" هيلو بلس ", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 145,
+                name: " كتاب الأمتحان فى العلوم 2026 ",
+                price: 169  ,
+                desc: " للصف الثانى الإعدادى  ",
+                image: "https://i.postimg.cc/SQc6mwHH/Whats-App-Image-2026-01-22-at-10-44-13-AM.jpg",
+                category: "preparatory",
+                 grade: "grade2",
+                author: "مكتبة الطلــبة",
+                tags: [" العلوم  ", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 144,
+                name: " كتاب الأضواء فى العلوم 2026 ",
+                price: 165  ,
+                desc: " للصف الثانى الإعدادى  ",
+                image: "https://i.postimg.cc/sxjtDpf5/Whats-App-Image-2026-01-22-at-10-44-13-AM-(1).jpg",
+                category: "preparatory",
+                 grade: "grade2",
+                author: "مكتبة الطلــبة",
+                tags: [" العلوم  ", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+             {
+                id: 143,
+                name: " كتاب الأضواء فى الرياضيات 2026 ",
+                price: 155  ,
+                desc: " للصف الأول الإعدادى  ",
+                image: "https://i.postimg.cc/k5pV1JVP/Whats-App-Image-2026-01-19-at-3-42-26-PM.jpg",
+                category: "preparatory",
+                 grade: "grade1",
+                author: "مكتبة الطلــبة",
+                tags: [" الرياضيات  ", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+                      {
+                id: 142,
+                name: " كتاب الأمتحان فى علم النفس والإجتماع 2026 ",
+                price:179   ,
+                desc: " للصف الثانى الثانوى ",
+                image: "https://i.postimg.cc/Mp0vS0v4/Whats-App-Image-2026-01-19-at-3-41-49-PM.jpg",
+                category: "secondary",
+                grade: "grade2",
+                author: "مكتبة الطلــبة",
+                tags: ["  علم النفس  ", "الثانوى "],
+                availability: "متوفر",
+                rating: 5
+            },
+               {
+                id: 141,
+                name: " كتاب الأمتحان فى الجغرافيا 2026 ",
+                price:185   ,
+                desc: " للصف الثانى الثانوى ",
+                image: "https://i.postimg.cc/wTGkNp2t/Whats-App-Image-2026-01-19-at-3-41-06-PM.jpg",
+                category: "secondary",
+                grade: "grade2",
+                author: "مكتبة الطلــبة",
+                tags: ["  الجغرافيا  ", "الثانوى "],
+                availability: "متوفر",
+                rating: 5
+            },
+                      {
+                id: 140,
+                name: " كتاب المعاصر ماث  2026 ",
+                price:295   ,
+                desc: " للصف السادس الإبتدائى ",
+                image: "https://i.postimg.cc/KYwXpwmx/Whats-App-Image-2026-01-19-at-3-40-43-PM.jpg",
+                category: "primary",
+                grade: "grade6",
+                author: "مكتبة الطلــبة",
+                tags: ["   ماث  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+             {
+                id: 139,
+                name: " كتاب المعاصر ساينس  2026 ",
+                price:270   ,
+                desc: " للصف السادس الإبتدائى ",
+                image: "https://i.postimg.cc/wvMKwzCw/Whats-App-Image-2026-01-19-at-3-39-19-PM.jpg",
+                category: "primary",
+                grade: "grade6",
+                author: "مكتبة الطلــبة",
+                tags: ["   ساينس  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                 {
+                id: 138,
+                name: " كتاب بيت باى بيت فى اللغة الإنجليزية 2026 ",
+                price:125   ,
+                desc: " للصف الثانى الإبتدائى ",
+                image: "https://i.postimg.cc/cCCkfrBR/Whats-App-Image-2026-01-18-at-6-08-57-PM.jpg",
+                category: "primary",
+                grade: "grade2",
+                author: "مكتبة الطلــبة",
+                tags: ["  اللغة الإنجليزية  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+             {
+                id: 137,
+                name: " كتاب بيت باى بيت فى اللغة الإنجليزية 2026 ",
+                price:125   ,
+                desc: " للصف الأول الإبتدائى ",
+                image: "https://i.postimg.cc/nrVbgFKk/Whats-App-Image-2026-01-18-at-6-08-27-PM.jpg",
+                category: "primary",
+                grade: "grade1",
+                author: "مكتبة الطلــبة",
+                tags: ["  اللغة الإنجليزية  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                        {
+                id: 136,
+                name: " كتاب المعاصر فى الرياضة التطبيقية 2026 ",
+                price:185   ,
+                desc: " للصف الثانى الثانوى ",
+                image: "https://i.postimg.cc/133XwSLH/Whats-App-Image-2026-01-18-at-6-07-39-PM.jpg",
+                category: "secondary",
+                grade: "grade2",
+                author: "مكتبة الطلــبة",
+                tags: ["  التطبيقية  ", "الثانوى "],
+                availability: "متوفر",
+                rating: 5
+            },
+                        {
+                id: 135,
+                name: " كتاب المعاصر فى الرياضة البحتة 2026 ",
+                price:240   ,
+                desc: " للصف الثانى الثانوى ",
+                image: "https://i.postimg.cc/ncvB0nSM/Whats-App-Image-2026-01-18-at-6-07-06-PM.jpg",
+                category: "secondary",
+                grade: "grade2",
+                author: "مكتبة الطلــبة",
+                tags: ["  البحتة  ", "الثانوى "],
+                availability: "متوفر",
+                rating: 5
+            },
+                        {
+                id: 134,
+                name: " كتاب الأمتحان فى الفيزياء 2026 ",
+                price:205   ,
+                desc: " للصف الثانى الثانوى ",
+                image: "https://i.postimg.cc/NFFmdXVq/Whats-App-Image-2026-01-18-at-6-09-33-PM.jpg",
+                category: "secondary",
+                grade: "grade2",
+                author: "مكتبة الطلــبة",
+                tags: ["  الفيزياء  ", "الثانوى "],
+                availability: "متوفر",
+                rating: 5
+            },
+                        {
+                id: 133,
+                name: " كتاب الأمتحان فى التاريخ 2026 ",
+                price:179   ,
+                desc: " للصف الثانى الثانوى ",
+                image: "https://i.postimg.cc/yYrC023W/Whats-App-Image-2026-01-18-at-12-01-33-PM.jpg",
+                category: "secondary",
+                grade: "grade2",
+                author: "مكتبة الطلــبة",
+                tags: ["  التاريخ  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 132,
+                name: " كتاب الأضواء فى الرياضيات  2026 ",
+                price:145   ,
+                desc: " للصف الأول الإبتدائى ",
+                image: "https://i.postimg.cc/bNLNW6Dy/Whats-App-Image-2026-01-18-at-12-01-31-PM.jpg",
+                category: "primary",
+                grade: "grade1",
+                author: "مكتبة الطلــبة",
+                tags: ["  رياضيات   ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 131,
+                name: " كتاب الأضواء فى اللغة العربية 2026 ",
+                price: 199  ,
+                desc: " للصف الثانى الإعدادى  ",
+                image: "https://i.postimg.cc/RC1R8cgS/Whats-App-Image-2026-01-17-at-11-38-44-PM.jpg",
+                category: "preparatory",
+                 grade: "grade2",
+                author: "مكتبة الطلــبة",
+                tags: [" اللغة العربية ", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 130,
+                name: " كتاب الأمتحان فى اللغة العربية 2026 ",
+                price: 199  ,
+                desc: " للصف الثانى الإعدادى  ",
+                image: "https://i.postimg.cc/tRV0VmCj/Whats-App-Image-2026-01-17-at-11-37-36-PM.jpg",
+                category: "preparatory",
+                 grade: "grade2",
+                author: "مكتبة الطلــبة",
+                tags: [" اللغة العربية ", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+                        {
+                id: 129,
+                name: " كتاب برافو فى اللغة الفرنسية 2026 ",
+                price:140   ,
+                desc: " للصف الثانى الثانوى ",
+                image: "https://i.postimg.cc/QCcBkHRM/Whats-App-Image-2026-01-12-at-11-25-04-AM-(1).jpg",
+                category: "secondary",
+                grade: "grade2",
+                author: "مكتبة الطلــبة",
+                tags: ["  اللغة الفرنسية  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 128,
+                name: " كتاب برافو فى اللغة الفرنسية 2026 ",
+                price:140   ,
+                desc: " للصف الأول الثانوى ",
+                image: "https://i.postimg.cc/44YQHPyV/Whats-App-Image-2026-01-12-at-11-25-04-AM.jpg",
+                category: "secondary",
+                grade: "grade1",
+                author: "مكتبة الطلــبة",
+                tags: ["  اللغة الفرنسية  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+             
+               {
+                id: 126,
+                name: " كتاب المعاصر كونكت بلس 2026 ",
+                price:195   ,
+                desc: " للصف الرابع الإبتدائى ",
+                image: "https://i.postimg.cc/Tw8rXMjk/Whats-App-Image-2026-01-12-at-9-19-52-AM.jpg",
+                category: "primary",
+                grade: "grade4",
+                author: "مكتبة الطلــبة",
+                tags: ["  كونكت بلس  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 125,
+                name: " كتاب المعاصر كونكت بلس 2026 ",
+                price:195   ,
+                desc: " للصف الخامس الإبتدائى ",
+                image: "https://i.postimg.cc/Kcw365Jd/Whats-App-Image-2026-01-12-at-9-19-55-AM-(1).jpg",
+                category: "primary",
+                grade: "grade5",
+                author: "مكتبة الطلــبة",
+                tags: ["  كونكت بلس  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                {
+                id: 124,
+                name: " كتاب المعاصر ساينس 2026 ",
+                price:265   ,
+                desc: " للصف الخامس الإبتدائى ",
+                image: "https://i.postimg.cc/ZnBZPpNP/Whats-App-Image-2026-01-12-at-9-19-51-AM.jpg",
+                category: "primary",
+                grade: "grade5",
+                author: "مكتبة الطلــبة",
+                tags: ["  ساينس  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                      {
+                id: 123,
+                name: " كتاب المعاصر ماث 2026 ",
+                price:265   ,
+                desc: " للصف الخامس الإبتدائى ",
+                image: "https://i.postimg.cc/bvktgSxs/Whats-App-Image-2026-01-12-at-9-19-50-AM-(1).jpg",
+                category: "primary",
+                grade: "grade5",
+                author: "مكتبة الطلــبة",
+                tags: ["  ماث  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 122,
+                name: " كتاب المعاصر ماث 2026 ",
+                price:255   ,
+                desc: " للصف الثالث الإبتدائى ",
+                image: "https://i.postimg.cc/TPCkRssJ/Whats-App-Image-2026-01-12-at-9-19-50-AM.jpg",
+                category: "primary",
+                grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: ["  ماث  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+             {
+                id: 121,
+                name: " كتاب المعاصر ديسكفور 2026 ",
+                price:235   ,
+                desc: " للصف الثالث الإبتدائى ",
+                image: "https://i.postimg.cc/658xFryd/Whats-App-Image-2026-01-12-at-9-19-52-AM-(1).jpg",
+                category: "primary",
+                grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: ["  أكتشف  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 120,
+                name: " كتاب المعاصر  ديسكفور 2026 ",
+                price: 199  ,
+                desc: " kg2 ",
+                image: "https://i.postimg.cc/MGKDrDGy/Whats-App-Image-2026-01-12-at-9-19-54-AM-(1).jpg",
+                category: "kindergarten",
+                author: "مكتبة الطلــبة",
+                tags: [" ديسكفور", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 119,
+                name: " كتاب المعاصر كونكت بلس 2026 ",
+                price: 140  ,
+                desc: " kg2 ",
+                image: "https://i.postimg.cc/kXvgXFn5/Whats-App-Image-2026-01-12-at-9-19-53-AM-(1).jpg",
+                category: "kindergarten",
+                author: "مكتبة الطلــبة",
+                tags: [" كونكت بلس ", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 118,
+                name: " كتاب المعاصر كونكت بلس 2026 ",
+                price: 145  ,
+                desc: " kg1 ",
+                image: "https://i.postimg.cc/kMVS4HZV/Whats-App-Image-2026-01-12-at-9-19-53-AM-(2).jpg",
+                category: "kindergarten",
+                author: "مكتبة الطلــبة",
+                tags: [" كونكت بلس ", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 117,
+                name: " كتاب المعاصر فى الماث 2026 ",
+                price: 195  ,
+                desc: " kg1 ",
+                image: "https://i.postimg.cc/KY9qDVx5/Whats-App-Image-2026-01-12-at-9-19-54-AM.jpg",
+                category: "kindergarten",
+                author: "مكتبة الطلــبة",
+                tags: [" الماث ", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+             {
+                id: 116,
+                name: " كتاب المعاصر فى الماث 2026 ",
+                price: 199  ,
+                desc: " kg2 ",
+                image: "https://i.postimg.cc/k4fMn7N2/Whats-App-Image-2026-01-12-at-9-19-55-AM.jpg",
+                category: "kindergarten",
+                author: "مكتبة الطلــبة",
+                tags: [" الماث ", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+                {
+                id: 115,
+                name: " كتاب المعاصر فى اللغة الإنجليزية 2026 ",
+                price: 189  ,
+                desc: " للصف الثانى الإعدادى  ",
+                image: "https://i.postimg.cc/kGt0LwD4/Whats-App-Image-2026-01-12-at-9-19-55-AM-(2).jpg",
+                category: "preparatory",
+                 grade: "grade2",
+                author: "مكتبة الطلــبة",
+                tags: [" اللغة الإنجليزية ", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+                      {
+                id: 114,
+                name: " كتاب المعاصر فى اللغة الإنجليزية 2026 ",
+                price: 195  ,
+                desc: " للصف الأول الإعدادى  ",
+                image: "https://i.postimg.cc/gJR9TNxs/Whats-App-Image-2026-01-12-at-9-19-55-AM-(3).jpg",
+                category: "preparatory",
+                 grade: "grade1",
+                author: "مكتبة الطلــبة",
+                tags: [" اللغة الإنجليزية ", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+                {
+                id: 113,
+                name: " كتاب الأمتحان فى العلوم 2026 ",
+                price: 165  ,
+                desc: " للصف الأول الإعدادى  ",
+                image: "https://i.postimg.cc/fTJ5KkpK/Whats-App-Image-2026-01-12-at-9-19-56-AM.jpg",
+                category: "preparatory",
+                 grade: "grade1",
+                author: "مكتبة الطلــبة",
+                tags: [" العلوم ", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 112,
+                name: " كتاب التأسيس السليم فى الرياضيات 2026 ",
+                price:160   ,
+                desc: " للصف الأول الإبتدائى ",
+                image: "https://i.postimg.cc/j22csJTT/Whats-App-Image-2026-01-08-at-1-11-12-PM.jpg",
+                category: "primary",
+                grade: "grade1",
+                author: "مكتبة الطلــبة",
+                tags: ["  الرياضيات  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 111,
+                name: " كتاب جيم فى اللغة الإنجليزية 2026 ",
+                price: 190  ,
+                desc: " للصف الأول الإعدادى  ",
+                image: "https://i.postimg.cc/ydwxGxmv/Whats-App-Image-2026-01-08-at-9-05-09-AM.jpg",
+                category: "preparatory",
+                 grade: "grade1",
+                author: "مكتبة الطلــبة",
+                tags: ["   اللغة الإنجليزية ", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 110,
+                name: " كتاب الأضواء فى اللغة العربية 2026 ",
+                price:195   ,
+                desc: " للصف السادس الإبتدائى ",
+                image: "https://i.postimg.cc/3N3t58FY/Whats-App-Image-2026-01-08-at-8-37-21-AM.jpg",
+                category: "primary",
+                grade: "grade6",
+                author: "مكتبة الطلــبة",
+                tags: ["   اللغة العربية ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 109,
+                name: " كتاب سلاح التلميذ فى اللغة العربية 2026 ",
+                price:199   ,
+                desc: " للصف السادس الإبتدائى ",
+                image: "https://i.postimg.cc/NjjZ24XV/Whats-App-Image-2026-01-08-at-8-37-21-AM-(1).jpg",
+                category: "primary",
+                grade: "grade6",
+                author: "مكتبة الطلــبة",
+                tags: ["   اللغة العربية ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                        {
+                id: 108,
+                name: " كتاب سلاح التلميذ فى تكنولوجيا المعلومات 2026 ",
+                price:135   ,
+                desc: " للصف السادس الإبتدائى ",
+                image: "https://i.postimg.cc/yNNgRxzd/Whats-App-Image-2026-01-07-at-8-59-45-AM.jpg",
+                category: "primary",
+                grade: "grade6",
+                author: "مكتبة الطلــبة",
+                tags: ["   تكنولوجيا ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 107,
+                name: " كتاب سلاح التلميذ فى تكنولوجيا المعلومات 2026 ",
+                price:130   ,
+                desc: " للصف الخامس الإبتدائى ",
+                image: "https://i.postimg.cc/zfdh2WkM/Whats-App-Image-2026-01-07-at-8-59-46-AM.jpg",
+                category: "primary",
+                grade: "grade5",
+                author: "مكتبة الطلــبة",
+                tags: ["   تكنولوجيا ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                        {
+                id: 106,
+                name: " كتاب سلاح التلميذ فى تكنولوجيا المعلومات 2026 ",
+                price:125   ,
+                desc: " للصف الرابع الإبتدائى ",
+                image: "https://i.postimg.cc/d18C9XDx/Whats-App-Image-2026-01-07-at-8-59-47-AM.jpg",
+                category: "primary",
+                grade: "grade4",
+                author: "مكتبة الطلــبة",
+                tags: ["   تكنولوجيا ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+               {
+                id: 105,
+                name: " كتاب سلاح التلميذ فى التربية الإسلامية 2026 ",
+                price:135   ,
+                desc: " للصف الرابع الإبتدائى ",
+                image: "https://i.postimg.cc/R0pKFfys/Whats-App-Image-2026-01-07-at-9-14-38-AM.jpg",
+                category: "primary",
+                grade: "grade4",
+                author: "مكتبة الطلــبة",
+                tags: ["   التربية الإسلامية   ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 104,
+                name: " كتاب سلاح التلميذ فى التربية الإسلامية 2026 ",
+                price:135   ,
+                desc: " للصف الخامس الإبتدائى ",
+                image: "https://i.postimg.cc/4dp0bLX2/Whats-App-Image-2026-01-07-at-9-14-39-AM.jpg",
+                category: "primary",
+                grade: "grade5",
+                author: "مكتبة الطلــبة",
+                tags: ["   التربية الإسلامية   ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                        {
+                id: 103,
+                name: " كتاب سلاح التلميذ فى التربية الإسلامية 2026 ",
+                price:135   ,
+                desc: " للصف السادس الإبتدائى ",
+                image: "https://i.postimg.cc/gjQGXt49/Cam-Scanner-06-01-2026-09-00-12.jpg",
+                category: "primary",
+                grade: "grade6",
+                author: "مكتبة الطلــبة",
+                tags: ["   التربية الإسلامية   ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                {
+                id: 102,
+                name: " كتاب سلاح التلميذ أكتشف 2026 ",
+                price:110   ,
+                desc: " للصف الثالث الإبتدائى ",
+                image: "https://i.postimg.cc/RV7YnbgG/Cam-Scanner-06-01-2026-09-00-8.jpg",
+                category: "primary",
+                grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: ["  أكتشف  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                {
+                id: 101,
+                name: " كتاب سلاح التلميذ أكتشف 2026 ",
+                price:110   ,
+                desc: " للصف الثانى الإبتدائى ",
+                image: "https://i.postimg.cc/DmkcznVT/Cam-Scanner-06-01-2026-09-00-7.jpg",
+                category: "primary",
+                grade: "grade2",
+                author: "مكتبة الطلــبة",
+                tags: ["  أكتشف  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+              {
+                id: 99,
+                name: " كتاب سلاح التلميذ أكتشف 2026 ",
+                price:105   ,
+                desc: " للصف الأول الإبتدائى ",
+                image: "https://i.postimg.cc/gcDcq4SD/Cam-Scanner-06-01-2026-09-00-6.jpg",
+                category: "primary",
+                grade: "grade1",
+                author: "مكتبة الطلــبة",
+                tags: ["  أكتشف  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                       {
+                id: 98,
+                name: " كتاب المعلم فى التربية الإسلامية 2026 ",
+                price: 125  ,
+                desc: " للصف الثالث الإعدادى  ",
+                image: "https://i.postimg.cc/Z5K55cXd/Cam-Scanner-06-01-2026-09-00-1.jpg",
+                category: "preparatory",
+                 grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: ["   تربية اسلامية  ", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+                 {
+                id: 97,
+                name: " كتاب الفائز فى الكمبيوتر 2026 ",
+                price: 105  ,
+                desc: " للصف الثالث الإعدادى  ",
+                image: "https://i.postimg.cc/zB3zFGqq/Cam-Scanner-06-01-2026-09-00-2.jpg",
+                category: "preparatory",
+                 grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: ["   الكمبيوتر  ", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 96,
+                name: " كتاب الفائز فى الكمبيوتر 2026 ",
+                price: 105  ,
+                desc: " للصف الأول الإعدادى  ",
+                image: "https://i.postimg.cc/SRNWr8J6/Untitled.jpg",
+                category: "preparatory",
+                 grade: "grade1",
+                author: "مكتبة الطلــبة",
+                tags: ["   الكمبيوتر  ", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+                {
+                id: 95,
+                name: " كتاب برافو فى اللغة الفرنسية 2026 ",
+                price: 170  ,
+                desc: " للصف الثالث الإعدادى  ",
+                image: "https://i.postimg.cc/HjDL61LB/Cam-Scanner-06-01-2026-09-00-17.jpg",
+                category: "preparatory",
+                 grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: ["   اللغة الفرنسية ", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 94,
+                name: " كتاب برافو فى اللغة الفرنسية 2026 ",
+                price: 170  ,
+                desc: " للصف الأول الإعدادى  ",
+                image: "https://i.postimg.cc/tT4n6b17/Cam-Scanner-06-01-2026-09-00-16.jpg",
+                category: "preparatory",
+                 grade: "grade1",
+                author: "مكتبة الطلــبة",
+                tags: ["   اللغة الفرنسية ", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+                         {
+                id: 93,
+                name: " المعاصر ديسكفر 2026 ",
+                price:199   ,
+                desc: " للصف الأول الإبتدائى ",
+                image: "https://i.postimg.cc/6Q5pj0Br/Cam-Scanner-06-01-2026-09-00-13.jpg",
+                category: "primary",
+                grade: "grade1",
+                author: "مكتبة الطلــبة",
+                tags: [" ديسكفر ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                 {
+                id: 92,
+                name: " المعاصر ديسكفر 2026 ",
+                price:199   ,
+                desc: " للصف الثانى الإبتدائى ",
+                image: "https://i.postimg.cc/D0WFVjD3/Cam-Scanner-06-01-2026-09-00-14.jpg",
+                category: "primary",
+                grade: "grade2",
+                author: "مكتبة الطلــبة",
+                tags: [" ديسكفر ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                   {
+                id: 91,
+                name: " المعاصر ديسكفر 2026 ",
+                price:235   ,
+                desc: " للصف الثالث الإبتدائى ",
+                image: "https://i.postimg.cc/G2dHCCJ0/Cam-Scanner-06-01-2026-09-00-15.jpg",
+                category: "primary",
+                grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: [" ديسكفر ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                   {
+                id: 90,
+                name: " بيت باى بيت فى اللغة الإنجليزية 2026 ",
+                price:150   ,
+                desc: " للصف السادس الإبتدائى ",
+                image: "https://i.postimg.cc/5jcg4yPt/Cam-Scanner-06-01-2026-09-00-3.jpg",
+                category: "primary",
+                grade: "grade6",
+                author: "مكتبة الطلــبة",
+                tags: [" اللغة الإنجليزية  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                {
+                id: 89,
+                name: " بيت باى بيت فى اللغة الإنجليزية 2026 ",
+                price:150   ,
+                desc: " للصف الخامس الإبتدائى ",
+                image: "https://i.postimg.cc/Hxz17Gq4/Cam-Scanner-06-01-2026-09-00-4.jpg",
+                category: "primary",
+                grade: "grade5",
+                author: "مكتبة الطلــبة",
+                tags: [" اللغة الإنجليزية  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                   {
+                id: 88,
+                name: " بيت باى بيت فى اللغة الإنجليزية 2026 ",
+                price:125   ,
+                desc: " للصف الثالث  الإبتدائى ",
+                image: "https://i.postimg.cc/xT3BFPks/Cam-Scanner-06-01-2026-09-00-5.jpg",
+                category: "primary",
+                grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: [" اللغة الإنجليزية  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 87,
+                name: " كتاب التأسيس السليم فى الرياضيات 2026 ",
+                price:160   ,
+                desc: " للصف الثانى  الإبتدائى ",
+                image: "https://i.postimg.cc/3Ngdmqxr/Cam-Scanner-06-01-2026-09-00-19.jpg",
+                category: "primary",
+                grade: "grade2",
+                author: "مكتبة الطلــبة",
+                tags: [" الرياضيات  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+             {
+                id: 86,
+                name: " كتاب التأسيس السليم فى الرياضيات 2026 ",
+                price:160   ,
+                desc: " للصف الثالث  الإبتدائى ",
+                image: "https://i.postimg.cc/ncNfcn7f/Cam-Scanner-06-01-2026-09-00-18.jpg ",
+                category: "primary",
+                grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: [" الرياضيات  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 85,
+                name: " كتاب الأمتحان فى التاريخ 2026 ",
+                price:159   ,
+                desc: " للصف الأول الثانوى ",
+                image: "https://i.postimg.cc/x8dBtGTF/Whats-App-Image-2026-01-05-at-10-49-54-AM.jpg",
+                category: "secondary",
+                grade: "grade1",
+                author: "مكتبة الطلــبة",
+                tags: ["  التاريخ  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                   {
+                id: 84,
+                name: " كتاب الأمتحان فى الفلسفة 2026 ",
+                price:165   ,
+                desc: " للصف الأول الثانوى ",
+                image: "https://i.postimg.cc/Vvcdt6fZ/Whats-App-Image-2026-01-05-at-10-49-46-AM.jpg",
+                category: "secondary",
+                grade: "grade1",
+                author: "مكتبة الطلــبة",
+                tags: ["  فلسفة  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+             {
+                id: 83,
+                name: " كتاب المعاصر فى الرياضيات 2026 ",
+                price:210   ,
+                desc: " للصف الأول الثانوى ",
+                image: "https://i.postimg.cc/9fWR8zZb/Whats-App-Image-2026-01-05-at-10-49-56-AM.jpg",
+                category: "secondary",
+                grade: "grade1",
+                author: "مكتبة الطلــبة",
+                tags: ["  الرياضيات  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 82,
+                name: " كتاب المعاصر  فى الساينس 2026 ",
+                price:265   ,
+                desc: " للصف الرابع الإبتدائى ",
+                image: "https://i.postimg.cc/X7mkzKYT/Whats-App-Image-2026-01-05-at-10-49-22-AM.jpg",
+                category: "primary",
+                grade: "grade4",
+                author: "مكتبة الطلــبة",
+                tags: ["  الساينس  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+               {
+                id: 81,
+                name: " كتاب المعاصر  فى الماث 2026 ",
+                price:285   ,
+                desc: " للصف الرابع الإبتدائى ",
+                image: "https://i.postimg.cc/wMJjTdD5/Whats-App-Image-2026-01-05-at-10-49-20-AM.jpg",
+                category: "primary",
+                grade: "grade4",
+                author: "مكتبة الطلــبة",
+                tags: ["  ماث  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 80,
+                name: " كتاب الجيم فى اللغة الإنجليزية 2026 ",
+                price:165   ,
+                desc: " للصف الثالث  الإبتدائى ",
+                image: "https://i.postimg.cc/LXMhGXcV/Whats-App-Image-2026-01-05-at-11-05-58-AM.jpg ",
+                category: "primary",
+                grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: ["  اللغة الإنجليزية   ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+             {
+                id: 79,
+                name: " كتاب الجيم فى اللغة الإنجليزية 2026 ",
+                price:165   ,
+                desc: " للصف الرابع الإبتدائى ",
+                image: "https://i.postimg.cc/3xcvf3r2/Whats-App-Image-2026-01-05-at-11-05-58-AM-(1).jpg",
+                category: "primary",
+                grade: "grade4",
+                author: "مكتبة الطلــبة",
+                tags: ["  اللغة الإنجليزية   ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+               {
+                id: 78,
+                name: " كتاب الأمتحان فى اللغة العربية 2026 ",
+                price: 199  ,
+                desc: " للصف الأول الإعدادى  ",
+                image: "https://i.postimg.cc/GhnT6M1y/Whats-App-Image-2026-01-05-at-10-49-30-AM.jpg",
+                category: "preparatory",
+                 grade: "grade1",
+                author: "مكتبة الطلــبة",
+                tags: ["   اللغة العربية ", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 77,
+                name: " كتاب المعاصر فى الرياضيات 2026 ",
+                price: 159  ,
+                desc: " للصف الأول الإعدادى  ",
+                image: "https://i.postimg.cc/Gt7NpRLx/Whats-App-Image-2026-01-05-at-10-49-40-AM.jpg",
+                category: "preparatory",
+                 grade: "grade1",
+                author: "مكتبة الطلــبة",
+                tags: ["   الرياضيات ", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 76,
+                name: " كتاب سلاح التلميذ فى التربية الإسلامية 2026 ",
+                price:120   ,
+                desc: " للصف الأول الإبتدائى ",
+                image: "https://i.postimg.cc/44VfyQ2h/Whats-App-Image-2026-01-01-at-6-13-51-PM-(2).jpg",
+                category: "primary",
+                grade: "grade1",
+                author: "مكتبة الطلــبة",
+                tags: ["   التربية الإسلامية   ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                  {
+                id: 75,
+                name: " كتاب سلاح التلميذ فى التربية الإسلامية 2026 ",
+                price:130   ,
+                desc: " للصف الثانى الإبتدائى ",
+                image: "https://i.postimg.cc/rwLq503k/Whats-App-Image-2026-01-01-at-6-13-51-PM.jpg",
+                category: "primary",
+                grade: "grade2",
+                author: "مكتبة الطلــبة",
+                tags: ["   التربية الإسلامية   ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+             {
+                id: 74,
+                name: " كتاب سلاح التلميذ فى التربية الإسلامية 2026 ",
+                price:130   ,
+                desc: " للصف الثالث الإبتدائى ",
+                image: "https://i.postimg.cc/DwbbwXGP/Whats-App-Image-2026-01-01-at-6-13-51-PM-(1).jpg",
+                category: "primary",
+                grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: ["   التربية الإسلامية   ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                                    {
+                id: 73,
+                name: " كتاب التأسيس السليم فى اللغة العربية 2026 ",
+                price:165   ,
+                desc: " للصف الثالث الإبتدائى ",
+                image: "https://i.postimg.cc/xdChm9f1/Whats-App-Image-2026-01-01-at-6-13-51-PM-(3).jpg",
+                category: "primary",
+                grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: ["  اللغة العربية   ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                         {
+                id: 72,
+                name: " كتاب التأسيس السليم فى اللغة العربية 2026 ",
+                price:165   ,
+                desc: " للصف الأول الإبتدائى ",
+                image: "https://i.postimg.cc/bJ56kn6R/Whats-App-Image-2026-01-01-at-6-13-52-PM.jpg",
+                category: "primary",
+                grade: "grade1",
+                author: "مكتبة الطلــبة",
+                tags: ["  اللغة العربية   ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                                {
+                id: 71,
+                name: " كتاب التأسيس السليم فى اللغة العربية 2026 ",
+                price:165   ,
+                desc: " للصف الثانى الإبتدائى ",
+                image: "https://i.postimg.cc/FHYZvzGB/Whats-App-Image-2026-01-01-at-5-00-55-PM-(1).jpg",
+                category: "primary",
+                grade: "grade2",
+                author: "مكتبة الطلــبة",
+                tags: ["  اللغة العربية   ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+               {
+                id: 70,
+                name: " كتاب جيم فى اللغة الإنجليزية 2026 ",
+                price:260   ,
+                desc: " للصف الثالث الثانوى ",
+                image: "https://i.postimg.cc/zGp1sdtW/Whats-App-Image-2026-01-01-at-5-00-55-PM-(2).jpg",
+                category: "secondary",
+                grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: ["  اللغة الإنجليزية   ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 69,
+                name: " كتاب المعاصر فى اللغة الإنجليزية 2026 ",
+                price:269   ,
+                desc: " للصف الثالث الثانوى ",
+                image: "https://i.postimg.cc/bvXvvVHy/Whats-App-Image-2026-01-01-at-5-00-56-PM.jpg",
+                category: "secondary",
+                grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: ["  اللغة الإنجليزية   ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 68,
+                name: " كتاب سلاح التلميذ فى اللغة العربية 2026 ",
+                price:195   ,
+                desc: " للصف الخامس الإبتدائى ",
+                image: "https://i.postimg.cc/Z5cgMC75/Whats-App-Image-2026-01-01-at-5-00-55-PM.jpg",
+                category: "primary",
+                grade: "grade5",
+                author: "مكتبة الطلــبة",
+                tags: ["  اللغة العربية   ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 67,
+                name: " كتاب الأمتحان فى الدراسات الإجتماعية 2026 ",
+                price: 179  ,
+                desc: " للصف الثانى الإعدادى  ",
+                image: "https://i.postimg.cc/VsG4Tg5R/Whats-App-Image-2025-12-29-at-6-30-50-PM.jpg",
+                category: "preparatory",
+                 grade: "grade2",
+                author: "مكتبة الطلــبة",
+                tags: ["   الدراسات الإجتماعية", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+                               {
+                id: 66,
+                name: " كتاب الأمتحان فى اللغة العربية 2026 ",
+                price:230   ,
+                desc: " للصف الأول الثانوى ",
+                image: "https://i.postimg.cc/ZnK3HGrK/Whats-App-Image-2025-12-29-at-6-30-51-PM.jpg",
+                category: "secondary",
+                grade: "grade1",
+                author: "مكتبة الطلــبة",
+                tags: ["  اللغة العربية   ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                                     {
+                id: 65,
+                name: " كتاب الأمتحان فى اللغة العربية 2026 ",
+                price:239   ,
+                desc: " للصف الثانى الثانوى ",
+                image: "https://i.postimg.cc/X7B6qpCd/Whats-App-Image-2025-12-29-at-6-30-51-PM-(2).jpg",
+                category: "secondary",
+                grade: "grade2",
+                author: "مكتبة الطلــبة",
+                tags: ["  اللغة العربية   ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                             {
+                id: 64,
+                name: " كتاب المعاصر فى اللغة الإنجليزية 2026 ",
+                price:179   ,
+                desc: " للصف السادس الإبتدائى ",
+                image: "https://i.postimg.cc/t4VqKB5r/Whats-App-Image-2025-12-29-at-6-30-51-PM-(3).jpg",
+                category: "primary",
+                grade: "grade6",
+                author: "مكتبة الطلــبة",
+                tags: ["  اللغة الإنجليزية   ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                        {
+                id: 63,
+                name: " كتاب المعاصر فى اللغة الإنجليزية 2026 ",
+                price:169   ,
+                desc: " للصف الرابع الإبتدائى ",
+                image: "https://i.postimg.cc/g20R3bGS/Whats-App-Image-2025-12-29-at-6-30-51-PM-(1).jpg",
+                category: "primary",
+                grade: "grade4",
+                author: "مكتبة الطلــبة",
+                tags: ["  اللغة الإنجليزية   ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                        {
+                id: 62,
+                name: " كتاب بيت باى بيت فى اللغة الإنجليزية 2026 ",
+                price:145   ,
+                desc: " للصف الرابع الإبتدائى ",
+                image: "https://i.postimg.cc/cHxyGNkh/Whats-App-Image-2025-12-23-at-9-06-13-AM-(1).jpg",
+                category: "primary",
+                grade: "grade4",
+                author: "مكتبة الطلــبة",
+                tags: ["  اللغة الإنجليزية   ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+             {
+                id: 61,
+                name: " كتاب الأمتحان فى اللغة العربية 2026 ",
+                price: 185  ,
+                desc: " للصف الثالث الإعدادى  ",
+                image: "https://i.postimg.cc/QdYWTX1M/Whats-App-Image-2025-12-23-at-9-06-14-AM.jpg",
+                category: "preparatory",
+                 grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: ["   اللغة العربية ", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+                     {
+                id: 60,
+                name: " كتاب المعاصر فى الرياضيات 2026 ",
+                price: 165  ,
+                desc: " للصف الثالث الإعدادى  ",
+                image: "https://i.postimg.cc/2yBJZ6sR/Whats-App-Image-2025-12-23-at-9-06-13-AM.jpg",
+                category: "preparatory",
+                 grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: ["   الرياضيات ", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+                {
+                id: 59,
+                name: " كتاب المعاصر فى اللغة الإنجليزية 2026 ",
+                price: 179  ,
+                desc: " للصف الثالث الإعدادى  ",
+                image: "https://i.postimg.cc/d3t3sbpK/Whats-App-Image-2025-12-23-at-9-06-12-AM-(2).jpg",
+                category: "preparatory",
+                 grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: ["   اللغة الإنجليزية", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+                      {
+                id: 58,
+                name: " كتاب الأمتحان فى العلوم 2026 ",
+                price: 159  ,
+                desc: " للصف الثالث الإعدادى  ",
+                image: "https://i.postimg.cc/jSkzGXWk/Whats-App-Image-2025-12-23-at-9-06-12-AM-(1).jpg",
+                category: "preparatory",
+                 grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: ["   العلوم", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+                     {
+                id: 57,
+                name: " كتاب الأمتحان فى الدراسات الإجتماعية 2026 ",
+                price: 159  ,
+                desc: " للصف الثالث الإعدادى  ",
+                image: "https://i.postimg.cc/gkQQmv6j/Whats-App-Image-2025-12-23-at-9-06-12-AM.jpg",
+                category: "preparatory",
+                 grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: ["   الدراسات الإجتماعية", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 56,
+                name: " كتاب الأمتحان فى الدراسات الإجتماعية 2026 ",
+                price: 165  ,
+                desc: " للصف الأول الإعدادى  ",
+                image: "https://i.postimg.cc/W1zCP54B/Whats-App-Image-2025-12-23-at-9-06-11-AM.jpg",
+                category: "preparatory",
+                 grade: "grade1",
+                author: "مكتبة الطلــبة",
+                tags: ["   الدراسات الإجتماعية", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+                     {
+                id: 55,
+                name: " كتاب الأضواء فى مادة الرياضيات 2026 ",
+                price:165   ,
+                desc: " للصف السادس الإبتدائى ",
+                image: "https://i.postimg.cc/ZYgmNR3s/Whats-App-Image-2025-12-20-at-8-14-19-PM-(1).jpg",
+                category: "primary",
+                grade: "grade6",
+                author: "مكتبة الطلــبة",
+                tags: ["  الرياضيات   ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                    {
+                id: 54,
+                name: " كتاب الأضواء فى مادة العلوم 2026 ",
+                price:149   ,
+                desc: " للصف السادس الإبتدائى ",
+                image: "https://i.postimg.cc/90ScFXPd/Whats-App-Image-2025-12-20-at-8-14-18-PM.jpg",
+                category: "primary",
+                grade: "grade6",
+                author: "مكتبة الطلــبة",
+                tags: ["  العلوم   ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                   {
+                id: 53,
+                name: " كتاب الأضواء فى مادة الدراسات 2026 ",
+                price:159   ,
+                desc: " للصف الرابع الإبتدائى ",
+                image: "https://i.postimg.cc/3Nbx4Fh4/Whats-App-Image-2025-12-20-at-8-14-18-PM-(2).jpg",
+                category: "primary",
+                grade: "grade4",
+                author: "مكتبة الطلــبة",
+                tags: ["  الدراسات   ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                {
+                id: 52,
+                name: " كتاب الأضواء فى مادة الدراسات 2026 ",
+                price:159   ,
+                desc: " للصف الخامس الإبتدائى ",
+                image: "https://i.postimg.cc/Z5n6Mw0C/Whats-App-Image-2025-12-20-at-8-14-18-PM-(1).jpg",
+                category: "primary",
+                grade: "grade5",
+                author: "مكتبة الطلــبة",
+                tags: ["  الدراسات   ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                                 {
+                id: 51,
+                name: " كتاب االأضواء فى اللغة العربية 2026 ",
+                price:240   ,
+                desc: " للصف الثانى الثانوى ",
+                image: "https://i.postimg.cc/bvFC5GqB/Whats-App-Image-2025-12-20-at-8-13-23-PM-(1).jpg",
+                category: "secondary",
+                grade: "grade2",
+                author: "مكتبة الطلــبة",
+                tags: ["  اللغة العربية   ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                             {
+                id: 50,
+                name: " كتاب االأضواء فى اللغة العربية 2026 ",
+                price:230   ,
+                desc: " للصف الأول الثانوى ",
+                image: "https://i.postimg.cc/bvq3rxvj/Whats-App-Image-2025-12-20-at-8-13-22-PM.jpg",
+                category: "secondary",
+                grade: "grade1",
+                author: "مكتبة الطلــبة",
+                tags: ["  اللغة العربية   ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                 {
+                id: 49,
+                name: " كتاب المعاصر كونكت بلس فى اللغة الإنجليزية 2026 ",
+                price:195   ,
+                desc: " للصف الأول الإبتدائى ",
+                image: "https://i.postimg.cc/43zRkbFF/Whats-App-Image-2025-12-20-at-8-13-21-PM-(1).jpg",
+                category: "primary",
+                grade: "grade1",
+                author: "مكتبة الطلــبة",
+                tags: ["  اللغة الإنجليزية   ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                       {
+                id: 48,
+                name: " كتاب المعاصر ماث  2026 ",
+                price:245   ,
+                desc: " للصف الثانى الإبتدائى ",
+                image: "https://i.postimg.cc/RZWv8tmF/Whats-App-Image-2025-12-20-at-8-13-21-PM-(2).jpg",
+                category: "primary",
+                grade: "grade2",
+                author: "مكتبة الطلــبة",
+                tags: ["  ماث   ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                           {
+                id: 47,
+                name: " كتاب المعاصر كونكت بلس فى مادة اللغة الإنجليزية 2026 ",
+                price:195   ,
+                desc: " للصف الثانى الإبتدائى ",
+                image: "https://i.postimg.cc/G3PtJvLG/Whats-App-Image-2025-12-20-at-8-13-21-PM.jpg",
+                category: "primary",
+                grade: "grade2",
+                author: "مكتبة الطلــبة",
+                tags: ["  اللغة الإنجليزية  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                  {
+                id: 46,
+                name: " كتاب المعاصر كونكت فى مادة اللغة الإنجليزية 2026 ",
+                price:155   ,
+                desc: " للصف الثانى الإبتدائى ",
+                image: "https://i.postimg.cc/XvXBsqH3/Whats-App-Image-2025-12-20-at-8-13-16-PM-(1).jpg",
+                category: "primary",
+                grade: "grade2",
+                author: "مكتبة الطلــبة",
+                tags: ["  اللغة الإنجليزية  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                   {
+                id: 45,
+                name: " كتاب المعاصر كونكت بلس فى مادة اللغة الإنجليزية 2026 ",
+                price:195   ,
+                desc: " للصف الثالث الإبتدائى ",
+                image: "https://i.postimg.cc/mgj7d0Tw/Whats-App-Image-2025-12-20-at-8-13-20-PM-(1).jpg",
+                category: "primary",
+                grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: ["  اللغة الإنجليزية  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                            {
+                id: 44,
+                name: " كتاب المعاصر كونكت فى مادة اللغة الإنجليزية 2026 ",
+                price:170   ,
+                desc: " للصف الثالث الإبتدائى ",
+                image: "https://i.postimg.cc/jS0fdRSp/Whats-App-Image-2025-12-20-at-8-13-17-PM.jpg",
+                category: "primary",
+                grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: ["  اللغة الإنجليزية  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                          {
+                id: 43,
+                name: " كتاب سلاح التلميذ فى مادة الرياضيات 2026 ",
+                price:175   ,
+                desc: " للصف الخامس الإبتدائى ",
+                image: "https://i.postimg.cc/fLZ53xTT/Whats-App-Image-2025-12-20-at-8-13-19-PM.jpg",
+                category: "primary",
+                grade: "grade5",
+                author: "مكتبة الطلــبة",
+                tags: ["  الرياضيات  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                        {
+                id: 42,
+                name: " كتاب الأضواء فى مادة اللغة العربية 2026 ",
+                price:189   ,
+                desc: " للصف الخامس الإبتدائى ",
+                image: "https://i.postimg.cc/mgJ5rzFd/Whats-App-Image-2025-12-20-at-8-13-20-PM.jpg",
+                category: "primary",
+                grade: "grade5",
+                author: "مكتبة الطلــبة",
+                tags: [" اللغة العربية  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                 {
+                id: 41,
+                name: " كتاب جيم فى مادة اللغة الإنجليزية 2026 ",
+                price:175   ,
+                desc: " للصف الخامس الإبتدائى ",
+                image: "https://i.postimg.cc/Sxvwz1HZ/Whats-App-Image-2025-12-20-at-8-13-18-PM-(1).jpg",
+                category: "primary",
+                grade: "grade5",
+                author: "مكتبة الطلــبة",
+                tags: [" اللغة الإنجليزية  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+             {
+                id: 40,
+                name: " كتاب جيم فى مادة اللغة الإنجليزية 2026 ",
+                price:175   ,
+                desc: " للصف السادس الإبتدائى ",
+                image: "https://i.postimg.cc/13r8m6T4/Whats-App-Image-2025-12-20-at-8-13-18-PM.jpg",
+                category: "primary",
+                grade: "grade6",
+                author: "مكتبة الطلــبة",
+                tags: [" اللغة الإنجليزية  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                 {
+                id: 39,
+                name: " كتاب الأضواء فى مادة الدراسات الإجتماعية 2026 ",
+                price:159   ,
+                desc: " للصف السادس الإبتدائى ",
+                image: "https://i.postimg.cc/63555mZL/Whats-App-Image-2025-12-20-at-8-13-19-PM-(2).jpg",
+                category: "primary",
+                grade: "grade6",
+                author: "مكتبة الطلــبة",
+                tags: [" الدراسات  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                  {
+                id: 38,
+                name: " كتاب سلاح التلميذ فى مادة الرياضيات 2026 ",
+                price:175   ,
+                desc: " للصف السادس الإبتدائى ",
+                image: "https://i.postimg.cc/Gpn4rKqc/Whats-App-Image-2025-12-20-at-8-13-19-PM-(1).jpg",
+                category: "primary",
+                grade: "grade6",
+                author: "مكتبة الطلــبة",
+                tags: [" الرياضيات  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                {
+                id: 37,
+                name: " كتاب سلاح التلميذ فى مادة الدراسات 2026 ",
+                price:175   ,
+                desc: " للصف السادس الإبتدائى ",
+                image: "https://i.postimg.cc/Z5C80w8Y/Whats-App-Image-2025-12-20-at-8-13-17-PM-(1).jpg",
+                category: "primary",
+                grade: "grade6",
+                author: "مكتبة الطلــبة",
+                tags: [" الدراسات  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 35,
+                name: " كتاب الأضواء فى اللغة الإنجليزية 2026 ",
+                price: 185  ,
+                desc: " للصف الثانى الإعدادى  ",
+                image: "https://i.postimg.cc/pXM4fnG8/Whats-App-Image-2025-12-20-at-8-13-14-PM.jpg",
+                category: "preparatory",
+                 grade: "grade2",
+                author: "مكتبة الطلــبة",
+                tags: ["   اللغة الإنجليزية", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+                               {
+                id: 34,
+                name: " كتاب الأضواء فى اللغة العربية 2026 ",
+                price: 185  ,
+                desc: " للصف الثالث الإعدادى  ",
+                image: "https://i.postimg.cc/Zn2Q2WZM/Whats-App-Image-2025-12-20-at-8-13-16-PM.jpg",
+                category: "preparatory",
+                 grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: ["   اللغة العربية", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+               {
+                id: 32,
+                name: " كتاب الأضواء فى العلوم 2026 ",
+                price: 149  ,
+                desc: " للصف الثالث الإعدادى  ",
+                image: "https://i.postimg.cc/ydBsprn8/Whats-App-Image-2025-12-20-at-8-13-15-PM-(1).jpg",
+                category: "preparatory",
+                 grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: ["   العلوم", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+                {
+                id: 31,
+                name: " كتاب الأضواء فى الرياضيات 2026 ",
+                price: 150  ,
+                desc: " للصف الثالث الإعدادى  ",
+                image: "https://i.postimg.cc/C1yzhNN2/Whats-App-Image-2025-12-20-at-8-13-15-PM.jpg",
+                category: "preparatory",
+                 grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: ["   الرياضيات", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 30,
+                name: " كتاب الأضواء فى الدراسات 2026 ",
+                price: 145  ,
+                desc: " للصف الثالث الإعدادى  ",
+                image: "https://i.postimg.cc/prFC9qbn/Whats-App-Image-2025-12-20-at-8-13-14-PM-(1).jpg",
+                category: "preparatory",
+                 grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: ["   دراسات", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+                 {
+                id: 28,
+                name: " كتاب الأضواء فى العلوم 2026 ",
+                price: 159  ,
+                desc: " للصف الأول الإعدادى  ",
+                image: "https://i.postimg.cc/Kc7vC2LM/Whats-App-Image-2025-12-17-at-1-05-20-PM.jpg",
+                category: "preparatory",
+                 grade: "grade1",
+                author: "مكتبة الطلــبة",
+                tags: ["   العلوم", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 1,
+                name: " كتاب الأضواء فى اللغة العربية 2026 ",
+                price: 199  ,
+                desc: " للصف الأول الإعدادى  ",
+                image: "https://i.postimg.cc/zXZZSq5v/Whats-App-Image-2025-12-16-at-11-09-50-AM-(1).jpg",
+                category: "preparatory",
+                 grade: "grade1",
+                author: "مكتبة الطلــبة",
+                tags: ["   اللغة العربية", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+                            {
+                id: 2,
+                name: " كتاب الأضواء فى مادة العلوم 2026 ",
+                price:149,
+                desc: " للصف الرابع الإبتدائى ",
+                image: "https://i.postimg.cc/3JVyZ4Nh/Whats-App-Image-2025-12-16-at-11-09-52-AM-(1).jpg",
+                category: "primary",
+                grade: "grade4",
+                author: "مكتبة الطلــبة",
+                tags: [" العلوم  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+             {
+                id: 3,
+                name: " كتاب الأضواء فى مادة الرياضيات 2026 ",
+                price:165   ,
+                desc: " للصف الرابع الإبتدائى ",
+                image: "https://i.postimg.cc/65twxBSx/Whats-App-Image-2025-12-16-at-11-09-52-AM-(2).jpg",
+                category: "primary",
+                grade: "grade4",
+                author: "مكتبة الطلــبة",
+                tags: [" الرياضيات  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 4,
+                name: " كتاب الأضواء فى مادة اللغة العربية 2026 ",
+                price:195   ,
+                desc: " للصف الرابع الإبتدائى ",
+                image: "https://i.postimg.cc/8ChtGg9n/Whats-App-Image-2025-12-16-at-11-09-50-AM.jpg",
+                category: "primary",
+                grade: "grade4",
+                author: "مكتبة الطلــبة",
+                tags: [" اللغة العربية  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+             {
+                id: 5,
+                name: " كتاب الأضواء فى مادة اللغة العربية 2026 ",
+                price:165   ,
+                desc: " للصف الثالث الإبتدائى ",
+                image: "https://i.postimg.cc/brzttKmW/Whats-App-Image-2025-12-16-at-11-09-49-AM.jpg",
+                category: "primary",
+                grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: [" اللغة العربية  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                     {
+                id: 6,
+                name: " كتاب الأضواء فى مادة  الرياضيات 2026 ",
+                price:150   ,
+                desc: " للصف الثالث الإبتدائى ",
+                image: "https://i.postimg.cc/QtWbm9Z5/Whats-App-Image-2025-12-16-at-11-09-48-AM-(1).jpg",
+                category: "primary",
+                grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: [" اللغة العربية  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+             {
+                id: 7,
+                name: " كتاب جيم فى اللغة الإنجليزية 2026 ",
+                price: 185  ,
+                desc: " للصف الثالث الإعدادى  ",
+                image: "https://i.postimg.cc/DzzK1NnY/Whats-App-Image-2025-12-16-at-11-09-54-AM.jpg",
+                category: "preparatory",
+                 grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: ["   اللغة الإنجليزية", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+                               {
+                id: 8,
+                name: " كتاب جيم فى مادة اللغة الإنجليزية 2026 ",
+                price:150,
+                desc: " للصف الأول الإبتدائى ",
+                image: "https://i.postimg.cc/FsJzL7Dg/Whats-App-Image-2025-12-16-at-11-09-51-AM.jpg",
+                category: "primary",
+                grade: "grade1",
+                author: "مكتبة الطلــبة",
+                tags: [" اللغة الإنجليزية  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },   
+                               {
+                id: 9,
+                name: " كتاب جيم فى مادة اللغة الإنجليزية 2026 ",
+                price:150,
+                desc: " للصف الثانى الإبتدائى ",
+                image: "https://i.postimg.cc/NFvs8xNk/Whats-App-Image-2025-12-16-at-11-09-53-AM-(1).jpg",
+                category: "primary",
+                grade: "grade2",
+                author: "مكتبة الطلــبة",
+                tags: [" اللغة الإنجليزية  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            }, 
+                                {
+                id: 10,
+                name: " كتاب الأضواء فى مادة العلوم 2026 ",
+                price:149,
+                desc: " للصف الخامس الإبتدائى ",
+                image: "https://i.postimg.cc/vHHRJj6T/Whats-App-Image-2025-12-16-at-11-09-53-AM-(2).jpg",
+                category: "primary",
+                grade: "grade5",
+                author: "مكتبة الطلــبة",
+                tags: [" العلوم ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            }, 
+                             {
+                id: 11,
+                name: " كتاب الأضواء فى مادة الرياضيات 2026 ",
+                price:165,
+                desc: " للصف الخامس الإبتدائى ",
+                image: "https://i.postimg.cc/DZSVWbn5/Whats-App-Image-2025-12-16-at-11-09-53-AM.jpg",
+                category: "primary",
+                grade: "grade5",
+                author: "مكتبة الطلــبة",
+                tags: [" الرياضيات   ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            }, 
+                 {
+                id: 12,
+                name: " كتاب الأضواء فى مادة الرياضيات 2026 ",
+                price:145,
+                desc: " للصف الثانى الإبتدائى ",
+                image: "https://i.postimg.cc/gJFyhCP3/Whats-App-Image-2025-12-16-at-11-09-52-AM.jpg",
+                category: "primary",
+                grade: "grade2",
+                author: "مكتبة الطلــبة",
+                tags: ["  الرياضيات  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            }, 
+              {
+                id: 13,
+                name: " كتاب الأضواء فى مادة اللغة العربية 2026 ",
+                price:159,
+                desc: " للصف الثانى الإبتدائى ",
+                image: "https://i.postimg.cc/dVGV1p48/Whats-App-Image-2025-12-16-at-11-09-49-AM-(1).jpg",
+                category: "primary",
+                grade: "grade2",
+                author: "مكتبة الطلــبة",
+                tags: ["  اللغة العربية  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            }, 
+                           {
+                id: 14,
+                name: " كتاب الأضواء فى مادة اللغة العربية 2026 ",
+                price:159,
+                desc: " للصف الأول الإبتدائى ",
+                image: "https://i.postimg.cc/MpjJKBZY/Whats-App-Image-2025-12-16-at-11-09-49-AM-(2).jpg",
+                category: "primary",
+                grade: "grade1",
+                author: "مكتبة الطلــبة",
+                tags: [" اللغة العربية  ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },   
+                {
+                id: 15,
+                name: " كتاب الأضواء فى الدراسات 2026 ",
+                price: 159  ,
+                desc: " للصف الأول الإعدادى  ",
+                image: "https://i.postimg.cc/fySTnRL1/Whats-App-Image-2025-12-16-at-11-09-47-AM-(2).jpg",
+                category: "preparatory",
+                 grade: "grade1",
+                author: "مكتبة الطلــبة",
+                tags: ["   الدراسات", "اعدادى"],
+                availability: "متوفر",
+                rating: 5
+            },
+              {
+                id: 16,
+                name: " كتاب سلاح التلميذ فى مادة الرياضيات  2026 ",
+                price:175,
+                desc: " للصف الرابع الإبتدائى ",
+                image: "https://i.postimg.cc/28stk8Hw/Whats-App-Image-2025-12-16-at-11-09-48-AM.jpg",
+                category: "primary",
+                grade: "grade4",
+                author: "مكتبة الطلــبة",
+                tags: ["  الرياضيات   ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            }, 
+               {
+                id: 17,
+                name: " كتاب سلاح التلميذ فى مادة الدراسات  2026 ",
+                price:170,
+                desc: " للصف الخامس الإبتدائى ",
+                image: "https://i.postimg.cc/3xJH5wdW/Whats-App-Image-2025-12-16-at-11-09-47-AM-(1).jpg",
+                category: "primary",
+                grade: "grade5",
+                author: "مكتبة الطلــبة",
+                tags: ["  الدراسات   ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                {
+                id: 18,
+                name: " كتاب سلاح التلميذ فى مادة الدراسات  2026 ",
+                price:165,
+                desc: " للصف الرابع الإبتدائى ",
+                image: "https://i.postimg.cc/WbZBJfHr/Whats-App-Image-2025-12-16-at-11-09-47-AM.jpg",
+                category: "primary",
+                grade: "grade4",
+                author: "مكتبة الطلــبة",
+                tags: ["  الدراسات   ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+              {
+                id: 19,
+                name: " كتاب سلاح التلميذ فى مادة اللغة العربية 2026 ",
+                price:165,
+                desc: " للصف الأول الإبتدائى ",
+                image: "https://i.postimg.cc/c1zW334N/Whats-App-Image-2025-12-16-at-11-09-42-AM.jpg",
+                category: "primary",
+                grade: "grade1",
+                author: "مكتبة الطلــبة",
+                tags: ["  اللغة العربية   ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+              {
+                id: 20,
+                name: " كتاب سلاح التلميذ فى مادة اللغة العربية 2026 ",
+                price:165,
+                desc: " للصف الثانى الإبتدائى ",
+                image: "https://i.postimg.cc/FHvdc8Dr/Whats-App-Image-2025-12-16-at-11-09-45-AM.jpg",
+                category: "primary",
+                grade: "grade2",
+                author: "مكتبة الطلــبة",
+                tags: ["  اللغة العربية   ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+              {
+                id: 21,
+                name: " كتاب سلاح التلميذ فى مادة اللغة العربية 2026 ",
+                price:175,
+                desc: " للصف الثالث الإبتدائى ",
+                image: "https://i.postimg.cc/vmwZCN4q/Whats-App-Image-2025-12-16-at-11-09-36-AM.jpg",
+                category: "primary",
+                grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: ["  اللغة العربية   ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+             {
+                id: 22,
+                name: " كتاب سلاح التلميذ فى مادة اللغة العربية 2026 ",
+                price:195,
+                desc: " للصف الرابع الإبتدائى ",
+                image: "https://i.postimg.cc/BQxFbH2H/Whats-App-Image-2025-12-16-at-11-09-46-AM.jpg",
+                category: "primary",
+                grade: "grade4",
+                author: "مكتبة الطلــبة",
+                tags: ["  اللغة العربية   ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
+                id: 23,
+                name: " كتاب سلاح التلميذ فى مادة العلوم 2026 ",
+                price:160,
+                desc: " للصف الخامس الإبتدائى ",
+                image: "https://i.postimg.cc/3J8zRCv2/Whats-App-Image-2025-12-17-at-1-05-20-PM-(1).jpg",
+                category: "primary",
+                grade: "grade5",
+                author: "مكتبة الطلــبة",
+                tags: ["  العلوم    ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+             {
+                id: 24,
+                name: " كتاب سلاح التلميذ فى مادة العلوم 2026 ",
+                price:160,
+                desc: " للصف الرابع الإبتدائى ",
+                image: "https://i.postimg.cc/SRJ8TvPZ/Whats-App-Image-2025-12-17-at-1-05-21-PM.jpg",
+                category: "primary",
+                grade: "grade4",
+                author: "مكتبة الطلــبة",
+                tags: ["  العلوم    ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                 {
+                id: 25,
+                name: " كتاب سلاح التلميذ فى مادة العلوم 2026 ",
+                price:160,
+                desc: " للصف السادس الإبتدائى ",
+                image: "https://i.postimg.cc/nzsvVL4W/Whats-App-Image-2025-12-17-at-1-05-20-PM-(2).jpg",
+                category: "primary",
+                grade: "grade6",
+                author: "مكتبة الطلــبة",
+                tags: ["  العلوم    ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                  {
+                id: 26,
+                name: " كتاب سلاح التلميذ فى مادة الرياضيات 2026 ",
+                price:160,
+                desc: " للصف الثالث الإبتدائى ",
+                image: "https://i.postimg.cc/SKHnrf9d/Whats-App-Image-2025-12-17-at-1-05-19-PM.jpg",
+                category: "primary",
+                grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: ["  الرياضيات    ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
+                    {
+                id: 27,
+                name: " كتاب سلاح التلميذ فى مادة الرياضيات 2026 ",
+                price:155,
+                desc: " للصف الثانى الإبتدائى ",
+                image: "https://i.postimg.cc/3RMwpJMz/Whats-App-Image-2025-12-17-at-1-05-21-PM-(1).jpg",
+                category: "primary",
+                grade: "grade2",
+                author: "مكتبة الطلــبة",
+                tags: ["  الرياضيات    ", "ابتدائي "],
+                availability: "متوفر",
+                rating: 5
+            },
         ];
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -1604,7 +3628,7 @@
             let cart = [];
             let totalPrice = 0;
             let currentPage = 1;
-            const booksPerPage = 16; // 16 منتج لكل صفحة
+            const booksPerPage = 16;
             let currentCategory = 'all';
             let currentGrade = 'all';
             let currentBooks = [...books];
@@ -1633,13 +3657,11 @@
                 paginatedBooks.forEach((book, index) => {
                     const bookCard = document.createElement('div');
                     bookCard.className = `book-card ${book.originalPrice ? 'hot-deal' : ''}`;
-                    bookCard.style.animationDelay = `${index * 0.1}s`;
+                    bookCard.style.animationDelay = `${index * 0.05}s`;
                     
-                    // علامة الخصم إذا كان هناك سعر أصلي
                     const discountBadge = book.originalPrice ? 
                         `<div class="discount-badge">خصم ${Math.round((1 - book.price/book.originalPrice) * 100)}%</div>` : '';
                     
-                    // عرض السعر مع الخصم
                     const priceDisplay = book.originalPrice ? 
                         `<span class="discount-price">${book.price} ج.م</span>
                          <span class="original-price">${book.originalPrice} ج.م</span>` :
@@ -1670,14 +3692,12 @@
                     
                     booksContainer.appendChild(bookCard);
                     
-                    // إضافة حدث النقر على زر أضف للسلة
                     const addToCartBtn = bookCard.querySelector('.add-to-cart-btn');
                     addToCartBtn.addEventListener('click', function(e) {
                         e.stopPropagation();
                         addToCart(book, this);
                     });
                     
-                    // عرض تفاصيل الكتاب عند النقر
                     bookCard.addEventListener('click', function() {
                         showBookDetails(book);
                     });
@@ -1686,7 +3706,6 @@
                 updatePagination(booksToDisplay.length, page);
             }
             
-            // إنشاء نجوم التقييم
             function generateRatingStars(rating) {
                 let stars = '';
                 const fullStars = Math.floor(rating);
@@ -1708,7 +3727,6 @@
                 return stars;
             }
             
-            // إضافة كتاب للسلة
             function addToCart(book, buttonElement) {
                 cart.push({
                     id: book.id,
@@ -1726,15 +3744,13 @@
                     buttonElement.style.background = 'linear-gradient(to right, var(--success), #34d399)';
                     setTimeout(() => {
                         buttonElement.innerHTML = '<i class="fas fa-cart-plus"></i> أضف للسلة';
-                        buttonElement.style.background = 'linear-gradient(to right, var(--primary), var(--secondary))';
+                        buttonElement.style.background = 'linear-gradient(135deg, var(--gradient-start), var(--gradient-end))';
                     }, 2000);
                 }
                 
-                // إظهار رسالة نجاح صغيرة
                 showToast('تمت إضافة الكتاب إلى السلة');
             }
             
-            // عرض رسالة toast صغيرة
             function showToast(message) {
                 const toast = document.createElement('div');
                 toast.className = 'toast-notification';
@@ -1753,7 +3769,6 @@
                 }, 3000);
             }
             
-            // تحديث واجهة السلة
             function updateCartUI() {
                 cartItemsContainer.innerHTML = '';
                 
@@ -1796,14 +3811,12 @@
                 });
             }
             
-            // تحديث الترقيم
             function updatePagination(totalBooks, currentPage) {
                 paginationContainer.innerHTML = '';
                 
                 const totalPages = Math.ceil(totalBooks / booksPerPage);
                 if (totalPages <= 1) return;
                 
-                // زر الصفحة السابقة
                 const prevBtn = document.createElement('button');
                 prevBtn.className = `page-btn ${currentPage === 1 ? 'disabled' : ''}`;
                 prevBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
@@ -1812,7 +3825,6 @@
                 });
                 paginationContainer.appendChild(prevBtn);
                 
-                // أزرار الصفحات
                 const maxVisiblePages = 5;
                 let startPage, endPage;
                 
@@ -1835,7 +3847,6 @@
                     }
                 }
                 
-                // زر الصفحة الأولى
                 if (startPage > 1) {
                     const firstBtn = document.createElement('button');
                     firstBtn.className = 'page-btn';
@@ -1851,7 +3862,6 @@
                     }
                 }
                 
-                // أزرار الصفحات
                 for (let i = startPage; i <= endPage; i++) {
                     const pageBtn = document.createElement('button');
                     pageBtn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
@@ -1860,7 +3870,6 @@
                     paginationContainer.appendChild(pageBtn);
                 }
                 
-                // زر الصفحة الأخيرة
                 if (endPage < totalPages) {
                     if (endPage < totalPages - 1) {
                         const dots = document.createElement('span');
@@ -1876,7 +3885,6 @@
                     paginationContainer.appendChild(lastBtn);
                 }
                 
-                // زر الصفحة التالية
                 const nextBtn = document.createElement('button');
                 nextBtn.className = `page-btn ${currentPage === totalPages ? 'disabled' : ''}`;
                 nextBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
@@ -1886,29 +3894,24 @@
                 paginationContainer.appendChild(nextBtn);
             }
             
-            // تغيير الصفحة
             function changePage(page) {
                 currentPage = page;
                 filterAndDisplayBooks();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
             
-            // تصفية وعرض الكتب
             function filterAndDisplayBooks() {
                 let filteredBooks = [...books];
                 const searchTerm = searchBox.value.toLowerCase();
                 
-                // تصفية حسب الفئة
                 if (currentCategory !== 'all') {
                     filteredBooks = filteredBooks.filter(book => book.category === currentCategory);
                     
-                    // تصفية حسب الصف
                     if (currentGrade !== 'all') {
                         filteredBooks = filteredBooks.filter(book => book.grade === currentGrade);
                     }
                 }
                 
-                // تصفية حسب البحث
                 if (searchTerm) {
                     filteredBooks = filteredBooks.filter(book => 
                         book.name.toLowerCase().includes(searchTerm) || 
@@ -1923,7 +3926,6 @@
                 updateCategoryTitle();
             }
             
-            // تحديث عنوان الفئة
             function updateCategoryTitle() {
                 if (currentCategory === 'all') {
                     categoryTitle.innerHTML = '<i class="fas fa-book"></i> جميع الكتب';
@@ -1944,28 +3946,28 @@
                 
                 switch(currentCategory) {
                     case 'kindergarten':
-                        title = 'كتب رياض الأطفال';
+                        title = 'رياض الأطفال';
                         icon = '<i class="fas fa-child"></i>';
                         break;
                     case 'primary':
-                        title = 'كتب المرحلة الابتدائية';
+                        title = 'المرحلة الابتدائية';
                         icon = '<i class="fas fa-school"></i>';
                         if (currentGrade !== 'all') {
-                            title += ` - الصف ${gradeNames[currentGrade]} الابتدائي`;
+                            title += ` - الصف ${gradeNames[currentGrade]}`;
                         }
                         break;
                     case 'preparatory':
-                        title = 'كتب المرحلة الإعدادية';
+                        title = 'المرحلة الإعدادية';
                         icon = '<i class="fas fa-graduation-cap"></i>';
                         if (currentGrade !== 'all') {
-                            title += ` - الصف ${gradeNames[currentGrade]} الإعدادي`;
+                            title += ` - الصف ${gradeNames[currentGrade]}`;
                         }
                         break;
                     case 'secondary':
-                        title = 'كتب المرحلة الثانوية';
+                        title = 'المرحلة الثانوية';
                         icon = '<i class="fas fa-user-graduate"></i>';
                         if (currentGrade !== 'all') {
-                            title += ` - الصف ${gradeNames[currentGrade]} الثانوي`;
+                            title += ` - الصف ${gradeNames[currentGrade]}`;
                         }
                         break;
                 }
@@ -1973,7 +3975,6 @@
                 categoryTitle.innerHTML = `${icon} ${title}`;
             }
             
-            // عرض تفاصيل الكتاب
             function showBookDetails(book) {
                 currentBookDetails = book;
                 const detailsImage = document.getElementById('details-book-image');
@@ -1984,12 +3985,10 @@
                 const detailsPrice = document.getElementById('details-book-price');
                 const detailsDescription = document.getElementById('details-book-description');
                 
-                // عرض السعر مع الخصم
                 const priceDisplay = book.originalPrice ? 
                     `${book.price} ج.م <span class="original-price">${book.originalPrice} ج.م</span>` :
                     `${book.price} ج.م`;
                 
-                // تعبئة البيانات
                 detailsImage.src = book.image;
                 detailsTitle.textContent = book.name;
                 detailsAuthor.textContent = `${book.desc} - ${book.author}`;
@@ -2005,7 +4004,6 @@
                 detailsPrice.innerHTML = `السعر: ${priceDisplay}`;
                 detailsDescription.textContent = book.details || 'لا يوجد وصف مفصل متاح لهذا الكتاب حالياً.';
                 
-                // عرض المودال
                 setTimeout(() => {
                     bookDetailsModal.style.display = 'flex';
                     setTimeout(() => {
@@ -2016,13 +4014,12 @@
                 document.body.style.overflow = 'hidden';
             }
             
-            // أحداث البحث
+            // الأحداث
             searchBox.addEventListener('input', function() {
                 currentPage = 1;
                 filterAndDisplayBooks();
             });
             
-            // أحداث التبويبات الرئيسية
             mainTabs.forEach(tab => {
                 tab.addEventListener('click', function() {
                     mainTabs.forEach(t => t.classList.remove('active'));
@@ -2049,7 +4046,6 @@
                 });
             });
             
-            // أحداث التبويبات الفرعية
             subTabs.forEach(tab => {
                 tab.addEventListener('click', function() {
                     const container = this.closest('.sub-tabs-container');
@@ -2062,7 +4058,6 @@
                 });
             });
             
-            // أحداث القائمة الجانبية للهاتف
             mobileMenuBtn.addEventListener('click', () => {
                 mobileMenu.classList.add('active');
                 document.body.style.overflow = 'hidden';
@@ -2073,7 +4068,6 @@
                 document.body.style.overflow = 'auto';
             });
             
-            // أحداث السلة
             cartBtn.addEventListener('click', () => {
                 setTimeout(() => {
                     cartModal.style.display = 'flex';
@@ -2102,7 +4096,6 @@
                 }
             });
             
-            // أحداث إتمام الشراء
             checkoutBtn.addEventListener('click', () => {
                 if (cart.length === 0) {
                     showToast('السلة فارغة! يرجى إضافة بعض الكتب أولاً.');
@@ -2141,7 +4134,6 @@
                 updateCartUI();
             });
             
-            // أحداث رسالة التأكيد
             confirmBtn.addEventListener('click', () => {
                 confirmation.classList.remove('show');
                 setTimeout(() => {
@@ -2150,7 +4142,6 @@
                 document.body.style.overflow = 'auto';
             });
             
-            // إغلاق مودال تفاصيل الكتاب
             closeDetails.addEventListener('click', () => {
                 bookDetailsModal.classList.remove('show');
                 setTimeout(() => {
@@ -2177,7 +4168,6 @@
                 }
             });
             
-            // أحداث أزرار تفاصيل الكتاب
             detailsAddToCartBtn.addEventListener('click', function() {
                 if (currentBookDetails) {
                     addToCart(currentBookDetails, this);
@@ -2228,60 +4218,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
