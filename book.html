@@ -1156,6 +1156,194 @@
         .toast-notification.show {
             opacity: 1;
         }
+
+        /* ===== نافذة الترحيب ===== */
+        .welcome-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 17, 17, 0.75);
+            backdrop-filter: blur(8px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            font-family: 'Tajawal', sans-serif;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+
+        .welcome-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .welcome-modal.hide-permanently {
+            display: none;
+        }
+
+        .welcome-content {
+            background: #ffffff;
+            max-width: 450px;
+            width: 90%;
+            padding: 40px 30px;
+            border-radius: 28px;
+            text-align: center;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+            transform: scale(0.9) translateY(30px);
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s ease;
+            opacity: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-modal.active .welcome-content {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+
+        .welcome-content::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            right: -60px;
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 153, 0, 0.08);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .welcome-content::after {
+            content: '';
+            position: absolute;
+            bottom: -80px;
+            left: -80px;
+            width: 200px;
+            height: 200px;
+            background: rgba(0, 122, 255, 0.05);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .welcome-icon {
+            font-size: 4rem;
+            color: #FF9900;
+            margin-bottom: 10px;
+            display: block;
+            position: relative;
+            z-index: 1;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .welcome-title {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #0F1111;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .welcome-title span {
+            color: #FF9900;
+        }
+
+        .welcome-text {
+            color: #565959;
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 18px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .discount-box {
+            background: linear-gradient(135deg, #FFF5E6, #FFE8CC);
+            padding: 18px 15px;
+            border-radius: 16px;
+            margin-bottom: 25px;
+            border: 2px dashed #FF9900;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 4px 15px rgba(255, 153, 0, 0.15);
+        }
+
+        .discount-box .discount-label {
+            font-weight: 700;
+            color: #0F1111;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .discount-box .discount-label i {
+            color: #C45500;
+            font-size: 1.3rem;
+        }
+
+        .discount-code {
+            display: inline-block;
+            background: #0F1111;
+            color: #FF9900;
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-weight: 900;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            margin: 5px 0 0;
+            border: 2px solid #FF9900;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .discount-box .small-note {
+            display: block;
+            color: #565959;
+            font-size: 0.75rem;
+            margin-top: 6px;
+        }
+
+        .btn-enter {
+            background: #FF9900;
+            color: #0F1111;
+            border: none;
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 153, 0, 0.3);
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-enter:hover {
+            background: #E68A00;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 153, 0, 0.4);
+        }
+
+        .btn-enter:active {
+            transform: scale(0.98);
+        }
         
         /* ===== استجابة ===== */
         @media (max-width: 380px) {
@@ -1175,6 +1363,14 @@
             
             .books-grid {
                 gap: 10px;
+            }
+            
+            .welcome-content {
+                padding: 30px 20px;
+            }
+            
+            .welcome-title {
+                font-size: 1.5rem;
             }
         }
         
@@ -1212,6 +1408,29 @@
     </style>
 </head>
 <body>
+    <!-- ===== نافذة الترحيب ===== -->
+    <div class="welcome-modal" id="welcomeModal">
+        <div class="welcome-content">
+            <i class="fas fa-book-open welcome-icon"></i>
+            <h1 class="welcome-title">أهلاً بك في <span>مكتبة الطلبة</span></h1>
+            <p class="welcome-text">
+                نحن سعداء بوجودك معنا! 📚<br>
+                اختر كتابك المفضل واستعد لعام دراسي مميز.
+            </p>
+            <div class="discount-box">
+                <div class="discount-label">
+                    <i class="fas fa-gift"></i>
+                    <span>🎉 خصم مميز جدا  !</span>
+                </div>
+                <span class="discount-code">تسوق الآن</span>
+                <span class="small-note">اطلب أوردرك الأن %</span>
+            </div>
+            <button class="btn-enter" id="enterBtn">
+                <i class="fas fa-arrow-left"></i> ابدأ التسوق الآن
+            </button>
+        </div>
+    </div>
+
     <!-- شريط التنقل -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
@@ -1383,9 +1602,35 @@
     </div>
     
     <script>
-        // بيانات الكتب (نفس البيانات السابقة)
+        // بيانات الكتب
         const books = [
-                 {
+                    {
+                id: 28,
+                name: " كتاب المعاصر  فى الرياضة البحتة الجبر والتفاضل 2027 ",
+                price:445 ,
+                desc: " للصف الثالث الثانوى  ",
+                image: "https://i.postimg.cc/859pyRgZ/e0baa576-e24e-4288-b018-f6ef8b540a69.jpg",
+                category: "secondary",
+                grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: ["المعاصر  ", "الجبر "],
+                availability: "متوفر",
+                rating: 5
+            },
+        {
+                id: 27,
+                name: " كتاب المعاصر  فى الرياضة التطبيقيةأستاتيكا وديناميكا 2027 ",
+                price:400 ,
+                desc: " للصف الثالث الثانوى  ",
+                image: "https://i.postimg.cc/VNzc47Sg/89623f33-8e6c-4434-ac0b-4ea40ee167e0.jpg",
+                category: "secondary",
+                grade: "grade3",
+                author: "مكتبة الطلــبة",
+                tags: ["المعاصر  ", "أستاتيكا "],
+                availability: "متوفر",
+                rating: 5
+            },
+            {
                 id: 26,
                 name: " كتاب المعاصر فى الماث 2027 ",
                 price:255 ,
@@ -1398,7 +1643,7 @@
                 availability: "متوفر",
                 rating: 5
             },
-         {
+            {
                 id: 25,
                 name: " كتاب الأمتحان فى الأحياء شرح 2027 ",
                 price:215 ,
@@ -1411,7 +1656,7 @@
                 availability: "متوفر",
                 rating: 5
             },
-                      {
+            {
                 id: 24,
                 name: " كتاب الأمتحان فى الفيزياء شرح 2027 ",
                 price:230 ,
@@ -1424,7 +1669,7 @@
                 availability: "متوفر",
                 rating: 5
             },
-                      {
+            {
                 id: 23,
                 name: " كتاب الأمتحان فى الفيزياء أسئلة 2027 ",
                 price:325 ,
@@ -1437,7 +1682,7 @@
                 availability: "متوفر",
                 rating: 5
             },
-                    {
+            {
                 id: 22,
                 name: " كتاب الأمتحان فى الأحياء أسئلة 2027 ",
                 price:299 ,
@@ -1450,7 +1695,7 @@
                 availability: "متوفر",
                 rating: 5
             },
-                      {
+            {
                 id: 21,
                 name: " كتاب الأمتحان فى الكيمياء شرح 2027 ",
                 price:285 ,
@@ -1463,7 +1708,7 @@
                 availability: "متوفر",
                 rating: 5
             },
-                 {
+            {
                 id: 20,
                 name: " كتاب المعاصر فى الماث 2027 ",
                 price:205 ,
@@ -1476,7 +1721,7 @@
                 availability: "متوفر",
                 rating: 5
             },
-                     {
+            {
                 id: 19,
                 name: " كتاب المعاصر فى الماث 2027 ",
                 price:210 ,
@@ -1489,7 +1734,7 @@
                 availability: "متوفر",
                 rating: 5
             },
-                {
+            {
                 id: 18,
                 name: " كتاب المعاصر فى اللغة الإنجليزية 2027 ",
                 price:125 ,
@@ -1502,7 +1747,7 @@
                 availability: "متوفر",
                 rating: 5
             },
-                 {
+            {
                 id: 17,
                 name: " كتاب المعاصر فى اللغة الإنجليزية 2027 ",
                 price:125 ,
@@ -1515,7 +1760,7 @@
                 availability: "متوفر",
                 rating: 5
             },
-                {
+            {
                 id: 16,
                 name: " كتاب المعاصر فى اللغة الإنجليزية 2027 ",
                 price:189 ,
@@ -1528,7 +1773,7 @@
                 availability: "متوفر",
                 rating: 5
             },
-                {
+            {
                 id: 15,
                 name: " كتاب المعاصر فى اللغة الإنجليزية 2027 ",
                 price:175 ,
@@ -1541,7 +1786,7 @@
                 availability: "متوفر",
                 rating: 5
             },
-                        {
+            {
                 id: 14,
                 name: " كتاب المعاصر فى الرياضيات 2027 ",
                 price:185   ,
@@ -1554,7 +1799,7 @@
                 availability: "متوفر",
                 rating: 5
             },
-                  {
+            {
                 id: 13,
                 name: " كتاب الأمتحان فى الدراسات الإجتماعية 2027 ",
                 price:187   ,
@@ -1567,7 +1812,7 @@
                 availability: "متوفر",
                 rating: 5
             },
-                    {
+            {
                 id: 12,
                 name: " كتاب الأمتحان فى اللغة العربية 2027 ",
                 price:220   ,
@@ -1580,7 +1825,7 @@
                 availability: "متوفر",
                 rating: 5
             },
-           {
+            {
                 id: 1,
                 name: " كتاب الاضواء فى الرياضيات 2027 ",
                 price:149   ,
@@ -1593,7 +1838,7 @@
                 availability: "متوفر",
                 rating: 5
             },
-                  {
+            {
                 id: 2,
                 name: " كتاب جيم فى اللغة الإنجليزية 2027 ",
                 price:165   ,
@@ -1606,7 +1851,7 @@
                 availability: "متوفر",
                 rating: 5
             },
-                             {
+            {
                 id: 3,
                 name: " كتاب جيم فى اللغة الإنجليزية 2027 ",
                 price:165   ,
@@ -1619,7 +1864,7 @@
                 availability: "متوفر",
                 rating: 5
             },
-                             {
+            {
                 id: 4,
                 name: " كتاب جيم فى اللغة الإنجليزية 2027 ",
                 price:179   ,
@@ -1632,7 +1877,7 @@
                 availability: "متوفر",
                 rating: 5
             },
-                      {
+            {
                 id: 5,
                 name: " كتاب الأضواء فى اللغة العربية 2027 ",
                 price:159   ,
@@ -1645,7 +1890,7 @@
                 availability: "متوفر",
                 rating: 5
             },
-                      {
+            {
                 id: 6,
                 name: " كتاب الأضواء فى اللغة العربية 2027 ",
                 price:159   ,
@@ -1658,7 +1903,7 @@
                 availability: "متوفر",
                 rating: 5
             },
-                                  {
+            {
                 id: 7,
                 name: " كتاب الأضواء فى اللغة العربية 2027 ",
                 price:169   ,
@@ -1684,7 +1929,7 @@
                 availability: "متوفر",
                 rating: 5
             },
-              {
+            {
                 id: 9,
                 name: " كتاب الأضواء فى الدراسات الإجتماعية  2027 ",
                 price:159   ,
@@ -1697,7 +1942,7 @@
                 availability: "متوفر",
                 rating: 5
             },
-               {
+            {
                 id: 10,
                 name: " كتاب الأضواء فى اللغة العربية 2027 ",
                 price:199   ,
@@ -1710,7 +1955,7 @@
                 availability: "متوفر",
                 rating: 5
             },
-              {
+            {
                 id: 11,
                 name: " كتاب الأضواء فى اللغة الإنجليزية 2027 ",
                 price:199   ,
@@ -1726,7 +1971,34 @@
         ];
 
         document.addEventListener('DOMContentLoaded', function() {
-            // عناصر DOM
+            // ===== نافذة الترحيب =====
+            const welcomeModal = document.getElementById('welcomeModal');
+            const enterBtn = document.getElementById('enterBtn');
+            
+            // إظهار النافذة بعد نصف ثانية
+            setTimeout(() => {
+                welcomeModal.classList.add('active');
+            }, 500);
+            
+            // زر الدخول: إخفاء النافذة بشكل نهائي
+            enterBtn.addEventListener('click', function() {
+                welcomeModal.classList.remove('active');
+                setTimeout(() => {
+                    welcomeModal.classList.add('hide-permanently');
+                }, 600);
+            });
+            
+            // إغلاق النافذة عند الضغط خارج المحتوى
+            welcomeModal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    welcomeModal.classList.remove('active');
+                    setTimeout(() => {
+                        welcomeModal.classList.add('hide-permanently');
+                    }, 600);
+                }
+            });
+
+            // ===== باقي كود المتجر =====
             const navbar = document.getElementById('navbar');
             const cartBtn = document.getElementById('cartBtn');
             const cartModal = document.getElementById('cart-modal');
@@ -1755,7 +2027,6 @@
             const detailsAddToCartBtn = document.getElementById('details-add-to-cart');
             const detailsBuyNowBtn = document.getElementById('details-buy-now');
             
-            // متغيرات التطبيق
             let cart = [];
             let totalPrice = 0;
             let currentPage = 1;
@@ -1765,18 +2036,16 @@
             let currentBooks = [...books];
             let currentBookDetails = null;
             
-            // ===== خاصية اختفاء شريط العنوان عند التمرير =====
+            // خاصية اختفاء شريط العنوان عند التمرير
             let lastScrollY = window.scrollY;
             
             window.addEventListener('scroll', function() {
                 const currentScrollY = window.scrollY;
                 
-                if (currentScrollY > 80) { // بعد التمرير لأسفل قليلاً
+                if (currentScrollY > 80) {
                     if (currentScrollY > lastScrollY) {
-                        // التمرير للأسفل → إخفاء الناف بار
                         navbar.classList.add('hidden');
                     } else {
-                        // التمرير للأعلى → إظهار الناف بار
                         navbar.classList.remove('hidden');
                     }
                 } else {
