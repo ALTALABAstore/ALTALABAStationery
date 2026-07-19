@@ -8,11 +8,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #0F1111;        /* أسود أمازون */
-            --primary-light: #232F3E;   /* أزرق داكن أيفون */
-            --accent: #FF9900;          /* برتقالي أمازون */
+            --primary: #0F1111;
+            --primary-light: #232F3E;
+            --accent: #FF9900;
             --accent-hover: #E68A00;
-            --secondary: #007AFF;       /* أزرق أيفون */
+            --secondary: #007AFF;
             --gradient-start: #0F1111;
             --gradient-end: #232F3E;
             --dark: #0F1111;
@@ -45,7 +45,7 @@
             padding: 0;
         }
         
-        /* ===== شريط التنقل (يختفي عند التمرير) ===== */
+        /* ===== شريط التنقل ===== */
         .navbar {
             background: var(--primary);
             padding: 10px 0 12px;
@@ -137,13 +137,13 @@
             background: rgba(255,255,255,0.15);
         }
         
-        /* ===== المساحة العلوية لتعويض الناف بار ===== */
+        /* ===== المساحة العلوية ===== */
         .main-wrapper {
             padding-top: 70px;
             min-height: 100vh;
         }
         
-        /* ===== بقية الأنماط ===== */
+        /* ===== القائمة الجانبية ===== */
         .mobile-menu {
             position: fixed;
             top: 0;
@@ -394,11 +394,42 @@
             color: var(--accent);
         }
         
+        /* ===== شبكة الكتب - تصميم متجاوب ===== */
         .books-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 14px;
+            gap: 16px;
             margin-top: 4px;
+        }
+        
+        /* الموبايل: منتجين في الصف */
+        @media (max-width: 767px) {
+            .books-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+        }
+        
+        /* التابلت: 3 منتجات في الصف */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .books-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 16px;
+            }
+        }
+        
+        /* الكمبيوتر واللاب توب: 4-5 منتجات في الصف */
+        @media (min-width: 1024px) {
+            .books-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 20px;
+            }
+        }
+        
+        @media (min-width: 1400px) {
+            .books-grid {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 24px;
+            }
         }
         
         .book-card {
@@ -411,6 +442,8 @@
             border: 1px solid rgba(0,0,0,0.04);
             cursor: pointer;
             animation: cardAppear 0.4s ease forwards;
+            display: flex;
+            flex-direction: column;
         }
         
         .book-card:active {
@@ -463,6 +496,9 @@
         
         .book-info {
             padding: 12px 14px 14px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
         
         .book-title {
@@ -505,7 +541,7 @@
             display: flex;
             flex-direction: column;
             gap: 8px;
-            margin-top: 6px;
+            margin-top: auto;
         }
         
         .book-price {
@@ -516,6 +552,7 @@
             align-items: center;
             justify-content: space-between;
             gap: 4px;
+            flex-wrap: wrap;
         }
         
         .book-price .current-price {
@@ -1345,24 +1382,28 @@
             transform: scale(0.98);
         }
         
-        /* ===== استجابة ===== */
-        @media (max-width: 380px) {
+        /* ===== تحسينات إضافية للموبايل ===== */
+        @media (max-width: 480px) {
             .book-image {
-                height: 160px;
+                height: 140px;
             }
             
             .book-title {
-                font-size: 0.75rem;
-                min-height: 2rem;
+                font-size: 0.7rem;
+                min-height: 1.8rem;
+            }
+            
+            .book-desc {
+                font-size: 0.6rem;
             }
             
             .btn {
-                font-size: 0.65rem;
-                padding: 8px 10px;
+                font-size: 0.6rem;
+                padding: 8px 8px;
             }
             
-            .books-grid {
-                gap: 10px;
+            .book-price {
+                font-size: 0.75rem;
             }
             
             .welcome-content {
@@ -1371,38 +1412,6 @@
             
             .welcome-title {
                 font-size: 1.5rem;
-            }
-        }
-        
-        @media (min-width: 768px) {
-            .books-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 18px;
-                max-width: 700px;
-                margin-left: auto;
-                margin-right: auto;
-            }
-            
-            .book-image {
-                height: 240px;
-            }
-        }
-        
-        @media (min-width: 1024px) {
-            .books-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 24px;
-                max-width: 800px;
-                margin-left: auto;
-                margin-right: auto;
-            }
-            
-            .book-image {
-                height: 260px;
-            }
-            
-            .container {
-                padding: 24px 24px 80px;
             }
         }
     </style>
@@ -1420,7 +1429,7 @@
             <div class="discount-box">
                 <div class="discount-label">
                     <i class="fas fa-gift"></i>
-                    <span>🎉 خصم مميز جدا  !</span>
+                    <span>🎉 خصم مميز جدا !</span>
                 </div>
                 <span class="discount-code">تسوق الآن</span>
                 <span class="small-note">اطلب أوردرك الأن %</span>
@@ -1604,7 +1613,7 @@
     <script>
         // بيانات الكتب
         const books = [
-               {
+                     {
                 id: 48,
                 name: " كتاب الأضواء فى اللغة العربية 2027 ",
                 price:199   ,
@@ -2235,12 +2244,10 @@
             const welcomeModal = document.getElementById('welcomeModal');
             const enterBtn = document.getElementById('enterBtn');
             
-            // إظهار النافذة بعد نصف ثانية
             setTimeout(() => {
                 welcomeModal.classList.add('active');
             }, 500);
             
-            // زر الدخول: إخفاء النافذة بشكل نهائي
             enterBtn.addEventListener('click', function() {
                 welcomeModal.classList.remove('active');
                 setTimeout(() => {
@@ -2248,7 +2255,6 @@
                 }, 600);
             });
             
-            // إغلاق النافذة عند الضغط خارج المحتوى
             welcomeModal.addEventListener('click', function(e) {
                 if (e.target === this) {
                     welcomeModal.classList.remove('active');
